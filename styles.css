@@ -1,7 +1,45 @@
 body {
     position: relative;
-    top: 6.104vw;   
     color: white;
-    margin: 0 4.197%;
-    background-color: #1b1304;
+    background-image: url("img/background.jpg");
+    background-size: cover;
+}
+
+html, body { 
+    min-height: 100%;
+}
+#index h1 {
+    text-align: center;
+    font-size: 10vh;
+    font-family: 'Dancing Script', cursive;
+    text-shadow: 3px 3px rgb(104, 182, 255);
+    color: rgb(255, 255, 255); 
+}
+
+#index div div{
+    text-shadow: 3px 3px rgb(104, 182, 255);
+    color: rgb(255, 255, 255); 
+    background-color: rgba(130, 0, 236, 0.541);
+    text-align: center;
+    font-size: 10vh;
+    font-family: 'Dancing Script', cursive;
+    width: 100vh;
+    margin-right: auto;
+    margin-left: auto;
+    width: 30vh;
+    padding: 1vh 2vh;
+    border-radius: 5%;
+    border: 0.2vh solid black;
+}
+
+#index div div:hover{
+    background-color: rgba(130, 0, 236);
+    padding:  2vh 3vh;
+    cursor: pointer;
+}
+#index nav div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 69vh;
 }
