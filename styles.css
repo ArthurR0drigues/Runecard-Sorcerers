@@ -74,3 +74,8 @@ a {
 #sobre {
     grid-area: n;
 }
+.volta{
+    color: white;
+    font-size: 30vh;
+    
+}
