@@ -1,7 +1,7 @@
 body {
     position: relative;
     color: white;
-    background-image: url("imgs/8247.jpg");
+    background-image: url("img/background.jpg");
     background-size: cover;
 }
 
@@ -16,35 +16,61 @@ html, body {
     color: rgb(255, 255, 255); 
 }
 
-#index div div{
+#index div{
     text-shadow: 3px 3px rgb(104, 182, 255);
     color: rgb(255, 255, 255); 
-    background-color: rgba(130, 0, 236, 0.541);
+    background-color: rgba(7, 44, 66, 0.616);
     text-align: center;
-    font-size: 10vh;
+    align-items: center;
+    font-size: 9vh;
     font-family: 'Dancing Script', cursive;
     width: 100vh;
     margin-right: auto;
     margin-left: auto;
-    width: 30vh;
-    padding: 1vh 2vh;
-    border-radius: 5%;
+    width: 32vh;
+    padding: 1vh 5vh;
+    border-radius: 3%;
     border: 0.2vh solid black;
 }
 
-#index div div:hover{
-    background-color: rgba(130, 0, 236);
-    padding:  2vh 3vh;
+#index div:hover{
+    background-color: rgb(2, 57, 88);
     cursor: pointer;
-    text-decoration-line: none;
-}
-#index nav div {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    height: 69vh;
+    transition: 300ms;
+    color: gray;
+    text-shadow: goldenrod 1px 1px;
 }
 
-a{
+#index div:active{
+    background-color: rgb(5, 82, 128);
+    cursor: pointer;
+    transition: 100ms;
+    color: gray;
+    text-shadow: goldenrod 1px 1px;
+} 
+
+a {
     text-decoration-line: none;
+}
+
+#menu {
+    display: grid;
+    grid-template: 1fr 1fr 1fr/ 1fr 1fr 1fr 1fr 1fr; 
+    grid-template-areas: 
+    ". p . d ."
+    ". . . . ."
+    ". s . n .";
+}
+
+#jogar {
+    grid-area: p;
+}
+#deck {
+    grid-area: d;
+}
+#shop {
+    grid-area: s;
+}
+#sobre {
+    grid-area: n;
 }
