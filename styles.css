@@ -1,7 +1,7 @@
 body {
     position: relative;
     color: white;
-    background-image: url("img/background.jpg");
+    background-image: url("imgs/8247.jpg");
     background-size: cover;
 }
 
@@ -36,10 +36,15 @@ html, body {
     background-color: rgba(130, 0, 236);
     padding:  2vh 3vh;
     cursor: pointer;
+    text-decoration-line: none;
 }
 #index nav div {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     height: 69vh;
+}
+
+a{
+    text-decoration-line: none;
 }
