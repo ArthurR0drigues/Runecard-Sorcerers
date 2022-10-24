@@ -1,6 +1,5 @@
-body {
+.masmorra{
     position: relative;
-    color: white;
     background-image: url("img/background.jpg");
     background-size: cover;
 }
@@ -8,7 +7,7 @@ body {
 html, body { 
     min-height: 100%;
 }
-#index h1 {
+#index h1, .titulo{
     text-align: center;
     font-size: 10vh;
     font-family: 'Dancing Script', cursive;
@@ -16,7 +15,7 @@ html, body {
     color: rgb(255, 255, 255); 
 }
 
-#index div{
+.botao{
     text-shadow: 3px 3px rgb(104, 182, 255);
     color: rgb(255, 255, 255); 
     background-color: rgba(7, 44, 66, 0.616);
@@ -33,7 +32,7 @@ html, body {
     border: 0.2vh solid black;
 }
 
-#index div:hover{
+.botao:hover{
     background-color: rgb(2, 57, 88);
     cursor: pointer;
     transition: 300ms;
@@ -41,7 +40,7 @@ html, body {
     text-shadow: goldenrod 1px 1px;
 }
 
-#index div:active{
+.botao:active{
     background-color: rgb(5, 82, 128);
     cursor: pointer;
     transition: 100ms;
@@ -74,7 +73,21 @@ a {
 #sobre {
     grid-area: n;
 }
-.volta{
-    color: white;
-    font-size: 30vh;
+
+.volta {
+    font-size: 20vh; 
+    float: left;
+}
+/* estilos para as batalhas */
+
+#batalhas div div{
+    font-size: 5vh;
+    background-image: url("img/Runa-Logo.png");
+    background-size: cover;
+}
+
+.batalha {
+    background-image: url("img/pedra.jpg");
+    position: relative;
+    background-size: cover;
 }
