@@ -91,3 +91,9 @@ a {
     position: relative;
     background-size: cover;
 }
+.batalha div 
+{
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+}
