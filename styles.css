@@ -1,12 +1,27 @@
+html, body { 
+    min-height: 100%;
+}
+
+/* definir backgrounds */
 .masmorra{
     position: relative;
     background-image: url("img/background.jpg");
     background-size: cover;
 }
 
-html, body { 
-    min-height: 100%;
+.sala-masmorra{
+    position: relative;
+    background-image: url("img/background2.jpg");
+    background-size: cover;
 }
+.batalha{
+    position: relative;
+    background-image: url("img/mesa.png");
+    background-size: cover;
+}
+
+/* estilos para o index */
+
 #index h1, .titulo{
     text-align: center;
     font-size: 10vh;
@@ -15,6 +30,29 @@ html, body {
     color: rgb(255, 255, 255); 
 }
 
+#menu {
+    display: grid;
+    grid-template: 1fr 1fr 1fr/ 1fr 1fr 1fr 1fr 1fr; 
+    grid-template-areas: 
+    ". p . d ."
+    ". . . . ."
+    ". s . n .";
+}
+
+#jogar {
+    grid-area: p;
+}
+#deck {
+    grid-area: d;
+}
+#shop {
+    grid-area: s;
+}
+#sobre {
+    grid-area: n;
+}
+
+/*estilos para os botoes */
 .botao{
     text-shadow: 3px 3px rgb(104, 182, 255);
     color: rgb(255, 255, 255); 
@@ -52,48 +90,33 @@ a {
     text-decoration-line: none;
 }
 
-#menu {
-    display: grid;
-    grid-template: 1fr 1fr 1fr/ 1fr 1fr 1fr 1fr 1fr; 
-    grid-template-areas: 
-    ". p . d ."
-    ". . . . ."
-    ". s . n .";
-}
-
-#jogar {
-    grid-area: p;
-}
-#deck {
-    grid-area: d;
-}
-#shop {
-    grid-area: s;
-}
-#sobre {
-    grid-area: n;
-}
 
 .volta {
     font-size: 20vh; 
     float: left;
 }
+
 /* estilos para as batalhas */
 
-#batalhas div div{
+#baralho-area img{
+    position: relative;
+    width: 24vh;
+}
+#baralho-area img:not(#base){
+    position: absolute;
+    width: 22vh;
+    left: 1vh;
+    top: 1vh;
+}
+
+/* fim */
+
+/* estilos para a seleção de batalha */ 
+
+#selecionar div div{
     font-size: 5vh;
     background-image: url("img/Runa-Logo.png");
     background-size: cover;
 }
 
-.batalha {
-    background-image: url("img/pedra.jpg");
-    position: relative;
-    background-size: cover;
-}
-.batalha div 
-{
-    position: fixed;
-    bottom: 0px;
-    right: 0px;
-}
+/* fim */
