@@ -23,6 +23,7 @@ let cavaleiro = {
 
 /*fim das cartas */
 
+/*
 function criarBaralho(baralho) {
     for (let i = 0; i < baralho.length; i++) {
         let cartaEl = document.createElement("img");
@@ -44,7 +45,7 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
 
-/*
+
 let bodyEl = document.querySelector('body');
 let CartaTopoEl = document.querySelectorAll('.drag');
 
@@ -55,6 +56,17 @@ function selecionarCarta(e) {
 
 bodyEl.addEventListener('mousemove', selecionarCarta);
 */
+
+let oponenteEl = document.querySelector('#oponente');
+let objectImageEl = document.querySelector('#oponente-obj'); 
+function capturaOponenteImagem(){
+    objectImageEl.style.backgroundImage = 'url(' + oponenteEl.src + ')'; 
+}
+let botaoOponenteEl = document.querySelector('#botao-oponente'); 
+botaoOponenteEl.addEventListener('click', capturaOponenteImagem); 
+
+
+/* JOGAR */
 let tutorial = {
     oponente: 'El picachu',
     img: 'img/carta-base.png',
@@ -71,7 +83,7 @@ let oponenteAtual = -1;
 
 let anteriorEl = document.querySelector('#anterior');
 let proximoEl = document.querySelector('#proximo');
-let oponenteEl = document.querySelector('#oponente');
+
 let nomeOponenteEl = document.querySelector('#nome-oponente');
 
 anteriorEl.addEventListener('click', function () {
