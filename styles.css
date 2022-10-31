@@ -138,12 +138,29 @@ a {
 
 /* estilos para a seleção de batalha */
 
-#batalhas {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+
+
+.controle {
+    background-color: gray;
+    text-align: center;
+    font-size: 4vh;
+    font-family: 'Dancing Script', cursive;
+    color: rgb(255, 0, 0);
 }
 
+#selecionador{
+    display: grid;
+    grid-template: auto auto auto / auto auto 7vh auto 7vh auto auto; 
+}
+#nome-oponente {
+    text-align: center;
+    font-size: 5vh;
+    font-family: 'Dancing Script', cursive;
+    text-shadow: 1px 1px rgb(255, 0, 0);
+    color: rgb(255, 255, 255);
+    grid-row: 1 / 2;
+    grid-column: 2 / 7; 
+}
 #oponente {
     font-size: 5vh;
     background-size: cover;
@@ -154,34 +171,19 @@ a {
     width: 30vh;
     padding: 1vh 5vh;
 }
-
-#nome-oponente {
-    text-align: center;
-    font-size: 5vh;
-    font-family: 'Dancing Script', cursive;
-    text-shadow: 1px 1px rgb(255, 0, 0);
-    color: rgb(255, 255, 255);
-    position: relative;
+#selecionador a{
+    grid-row: 2 / 3;
+    grid-column: 2 / 7;
+    justify-self: center;
 }
-
-.controle {
-    background-color: gray;
-    text-align: center;
-    font-size: 4vh;
-    font-family: 'Dancing Script', cursive;
-    color: rgb(255, 0, 0);
-}
-
 #anterior {
-    position: absolute;
-    left: 95vh;
-    bottom: 10vh;
+    grid-row: 3 / 4;
+    grid-column: 3 / 4;
 }
 
 #proximo {
-    position: absolute;
-    right: 95vh;
-    bottom: 10vh;
+    grid-row: 3 / 4;
+    grid-column: 5 / 6;
 }
 
 
@@ -234,7 +236,7 @@ a {
 }
 
 #colecao img {
-    width: 23.32vh;
+    width: 23.32vh  ;
     height: 32.84vh;
 }
 
@@ -249,10 +251,12 @@ a {
 
 #arena{
     display: grid;
-    grid-template: repeat(4, auto) / repeat(4, auto); 
+    grid-template: repeat(4, auto) / repeat(9, 1fr); 
+    margin-left: 1vh; 
+    margin-right: 1vh;
 }
 #baralho-area{
-    grid-column: 4 / 5;
+    grid-column: 8 / 9;
     grid-row: 4 / 5;    
     width: 24.5vh;
     height: 35.5vh; 
@@ -260,14 +264,14 @@ a {
     align-self: flex-end;
 }
 #player-deck{
-    grid-column: 1 / 4;
+    grid-column: 4 / 7;
     grid-row: 4 / 5;   
     background-color: rgb(43, 43, 43);
 }
 #oponente-obj{
-    grid-column: 1 / 4; 
+    grid-column: 4 / 7; 
     grid-row: 1 / 2;   
-    background-color: chartreuse;
+    background-image: url(); 
 }
 #arena-slots div img{
     height: 34.5vh;
@@ -276,36 +280,57 @@ a {
 }
 
 #slot1{
-    grid-column: 1 / 2;
+    grid-column: 4 / 5;
     grid-row: 2 / 3;   
     background-color: rgb(87, 0, 0);
 }
 #slot2{
-    grid-column: 2 / 3;
+    grid-column: 5 / 6;
     grid-row: 2 / 3;   
     background-color: rgb(20, 87, 0);
 }
 #slot3{
-    grid-column: 3 / 4;
+    grid-column: 6 / 7;
     grid-row: 2 / 3;   
     background-color: rgb(87, 0, 72);
 }
 #slot4{
-    grid-column: 1 / 2;
+    grid-column: 4 / 5;
     grid-row: 3 / 4;   
     background-color: rgb(87, 0, 0);
 }
 #slot5{
-    grid-column: 2 / 3;
+    grid-column: 5 / 6;
     grid-row: 3 / 4;   
     background-color: rgb(0, 87, 7);
 }
 #slot6{
-    grid-column: 3 / 4;
+    grid-column: 6 / 7;
     grid-row: 3 / 4;   
     background-color: rgb(84, 0, 87);
 }
+#vida-player{
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;   
+    background-color: rgb(14, 199, 255);
+}
+#vida-inimigo{
+    grid-column: 2 / 3;
+    grid-row: 4 / 5;   
+    background-color: rgb(204, 0, 255);
+}
 
+#passa-turno{
+    grid-column: 8 / 9;
+    grid-row: 2 / 4;  
+    background-color: rgb(166, 135, 173);
+    font-size: 12vh;
+    text-align: center;
+}
+#batalha-voltar{
+    grid-column: 8 / 9;
+    grid-row: 1 / 2 ;  
+}
 .dmg, .hp{
     font-family: 'Times New Roman', Times, serif;
     font-size: 5vh;
