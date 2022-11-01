@@ -241,10 +241,13 @@ a {
 }
 
 #baralho-formado img {
-    width: 11.66;
+    width: 11.66vh;
     height: 16.42vh;
 }
 
+.adicionar-baralho{
+    opacity: 50%;
+}
 /* fim */
 
 /* estilos para as batalhas */
