@@ -47,3 +47,4 @@ let botaoOponenteEl = document.querySelector('#link-oponente');
 botaoOponenteEl.addEventListener('click', function () {
     localStorage.setItem('oponente', oponenteEl.src); 
 });
+
