@@ -11,8 +11,15 @@ body {
     background-color: rgb(19, 19, 19);
 }
 
-#sala-masmorra {
+.sala-masmorra {
     background-image: url("img/background2.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
+}
+
+#shop-background {
+    background-image: url("img/background-loja.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: bottom;
@@ -29,7 +36,7 @@ body {
     background-color: rgb(44, 44, 44);
 }
 #background-sobre-nos {
-    background-image: url("img/background-sobre-nos");
+    background-image: url("img/background-sobre-nos.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: bottom;
@@ -154,23 +161,9 @@ a {
 /* estilos para a seleção de batalha */
 
 
-
-.controle {
-    background-color: gray;
-    text-align: center;
-    font-size: 4vh;
-    font-family: 'Dancing Script', cursive;
-    color: rgb(255, 0, 0);
-}
-
-#img-oponente{
-    width: 36.75vh;
-    height: 51.75vh;
-}
-
 #selecionador{
     display: grid;
-    grid-template: auto auto auto / auto auto 7vh auto 7vh auto auto; 
+    grid-template: auto auto auto auto auto / 20vh 1fr 1fr 1fr 1fr 20vh; 
 }
 #nome-oponente {
     text-align: center;
@@ -178,22 +171,80 @@ a {
     font-family: 'Dancing Script', cursive;
     text-shadow: 1px 1px rgb(255, 0, 0);
     color: rgb(255, 255, 255);
-    grid-row: 1 / 2;
-    grid-column: 2 / 7; 
+    grid-row: 4 / 5;
+    grid-column: 3 / 5; 
 }
-#selecionador a{
-    grid-row: 2 / 3;
-    grid-column: 2 / 7;
+#botao-voltar{
+    grid-row: 1 / 2;
+    grid-column: 1 / 2;
+}
+#selecionador h1{
+    grid-row: 1 / 2;
+    grid-column: 3 / 5;
     justify-self: center;
+    align-self: center;
 }
 #anterior {
-    grid-row: 3 / 4;
+    background-image: url("img/anterior.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    justify-self: end; 
+    border-radius: 2vh;
+    border: rgb(61, 61, 61) ridge 1vh;
+    grid-row: 5 / 6;
     grid-column: 3 / 4;
 }
 
 #proximo {
-    grid-row: 3 / 4;
-    grid-column: 5 / 6;
+    background-image: url("img/proximo.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    justify-self: start; 
+    border-radius: 2vh;
+    border: rgb(61, 61, 61) ridge 1vh;
+    grid-row: 5 / 6;
+    grid-column: 4 / 5;
+}
+
+#proximo:hover{
+    cursor: pointer;
+    border: rgb(255, 255, 255) ridge 5px;
+    transition: 300ms;
+}
+
+#proximo:active{
+    border: rgb(146, 146, 146) ridge 5px;
+    transition: 300ms;
+}
+
+#anterior:hover{
+    cursor: pointer;
+    border: rgb(255, 255, 255) ridge 5px;
+    transition: 300ms;
+}
+
+#anterior:active{
+    border: rgb(146, 146, 146) ridge 5px;
+    transition: 300ms;
+}
+.controle{
+    width: 15vh;
+    height: 15vh;
+}
+#img-oponente{
+    width: 36.75vh;
+    height: 51.75vh;
+    border: rgb(146, 146, 146) ridge 2vh;
+    border-radius: 2vh;
+}
+#img-oponente:hover{
+    border: rgb(116, 4, 4) ridge 2vh;
+    transition: 300ms;
+}
+#link-oponente{
+    grid-row: 2 / 3;
+    grid-column: 3 / 5;
+    justify-self: center;
 }
 
 
