@@ -48,3 +48,4 @@ botaoOponenteEl.addEventListener('click', function () {
     localStorage.setItem('oponente', oponenteEl.src); 
 });
 
+
