@@ -278,6 +278,7 @@ a {
     grid-row: 2 / 3;
     position: sticky;
     top: 0;
+    z-index: 1;
 }
 
 #deck h2 {
@@ -296,18 +297,20 @@ a {
     grid-row: 4 / 5;
 }
 
-#colecao img {
-    width: 23.32vh  ;
-    height: 32.84vh;
+#baralho-formado img {
+    width: 17.49vh;
+    height: 24.63vh;
 }
 
-#baralho-formado img {
-    width: 11.66vh;
-    height: 16.42vh;
+#colecao img {
+    width: 23.32vh;
+    height: 32.84vh;
+    cursor: pointer;
+    border: ridge rgb(255, 154, 3) 1vh;
 }
 
 .adicionar-baralho{
-    opacity: 50%;
+    opacity: 33%;
 }
 /* fim */
 
