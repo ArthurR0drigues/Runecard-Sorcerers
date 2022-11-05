@@ -310,7 +310,7 @@ a {
 }
 
 .adicionar-baralho{
-    opacity: 33%;
+    opacity: 10%;
 }
 /* fim */
 
@@ -334,6 +334,10 @@ a {
     grid-column: 4 / 7;
     grid-row: 4 / 5;   
     background-color: rgb(43, 43, 43);
+}
+#player-deck img{
+    width: 17.49vh;
+    height: 24.63vh;
 }
 #oponente-obj{
     grid-column: 4 / 7; 
@@ -411,6 +415,36 @@ a {
 .dmg{
     float: left;
 }
+.alerta-len{
+    background-color: rgb(228, 39, 5);
+    border: solid black 1vh;
+    border-radius: 10%;
+    position: sticky;
+    top: 0; 
+    left: 0;
+    display: inline;
+}
+.alerta-len p{
+    text-align: center;
+    font-size: 4vh;
+    font-weight: 700;   
+    font-family: 'Dancing Script', cursive;
+}
 
+.alerta-max{
+    background-color: rgb(54, 204, 17);
+    border: solid black 1vh;
+    border-radius: 10%;
+    position: sticky;
+    top: 0; 
+    left: 0;
+    display: inline;
+}
+.alerta-max p{
+    text-align: center;
+    font-size: 4vh;
+    font-weight: 700;   
+    font-family: 'Dancing Script', cursive;
+}
 
 /* fim */
