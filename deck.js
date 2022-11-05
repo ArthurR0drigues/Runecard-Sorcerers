@@ -59,16 +59,77 @@ let dragao = {
     nome: 'dragao'
 };
 
+let valquiria = {
+    vida: 4,
+    vidaMaxima: 4,
+    dano: 2,
+    custo: 2,
+    imagem: 'img/Runa-Logo.png',
+    id: 6,
+    nome: 'valquiria '
+};
+
+let mesa = {
+    vida: 4,
+    vidaMaxima: 4,
+    dano: 2,
+    custo: 2,
+    imagem: 'img/mesa.jpg',
+    id: 7,
+    nome: 'mesa'
+};
+
+let ciclope = {
+    vida: 4,
+    vidaMaxima: 4,
+    dano: 2,
+    custo: 2,
+    imagem: 'img/carta-base.png',
+    id: 8,
+    nome: 'ciclope'
+};
+
+let besta = {
+    vida: 4,
+    vidaMaxima: 4,
+    dano: 2,
+    custo: 2,
+    imagem: 'img/background-loja.jpg',
+    id: 9,
+    nome: 'besta'
+};
+
+let Marta = {
+    vida: 4,
+    vidaMaxima: 4,
+    dano: 2,
+    custo: 2,
+    imagem: 'img/background-sobre-nos.jpg',
+    id: 9,
+    nome: 'Marta'
+};
+
+let Ka = {
+    vida: 4,
+    vidaMaxima: 4,
+    dano: 2,
+    custo: 2,
+    imagem: 'img/carta-bloqueada.png',
+    id: 10,
+    nome: 'Ka'
+};
+
 
 
 /*fim das cartas */
 
 /* vetor com todas as cartas desbloqueadas pelo jogador */
-let colecao = [cabra, minion, dragao, cavaleiro, naga, polvo];
+let colecao = [minion, cabra, dragao, cavaleiro, naga, Ka, polvo, besta, ciclope, valquiria, Marta, mesa];
 /*vetor com as cartas do jogador*/
 let baralho = [];
-//ordenar o vetor   
 
+
+//ordenar o vetor   
 function ordenarVetor(vetor) {
     let vetorOrdenado = [];
     for (let i = 0; vetor.length > 0; i++) {
@@ -98,38 +159,50 @@ function criarAllcard(colecao, paiEl) {
     for (let i = 0; i < colecao.length; i++) {
         let cartaEl = document.createElement("img");
         cartaEl.draggable = false;
-        cartaEl.classList.add('desbloqueado'); 
+        cartaEl.classList.add('desbloqueado');
         cartaEl.src = colecao[i].imagem;
         if (paiEl == null) {
             return false;
         }
         paiEl.appendChild(cartaEl);
         cartaEl.addEventListener('click', function (e) {
-            if (baralho.length == 10)
-                return console.log("limite");
-
             if (cartaEl.classList.contains('adicionar-baralho') === true) {
                 let i = 0;
                 let cont;
                 for (let carta of baralho) {
                     let comparasion = e.target.src;
-                    comparasion = comparasion.substring(46);
-                    if (comparasion == carta.imagem) {
+                    if (comparasion.indexOf(carta.imagem) != -1) {
                         cont = i;
                     }
-                    i++;
+                    else {
+                        i++;
+                    }
                 }
-                baralho[cont] = 'apague';
-                baralho = baralho.filter(word => word != 'apague');
+                baralho[cont] = 'remove';
+                baralho = baralho.filter(word => word != 'remove');
             }
             else {
-                baralho.push(colecao[i]);
+                if (baralho.length == 10)
+                    return console.log("limite");
+                else
+                    baralho.push(colecao[i]);
             }
             baralho.slice(0, baralho.length);
             baralhoEl.innerText = "";
             baralho = ordenarVetor(baralho);
             criarBaralho(baralho, baralhoEl);
             cartaEl.classList.toggle('adicionar-baralho');
+            let avisoLenEl = document.querySelector('.alerta-len');
+            let avisoMaxEl = document.querySelector('.alerta-max');
+            if (baralho.length > 9) {
+                avisoMaxEl.style.display = 'inline';
+                avisoLenEl.style.display = 'none';
+            }
+            if (baralho.length < 10) {
+                avisoLenEl.style.display = 'inline';
+                avisoMaxEl.style.display = 'none';
+            }
+
         });
     }
 };
@@ -144,18 +217,51 @@ function criarBaralho(baralho, paiEl) {
         paiEl.appendChild(cartaEl);
     }
 };
+
+//salva as informações
 let colecaoStr = JSON.stringify(colecao);
 localStorage.setItem('colecao', colecaoStr);
 
 let voltarBotaoEl = document.querySelector('#voltar-deck');
 voltarBotaoEl.addEventListener('click', function () {
+    if (baralho.length < 10) {
+        alert("Suas cartas não serão salvas devido ao número insufiente (< 10) no seu deck. No entanto seu último deck completo ficará salvo");
+        voltarBotaoEl.preventDefault();
+    }
     let baralhoStr = JSON.stringify(baralho);
     localStorage.setItem('baralho', baralhoStr);
 })
 
+//chama as funçoes ao iniciar a pagina
 let colecaoJs = localStorage.getItem('colecao');
 colecao = JSON.parse(colecaoJs);
+let baralhoJs = localStorage.getItem('baralho');
+if (baralhoJs != null) {
+    baralho = JSON.parse(baralhoJs);
+}
 criarAllcard(colecao, colecaoEl);
 criarBaralho(baralho, baralhoEl);
 
+if (baralho != null) {
+    let CartasCriadasEl = document.querySelectorAll('.desbloqueado');
+    for (let object of baralho) {
+        for (let i = 0; i < CartasCriadasEl.length; i++) {
+            let comparasion = CartasCriadasEl[i].src;
+            if (comparasion.indexOf(object.imagem) != -1)
+                CartasCriadasEl[i].classList.toggle('adicionar-baralho');
+        }
+    }
+}
 
+let avisoLenEl = document.querySelector('.alerta-len');
+let avisoMaxEl = document.querySelector('.alerta-max');
+if (baralho.lenght == 10) {
+    avisoMaxEl.style.display = 'inline';
+}
+if (baralho.length > 9) {
+    avisoLenEl.style.display = 'none';
+}
+if (baralho.length < 10) {
+    avisoLenEl.style.display = 'inline';
+    avisoMaxEl.style.display = 'none';
+}
