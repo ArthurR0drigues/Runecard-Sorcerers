@@ -27,3 +27,21 @@ bodyEl.addEventListener('mousemove', selecionarCarta);
 let deck = [];
 let objectImageEl = document.querySelector('#oponente-obj');
 objectImageEl.src = localStorage.getItem('oponente');
+
+let baralhoJs = localStorage.getItem('baralho');
+deck = JSON.parse(baralhoJs);
+
+let playerdeckEl = document.querySelector('#player-deck');
+
+function criarDeck(deck, paiEl) {
+    for (let i = 0; i < deck.length; i++) {
+        let cartaEl = document.createElement("img");
+        cartaEl.draggable = false;
+        cartaEl.src = deck[i].imagem;
+        cartaEl.addEventListener('click', function () {
+            deck.slice(cartaEl);
+        });
+        paiEl.appendChild(cartaEl);
+    }
+};
+criarDeck(deck, playerdeckEl); 
