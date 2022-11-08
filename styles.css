@@ -1,6 +1,7 @@
 html,
 body {
     min-height: 100%;
+    user-select: none;
 }
 
 /* definir backgrounds */
@@ -29,7 +30,6 @@ body {
 .batalha {
     position: relative;
     background-color: chocolate;
-    background-image: url("img/batalha-background.png");
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -124,9 +124,9 @@ a {
     transition: 350ms;
     color: gray;
     text-shadow: goldenrod 2px 2px;
-    border: 1.2vh solid rgba(255, 230, 0, 0.795);
+    border: 1.2vh ridge rgb(5, 156, 38);
     height: 20vh;
-    width: 40vh;
+    width: 38vh;
 }
 
 .botao:active {
@@ -371,6 +371,12 @@ a {
     height: 25.75vh; 
     justify-self: center;
 }
+#baralho-area:hover{
+    cursor: pointer;
+}
+#baralho-area:active{
+    filter: brightness(200%);
+}
 #player-deck{
     grid-column: 4 / 7;
     grid-row: 4 / 5;   
@@ -387,6 +393,9 @@ a {
 }
 .drag {
     cursor: pointer;
+}
+.drag:active{
+    filter: brightness(150%);
 }
 #oponente-obj{
     grid-column: 4 / 7; 
