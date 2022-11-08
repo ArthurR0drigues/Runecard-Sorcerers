@@ -380,6 +380,8 @@ a {
     grid-column: 4 / 7; 
     grid-row: 1 / 2;   
     justify-self: center;
+    width: 24.5vh;
+    height: 34.5vh;
 }
 #arena div img{
     width: 12.5vh;
@@ -416,15 +418,73 @@ a {
     grid-row: 3 / 4;   
     background-color: rgb(84, 0, 87);
 }
-#vida-player{
-    grid-column: 2 / 3;
-    grid-row: 1 / 2;   
-    background-image: url('img/aro.png');
-}
 #vida-inimigo{
     grid-column: 2 / 3;
+    grid-row: 1 / 2;   
+    border-radius: 50%;
+    border: solid black 0.5vh;
+    padding: 4.2vh 2.4vh;
+    background: radial-gradient(circle, rgba(255,0,0,1) 0%, rgb(126, 43, 43) 100%);
+    display: flex;
+    justify-self: center;
+    align-self: center;
+    z-index: -1;
+}
+
+#mana-player{
+    grid-column: 2 / 3;
+    grid-row: 3 / 4;   
+    border-radius: 50%;
+    border: solid black 0.5vh;
+    background: radial-gradient(circle, rgb(240, 219, 127) 0%, rgb(115, 217, 224) 100%);
+    padding: 4.2vh 2.4vh;
+    background-color: gray;
+    display: flex;
+    justify-self: center;
+    align-self: center;
+    z-index: -1;
+    
+} 
+
+#vida-player{
+    grid-column: 2 / 3;
     grid-row: 4 / 5;   
-    background-image: url('img/aro.png');
+    border-radius: 50%;
+    border: solid black 0.5vh;
+    padding: 4.2vh 2.4vh;
+    background: radial-gradient(circle, rgba(255,0,0,1) 0%, rgb(126, 43, 43) 100%);
+    display: flex;
+    justify-self: center;
+    align-self: center;
+    z-index: -1;
+}
+
+#aro1{
+    grid-column: 2 / 3;
+    grid-row: 1 / 2; 
+    width: 18vh;
+    height: 18vh;
+    display: flex;
+    justify-self: center;
+    align-self: center;
+}
+
+#aro2{
+    grid-column: 2 / 3;
+    grid-row: 4 / 5;   
+    width: 18vh;
+    height: 18vh;
+    display: flex;
+    justify-self: center;
+    align-self: center;
+}
+#aro3{
+    grid-column: 2 / 3;
+    grid-row: 3 / 4;   
+    width: 18vh;
+    height: 18vh;
+    justify-self: center;
+    align-self: center;
 }
 
 #passa-turno{
@@ -443,7 +503,7 @@ a {
     align-self: flex-start;
     font-size: 1vh;
 }
-.dmg, .hp{
+.dmg, .hp, .mana{
     font-family: 'Times New Roman', Times, serif;
     font-size: 4vh;
     text-shadow: 2px 1px rgb(75, 75, 75);
@@ -455,6 +515,11 @@ a {
     float: right;  
 }
 .dmg{
+    padding: 1vh;
+    float: left;
+}
+
+.mana{
     padding: 1vh;
     float: left;
 }
