@@ -385,6 +385,9 @@ a {
     width: 12.5vh;
     height: 17.25vh;
 }
+.drag {
+    cursor: pointer;
+}
 #oponente-obj{
     grid-column: 4 / 7; 
     grid-row: 1 / 2;   
