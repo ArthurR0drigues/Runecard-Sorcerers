@@ -8,8 +8,8 @@ let baralhoObj = JSON.parse(baralhoJs);
 
 let playerdeckEl = document.querySelector('#player-deck');
 
-function AdicionarAoDeck (deck, baralhoJs){
-    for (let i = 0; i < 5; i++){
+function AdicionarAoDeck (deck, baralhoJs, quantidade){
+    for (let i = 0; i < quantidade; i++){
         deck.push(baralhoJs[i]); 
     }
 };
@@ -43,7 +43,7 @@ function criarDeck(deck, paiEl) {
 }
 
 baralhoObj = embaralhar(baralhoObj); 
-AdicionarAoDeck(deck, baralhoObj); 
+AdicionarAoDeck(deck, baralhoObj, 5); 
 criarDeck(deck, playerdeckEl); 
 
 
@@ -72,5 +72,11 @@ CartasNoDeckEl.forEach(carta => {
     }
 });
 
+let CartaAreaEl = document.querySelector('#baralho-area'); 
+CartaAreaEl.addEventListener('click', function(){
+    AdicionarAoDeck(deck, baralhoObj, 1); 
+    playerdeckEl.innerHTML = ""; 
+    criarDeck(deck, playerdeckEl);
+}); 
 
 
