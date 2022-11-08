@@ -18,14 +18,15 @@ function getRandomInt(max) {
 }
 function embaralhar(baralho) {
     let novoBaralho = []; 
-    let tam = baralho.length; 
+    let baralhoCp = baralho;
+    let tam = baralho.length;
     for (let i = 0; i < tam; i++) {
-        let indice = getRandomInt(tam-1); 
-        novoBaralho[i] = baralho[indice];
-        baralho[indice] = 'apague'; 
-        baralho = baralho.filter(word => word != 'apague');
+        let indice = getRandomInt(tam-i); 
+        novoBaralho[i] = baralhoCp[indice];
+        baralhoCp[indice] = 'apague'; 
+        baralhoCp = baralhoCp.filter(word => word != 'apague');
     }
-    console.log(novoBaralho); 
+    
     return novoBaralho;
 }
 function criarDeck(deck, paiEl) {
