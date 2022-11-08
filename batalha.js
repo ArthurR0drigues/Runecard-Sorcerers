@@ -32,6 +32,7 @@ function embaralhar(baralho) {
 function criarDeck(deck, paiEl) {
     for (let i = 0; i < deck.length; i++) {
         let cartaEl = document.createElement("img");
+        cartaEl.classList.add('drag'); 
         cartaEl.draggable = false;
         cartaEl.src = deck[i].imagem;
         cartaEl.addEventListener('click', function () {
@@ -45,14 +46,31 @@ baralhoObj = embaralhar(baralhoObj);
 AdicionarAoDeck(deck, baralhoObj); 
 criarDeck(deck, playerdeckEl); 
 
-/*
-let bodyEl = document.querySelector('body');
-let CartaTopoEl = document.querySelectorAll('.drag');
 
-function selecionarCarta(e) {
-    CartaTopoEl[0].style.left = `${e.pageX}px`;
-    CartaTopoEl[0].style.top = `${e.pageY}px`;
-}
+let CartasNoDeckEl = document.querySelectorAll('.drag');
+CartasNoDeckEl.forEach(carta => {
+    let posY = carta.offsetTop;
+    let posX = carta.offsetLeft;
+    carta.style.left = `${posX}px`;
+    carta.style.top = `${posY}px`; 
+    function selecionarCarta(e) {
+        carta.style.position = 'absolute'; 
+        carta.style.left = `calc(${e.pageX}px - 6.25vh)`;
+        carta.style.top = `calc(${e.pageY}px - 8.625vh)`;
+    }
+    carta.onmousedown = function(e) {
+        carta = e.currentTarget;
+        carta.addEventListener('mousemove', selecionarCarta);
 
-bodyEl.addEventListener('mousemove', selecionarCarta);
-*/
+        carta.onmouseup = function(e) {
+            carta.removeEventListener('mousemove', selecionarCarta);
+            carta.style.left = `${posX}px`;
+            carta.style.top = `${posY}px`; 
+            carta.style.position = 'initial'; 
+            carta.onmouseup = null;
+        }
+    }
+});
+
+
+
