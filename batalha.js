@@ -46,9 +46,8 @@ for (let i = 0; i < 10; i++) {
 }
 
 baralhoObj = embaralhar(baralhoObj);
-//AdicionarAoDeck(deck, baralhoObj, 5);
 criarDeck(deck, playerdeckEl);
-
+let manaVar = 1;
 function dragAll() {
     let CartasNoDeckEl = document.querySelectorAll('.drag');
     CartasNoDeckEl.forEach(carta => {
@@ -87,12 +86,16 @@ function dragAll() {
                 finalParent.childNodes[1].src = carta.src; 
                 let dano = carta.classList[2]; 
                 let vida = carta.classList[3]; 
+                let custo = carta.classList[1]; 
                 let strArryD = dano.split(':');
                 let strArryV = vida.split(':');
+                let manaPerdida = strArryC[1]; 
+                manaVar -= manaPerdida;
+                definirMana(); 
+                let strArryC = custo.split(':');
 
                 finalParent.childNodes[3].innerHTML = '🗡️' + strArryD[1];   
                 finalParent.childNodes[5].innerHTML = '❤️' + strArryV[1]; 
-
                 for (let i = 0; i < deck.length; i++){
                     if (carta.src.indexOf(deck[i].imagem) != -1){
                         deck[i] = 'apague';
@@ -125,7 +128,7 @@ function criarDeck(deck, paiEl) {
 
 
 
-let manaVar = 1;
+
 let manaEl = document.querySelector('#mana-player');
 
 function definirMana() {
