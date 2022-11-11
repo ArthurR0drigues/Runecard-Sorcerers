@@ -14,51 +14,58 @@
 
 <body class="batalha">
     <main id="arena">
-        <img class="aro" id="aro1" src="img/aro.png"></img>
-        <img class="aro" id="aro2" src="img/aro.png"></img>
-        <img class="aro" id="aro3" src="img/aro.png"></img>
-        <div class="hp" id="vida-inimigo">❤️1⠀</div> <!-- caractere invisivel:⠀-->
-        <img id="oponente-obj"></img>
-        <div id="slot1">
-            <img src="img/carta.png">
-            <p class="dmg">🗡️1</p>
-            <p class="hp">❤️5</p>
+        <img class="aro" draggable="false" id="aro1" src="img/aro.png"></img>
+        <img class="aro" draggable="false" id="aro2" src="img/aro.png"></img>
+        <img class="aro" draggable="false" id="aro3" src="img/aro.png"></img>
+        <div class="hp" draggable="false" id="vida-inimigo">❤️1⠀</div> <!-- caractere invisivel:⠀-->
+        <img id="oponente-obj" draggable="false"></img>
+        <div id="area-inimigo">
+            <div id="slot1">
+                <img src="img/carta.png">
+                <p class="dmg"></p>
+                <p class="hp"></p>
+            </div>
+            <div id="slot2">
+                <img src="img/carta.png">
+                <p class="dmg"></p>
+                <p class="hp"></p>
+            </div>
+            <div id="slot3">
+                <img src="img/carta.png">
+                <p class="dmg"></p>
+                <p class="hp"></p>
+            </div>
         </div>
-        <div id="slot2">
-            <img src="img/carta.png">
-            <p class="dmg">🗡️1</p>
-            <p class="hp">❤️5</p>
-        </div>
-        <div id="slot3">
-            <img src="img/carta.png">
-            <p class="dmg">🗡️1</p>
-            <p class="hp">❤️5</p>
-        </div>
-        <div id="slot4">
-            <img src="img/carta.png">
-            <p class="dmg">🗡️1</p>
-            <p class="hp">❤️5</p>
-        </div>
-        <div id="slot5">
-            <img src="img/carta.png">
-            <p class="dmg">🗡️1</p>
-            <p class="hp">❤️5</p>
-        </div>
-        <div id="slot6">
-            <img src="img/carta.png">
-            <p class="dmg">🗡️1</p>
-            <p class="hp">❤️5</p>
+        <div id="area-aliado">
+            <div id="slot4" class="slotabble">
+                <img>
+                <p class="dmg"></p>
+                <p class="hp"></p>
+            </div>
+            
+            <div id="slot5" class="slotabble">
+                <img>
+                <p class="dmg"></p>
+                <p class="hp"></p>
+            </div>
+            <div id="slot6" class="slotabble">
+                <img>
+                <p class="dmg"></p>
+                <p class="hp"></p>
+            </div>
         </div>
         <nav id="batalha-voltar">
-            <a href="jogar.html">
-                <div class="volta">r</div>
+            <a href="jogar.html" draggable="false">
+                <div class="batalha-voltar">Desistir</div>
             </a>
         </nav>
-        <img src="img/espada.png" id="passa-turno"></img>
-        <div class="hp" id="vida-player">❤️10</div>
-        <div class="mana" id="mana-player">⭐20</div>
+        <img draggable="false" src="img/espada.png" id="passa-turno"></img>
+        <div id="vida-player">❤️10</div>
+        <div class="mana" id="mana-player">⭐0⠀</div>
         <div id="player-deck"></div>
-        <img src="img/carta-base.png" id="baralho-area">
+        <img draggable="false" id="baralho-area">
+        <p id="turno-contador">Turno:<br>1</p>
+        <p id="baralho-texto">Próximo:<br>.</p>
     </main>
     <script src="batalha.js"></script>
 </body>
