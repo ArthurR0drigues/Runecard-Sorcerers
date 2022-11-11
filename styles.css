@@ -4,8 +4,8 @@ body {
     user-select: none;
 }
 :root{
-    ---borda-escura: 1vh rgb(0, 0, 0) solid;
-    ---borda-redondinha: 2vh;
+    --borda-escura: 1vh rgb(0, 0, 0) solid;
+    --borda-redondinha: 2vh;
 }
 
 /* definir backgrounds */
@@ -14,6 +14,7 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-color: rgb(19, 19, 19);
+    overflow: hidden; 
 }
 
 .sala-masmorra {
@@ -397,8 +398,8 @@ a {
     height: 17vh; 
     justify-self: center;
     filter:drop-shadow(100px);
-    border: var(---borda-escura);
-    border-radius: var(---borda-redondinha);
+    border: var(--borda-escura);
+    border-radius: var(--borda-redondinha);
 }
 #baralho-texto{
     justify-self: center;
@@ -421,10 +422,11 @@ a {
     background: radial-gradient(circle, rgba(13,13,13,1) 0%, rgba(68,63,63,1) 100%);
     padding: 2vh;
     border: 1vh rgb(0, 0, 0) ridge;
-    border-radius: var(---borda-redondinha);
+    border-radius: var(--borda-redondinha);
     display: flex;
     justify-content: center;
-    width: 144vh;
+    width: 146vh;
+    height: 24.25vh;
     box-sizing: border-box;
 }
 #player-deck img{
@@ -463,8 +465,8 @@ a {
     justify-content: space-around;
     background: radial-gradient(circle, rgba(156,23,121,1) 0%, rgba(28,12,27,1) 100%);
     width: 144vh;
-    border: var(---borda-escura);
-    border-radius: var(---borda-redondinha);
+    border: var(--borda-escura);
+    border-radius: var(--borda-redondinha);
 }
 #area-aliado {
     grid-column: 2 / 5; 
@@ -474,32 +476,32 @@ a {
     justify-content: space-around;
     background: radial-gradient(circle, rgba(23,59,156,1) 0%, rgba(28,12,27,1) 100%);
     width: 144vh;
-    border: var(---borda-escura);
-    border-radius: var(---borda-redondinha);
+    border: var(--borda-escura);
+    border-radius: var(--borda-redondinha);
 }
 #slot1{
-    border: var(---borda-escura);
-    border-radius: var(---borda-redondinha);
+    border: var(--borda-escura);
+    border-radius: var(--borda-redondinha);
 }
 #slot2{
-    border: var(---borda-escura);
-    border-radius: var(---borda-redondinha);
+    border: var(--borda-escura);
+    border-radius: var(--borda-redondinha);
 }
 #slot3{
-    border: var(---borda-escura);
-    border-radius: var(---borda-redondinha);
+    border: var(--borda-escura);
+    border-radius: var(--borda-redondinha);
 }
 #slot4{
-    border: var(---borda-escura);
-    border-radius: var(---borda-redondinha);
+    border: var(--borda-escura);
+    border-radius: var(--borda-redondinha);
 }
 #slot5{
-    border: var(---borda-escura);
-    border-radius: var(---borda-redondinha);
+    border: var(--borda-escura);
+    border-radius: var(--borda-redondinha);
 }
 #slot6{
-    border: var(---borda-escura);
-    border-radius: var(---borda-redondinha);
+    border: var(--borda-escura);
+    border-radius: var(--borda-redondinha);
 }
 #vida-inimigo{
     grid-column: 1 / 2;
@@ -587,8 +589,8 @@ a {
     width: 12.5vh;
     height: 17.25vh;
     background-color: azure;
-    border: var(---borda-escura);
-    border-radius: var(---borda-redondinha);
+    border: var(--borda-escura);
+    border-radius: var(--borda-redondinha);
 }
 #passa-turno:hover{
     cursor: pointer;
