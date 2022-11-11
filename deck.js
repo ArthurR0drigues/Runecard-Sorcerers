@@ -1,7 +1,6 @@
 /*todas as cartas */
 let minion = {
     vida: 2,
-    vidaMaxima: 2,
     dano: 1,
     custo: 1,
     imagem: 'img/minion.png',
@@ -11,7 +10,6 @@ let minion = {
 
 let cavaleiro = {
     vida: 4,
-    vidaMaxima: 4,
     dano: 2,
     custo: 2,
     imagem: 'img/knight.png',
@@ -21,7 +19,6 @@ let cavaleiro = {
 
 let cabra = {
     vida: 4,
-    vidaMaxima: 4,
     dano: 2,
     custo: 2,
     imagem: 'img/background.jpg',
@@ -31,7 +28,6 @@ let cabra = {
 
 let naga = {
     vida: 4,
-    vidaMaxima: 4,
     dano: 2,
     custo: 2,
     imagem: 'img/background2.jpg',
@@ -41,7 +37,6 @@ let naga = {
 
 let polvo = {
     vida: 4,
-    vidaMaxima: 4,
     dano: 2,
     custo: 2,
     imagem: 'img/proximo.png',
@@ -51,7 +46,6 @@ let polvo = {
 
 let dragao = {
     vida: 4,
-    vidaMaxima: 4,
     dano: 2,
     custo: 2,
     imagem: 'img/anterior.png',
@@ -61,7 +55,6 @@ let dragao = {
 
 let valquiria = {
     vida: 4,
-    vidaMaxima: 4,
     dano: 2,
     custo: 2,
     imagem: 'img/Runa-Logo.png',
@@ -71,7 +64,6 @@ let valquiria = {
 
 let mesa = {
     vida: 4,
-    vidaMaxima: 4,
     dano: 2,
     custo: 2,
     imagem: 'img/mesa.jpg',
@@ -81,7 +73,6 @@ let mesa = {
 
 let ciclope = {
     vida: 4,
-    vidaMaxima: 4,
     dano: 2,
     custo: 2,
     imagem: 'img/carta-base.png',
@@ -91,7 +82,6 @@ let ciclope = {
 
 let besta = {
     vida: 4,
-    vidaMaxima: 4,
     dano: 2,
     custo: 2,
     imagem: 'img/background-loja.jpg',
@@ -101,7 +91,6 @@ let besta = {
 
 let Marta = {
     vida: 4,
-    vidaMaxima: 4,
     dano: 2,
     custo: 2,
     imagem: 'img/background-sobre-nos.jpg',
@@ -111,7 +100,6 @@ let Marta = {
 
 let Ka = {
     vida: 4,
-    vidaMaxima: 4,
     dano: 2,
     custo: 2,
     imagem: 'img/carta-bloqueada.png',
