@@ -1,27 +1,29 @@
+let CardGame = localStorage.getItem('cartas-jogo');
+let CardGameObj = JSON.parse(CardGame);
 /* JOGAR */
 let bruno = {
     oponente: 'Dark Night',
     img: 'img/carta-base.png',
+    deck: CardGameObj.slice(1, 13) 
 };
 
 let boi = {
     oponente: 'Dona Marta',
     img: 'img/carta.png',   
+    deck: CardGameObj.slice(4, 11)
 };
-
 let loloy = {
     oponente: 'Olavo de Carvalho',
-    img: 'img/minion.png',    
+    img: 'img/minion.png',   
+    deck: CardGameObj.slice(8, 12)
 };
-
-
 //seletor de oponentes
 let batalhasDisponiveis = [bruno, boi, loloy];
 let oponenteAtual = -1;
-let anteriorEl = document.querySelector('#anterior');
-let proximoEl = document.querySelector('#proximo');
 let oponenteEl = document.querySelector('#img-oponente');
 let nomeOponenteEl = document.querySelector('#nome-oponente');
+let anteriorEl = document.querySelector('#anterior');
+let proximoEl = document.querySelector('#proximo');
 
 anteriorEl.addEventListener('click', anterior);
 function anterior () {
@@ -46,6 +48,8 @@ proximo();
 let botaoOponenteEl = document.querySelector('#link-oponente');
 botaoOponenteEl.addEventListener('click', function () {
     localStorage.setItem('oponente', oponenteEl.src); 
+    let deckOponentestr = JSON.stringify(batalhasDisponiveis[oponenteAtual].deck); 
+    localStorage.setItem('baralhoOponente', deckOponentestr); 
 });
 
 
