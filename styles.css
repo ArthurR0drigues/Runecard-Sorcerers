@@ -186,6 +186,13 @@ a {
     grid-row: 4 / 5;
     grid-column: 3 / 5; 
 }
+.texto{
+    text-align: center;
+    font-size: 6vh;
+    font-family: 'Dancing Script', cursive;
+    text-shadow: 3px 3px rgb(104, 182, 255);
+    color: rgb(255, 255, 255);
+}
 #botao-voltar{
     grid-row: 1 / 2;
     grid-column: 1 / 2;
@@ -244,8 +251,8 @@ a {
     height: 15vh;
 }
 #img-oponente{
-    width: 36.75vh;
-    height: 51.75vh;
+    width: 32.66vh;
+    height: 45.66vh;
     border: rgb(146, 146, 146) ridge 2vh;
     border-radius: 2vh;
 }
