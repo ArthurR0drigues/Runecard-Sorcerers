@@ -1,11 +1,13 @@
 /*todas as cartas */
+
 let minion = {
-    vida: 2,
+    vida: 1,
     dano: 1,
-    custo: 1,
+    custo: 0,
     imagem: 'img/minion.png',
     id: 0,
-    nome: 'minion'
+    nome: 'minion',
+    funcoes: ['causarDano', 'FundoBaralhoMorrer'] 
 };
 
 let cavaleiro = {
@@ -14,43 +16,48 @@ let cavaleiro = {
     custo: 2,
     imagem: 'img/knight.png',
     id: 1,
-    nome: 'cavaleiro'
+    nome: 'cavaleiro',
+    funcoes: ['causarDano', 'FundoBaralhoMorrer'] 
 };
 
 let cabra = {
-    vida: 4,
-    dano: 2,
-    custo: 2,
+    vida: 3,
+    dano: 1,
+    custo: 1,
     imagem: 'img/background.jpg',
     id: 2,
-    nome: 'cabra'
+    nome: 'cabra',
+    funcoes: ['causarDano', 'FundoBaralhoMorrer'] 
 };
 
 let naga = {
-    vida: 4,
+    vida: 6,
     dano: 2,
-    custo: 2,
+    custo: 3,
     imagem: 'img/background2.jpg',
     id: 3,
-    nome: 'naga'
+    nome: 'naga',
+    funcoes: ['causarDano', 'FundoBaralhoMorrer'] 
 };
 
 let polvo = {
-    vida: 4,
+    vida: 1,
     dano: 2,
-    custo: 2,
+    custo: 1,
     imagem: 'img/proximo.png',
     id: 4,
-    nome: 'polvo'
+    nome: 'polvo',
+    funcoes: ['causarDano', 'FundoBaralhoMorrer'] 
 };
 
 let dragao = {
-    vida: 4,
-    dano: 2,
-    custo: 2,
+    vida: 10,
+    dano: 6,
+    custo: 4,
     imagem: 'img/anterior.png',
     id: 5,
-    nome: 'dragao'
+    nome: 'dragao',
+    funcoes: ['causarDano', 'FundoBaralhoMorrer'] 
 };
 
 let valquiria = {
@@ -59,7 +66,8 @@ let valquiria = {
     custo: 2,
     imagem: 'img/Runa-Logo.png',
     id: 6,
-    nome: 'valquiria '
+    nome: 'valquiria ',
+    funcoes: ['causarDano', 'FundoBaralhoMorrer'] 
 };
 
 let mesa = {
@@ -68,51 +76,59 @@ let mesa = {
     custo: 2,
     imagem: 'img/mesa.jpg',
     id: 7,
-    nome: 'mesa'
+    nome: 'mesa',
+    funcoes: ['causarDano', 'FundoBaralhoMorrer'] 
 };
 
 let ciclope = {
-    vida: 4,
+    vida: 8,
     dano: 2,
-    custo: 2,
+    custo: 4,
     imagem: 'img/carta-base.png',
     id: 8,
-    nome: 'ciclope'
+    nome: 'ciclope',
+    funcoes: ['causarDano', 'FundoBaralhoMorrer'] 
 };
 
 let besta = {
-    vida: 4,
-    dano: 2,
-    custo: 2,
+    vida: 6,
+    dano: 6,
+    custo: 6,
     imagem: 'img/background-loja.jpg',
     id: 9,
-    nome: 'besta'
+    nome: 'besta',
+    funcoes: ['causarDano', 'FundoBaralhoMorrer'] 
 };
 
 let Marta = {
-    vida: 4,
-    dano: 2,
-    custo: 2,
+    vida: 10,
+    dano: 10,
+    custo: 1,
     imagem: 'img/background-sobre-nos.jpg',
     id: 9,
-    nome: 'Marta'
+    nome: 'Marta',
+    funcoes: ['causarDano', 'FundoBaralhoMorrer'] 
 };
 
 let Ka = {
-    vida: 4,
-    dano: 2,
-    custo: 2,
+    vida: 1,
+    dano: 1,
+    custo: 1,
     imagem: 'img/carta-bloqueada.png',
     id: 10,
-    nome: 'Ka'
+    nome: 'Ka',
+    funcoes: ['causarDano', 'FundoBaralhoMorrer'] 
 };
 
 
 
 /*fim das cartas */
-
+let ALLCARDOFTHEGAME = [minion, cabra, dragao, cavaleiro, naga, Ka, polvo, besta, ciclope, valquiria, Marta, mesa]; 
+ALLCARDOFTHEGAME = ordenarVetor(ALLCARDOFTHEGAME); 
+let ALLCARDOFTHEGAMEStr = JSON.stringify(ALLCARDOFTHEGAME);
+localStorage.setItem('cartas-jogo', ALLCARDOFTHEGAMEStr); 
 /* vetor com todas as cartas desbloqueadas pelo jogador */
-let colecao = [minion, cabra, dragao, cavaleiro, naga, Ka, polvo, besta, ciclope, valquiria, Marta, mesa];
+let colecao = [cabra, dragao, cavaleiro, naga, Ka, polvo, besta, ciclope, valquiria, Marta, mesa];
 /*vetor com as cartas do jogador*/
 let baralho = [];
 
