@@ -416,7 +416,7 @@ localStorage.setItem('colecao', colecaoStr);
 let voltarBotaoEl = document.querySelector('#voltar-deck');
 voltarBotaoEl.addEventListener('click', function () {
     if (baralho.length < 10) {
-        alert("Suas cartas não serão salvas devido ao número insufiente (< 10) no seu deck. No entanto seu último deck completo ficará salvo");
+        alert("Suas cartas não serão salvas devido ao número insufiente (< 10) no seu deck. No entanto seu último deck completo ficará salvo!");
         voltarBotaoEl.preventDefault();
     }
     let baralhoStr = JSON.stringify(baralho);
