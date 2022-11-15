@@ -593,7 +593,7 @@ function passarTurno() {
             definirMana();
             compraGratis = 1;
             batalhaEmSI();
-            criarDeckInimigo(turnoNumero / 10 + 1);
+            criarDeckInimigo(parseInt(turnoNumero / 10 + 1);
             if (vidaInimigoEl.innerHTML <= 0 && vidaPlayerEl.innerHTML <= 0) {
                 alert('EMPATE');
                 window.location.href = "http://127.0.0.1:5500/index.html";
