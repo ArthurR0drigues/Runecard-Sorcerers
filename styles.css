@@ -437,8 +437,8 @@ a {
     box-sizing: border-box;
 }
 #player-deck img{
-    width: 12.5vh;
-    height: 17.25vh;
+    width: 18.5vh;
+    height: 23.25vh;
 }
 .drag {
     cursor: pointer;
@@ -640,4 +640,10 @@ a {
     float: left;
 }
 
+.Imunidade{
+    opacity: 0.5;
+}
+.PerdendoVida{
+    filter: hue-rotate(54deg);
+}
 /* fim */
