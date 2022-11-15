@@ -2,20 +2,20 @@ let CardGame = localStorage.getItem('cartas-jogo');
 let CardGameObj = JSON.parse(CardGame);
 /* JOGAR */
 let bruno = {
-    oponente: 'Dark Night',
+    oponente: 'Oponente 1',
     img: 'img/carta-base.png',
-    deck: CardGameObj.slice(1, 13) 
+    deck: CardGameObj.slice(1, 10) 
 };
 
 let boi = {
-    oponente: 'Dona Marta',
+    oponente: 'Oponente 2',
     img: 'img/carta.png',   
-    deck: CardGameObj.slice(4, 11)
+    deck: CardGameObj.slice(11, 20)
 };
 let loloy = {
-    oponente: 'Olavo de Carvalho',
-    img: 'img/minion.png',   
-    deck: CardGameObj.slice(8, 12)
+    oponente: 'Oponente 3',
+    img: 'cartas/minion.png',   
+    deck: CardGameObj.slice(21, 30)
 };
 //seletor de oponentes
 let batalhasDisponiveis = [bruno, boi, loloy];
