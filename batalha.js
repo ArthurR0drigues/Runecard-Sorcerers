@@ -42,18 +42,9 @@ function embaralhar(baralho) {
 
 let batalhaEvent = false;
 /*10 minions iniciais*/
-let minion = {
-    vida: 1,
-    dano: 1,
-    custo: 0,
-    imagem: 'img/minion.png',
-    id: 0,
-    nome: 'minion',
-    funcoes: ['causarDano', 'FundoBaralhoMorrer']
-};
 for (let i = 0; i < 10; i++) {
-    baralhoObj.push(minion);
-    baralhoOponente.push(minion);
+    baralhoObj.push(cartasDoJogoObj[0]);
+    baralhoOponente.push(cartasDoJogoObj[0]);
 }
 
 let manaEl = document.querySelector('#mana-player');
@@ -79,6 +70,7 @@ criarDeckInimigo(5);
 criarDeck(deck, playerdeckEl);
 let manaVar = 1;
 let manaVarEnemy = 1;
+
 function dragAll() {
     let CartasNoDeckEl = document.querySelectorAll('.drag');
     CartasNoDeckEl.forEach(carta => {
@@ -122,7 +114,9 @@ function dragAll() {
                     finalParent = document.elementsFromPoint(e.pageX, e.pageY)[1].closest('.slotabble');
                 if (finalParent == null)
                     return 0;
-
+                    
+                if (manaVar < manaPerdida)
+                    return;
                 let dano = carta.classList[2];
                 let vida = carta.classList[3];
 
@@ -132,8 +126,6 @@ function dragAll() {
                 finalParent.innerHTML = '<img draggable="false"><p class="dmg"></p><p class="hp"></p>';
                 let strArryD = dano.split(':');
                 let strArryV = vida.split(':');
-                if (manaVar < manaPerdida)
-                    return;
                 manaVar -= manaPerdida;
                 definirMana();
                 finalParent.childNodes[0].src = carta.src;
@@ -167,6 +159,101 @@ function dragAll() {
         }
     });
 }
+function DragAllforCell() {
+    let CartasNoDeckEl = document.querySelectorAll('.drag');
+    CartasNoDeckEl.forEach(carta => {
+        let posY = carta.offsetTop;
+        let posX = carta.offsetLeft;
+        carta.style.left = `${posX}px`;
+        carta.style.top = `${posY}px`;
+        function selecionarCartaCell(e) {
+            carta.style.position = 'absolute';
+            carta.style.left = `calc(${e.pageX}px - 6.25vh)`;
+            carta.style.top = `calc(${e.pageY}px - 8.625vh)`;
+        }
+        let bodyEl = document.querySelector('body');
+        let slotabbleEl = document.querySelectorAll('.slotabble');
+        let custo = carta.classList[1];
+        let strArryC = custo.split(':');
+        let manaPerdida = strArryC[1];
+
+
+        carta.ontouchstart = function (e) {
+            carta = e.currentTarget;
+            bodyEl.addEventListener('touchmove', selecionarCartaCell);
+            for (let slot of slotabbleEl) {
+                slot.style.background = 'gray';
+            }
+            if (manaVar < manaPerdida) {
+                for (let slot of slotabbleEl) {
+                    slot.style.background = 'radial-gradient(circle, rgba(255,0,0,1) 13%, rgba(173,3,3,1) 52%, rgba(0,0,0,1) 100%)';
+                }
+            }
+        };
+
+
+        carta.ontouchend = function (e) {
+            bodyEl.removeEventListener('touchmove', selecionarCartaCell);
+            carta.style.position = 'initial';
+            carta.ontouchend = null;
+            carta.style.left = `${posX}px`;
+            carta.style.top = `${posY}px`;
+            for (let slot of slotabbleEl) {
+                slot.style.background = 'radial-gradient(circle, rgba(185,186,19,1) 0%, rgba(50,148,134,1) 100%)';
+            }
+            let finalParent = document.elementsFromPoint(e.changedTouches[0].pageX, e.changedTouches[0].pageY)[0].closest('.slotabble');
+            for (let i = 0; i < e.changedTouches.length; i++) {
+                finalParent = document.elementsFromPoint(e.changedTouches[i].pageX, e.changedTouches[i].pageY)[0].closest('.slotabble');
+            }
+            for (let i = 0; i < e.changedTouches.length; i++) {
+                finalParent = document.elementsFromPoint(e.changedTouches[i].pageX, e.changedTouches[i].pageY)[1].closest('.slotabble');
+            }
+            if (finalParent == null)
+                return 0;
+
+            let dano = carta.classList[2];
+            let vida = carta.classList[3];
+
+            for (let i = 4; i < carta.classList.length; i++)
+                finalParent.classList.add(carta.classList[i]);
+
+            finalParent.innerHTML = '<img draggable="false"><p class="dmg"></p><p class="hp"></p>';
+            let strArryD = dano.split(':');
+            let strArryV = vida.split(':');
+            if (manaVar < manaPerdida)
+                return;
+            manaVar -= manaPerdida;
+            definirMana();
+            finalParent.childNodes[0].src = carta.src;
+            finalParent.childNodes[0].alt = carta.alt;
+            finalParent.childNodes[1].innerHTML = strArryD[1];
+            finalParent.childNodes[2].innerHTML = strArryV[1];
+            for (let i = 0; i < deck.length; i++) {
+                if (carta.src.indexOf(deck[i].imagem) != -1) {
+                    deck[i] = 'apague';
+                    deck = deck.filter(word => word != 'apague');
+                    break;
+                }
+            }
+            carta.remove();
+            finalParent.classList.remove('slotabble');
+            finalParent.classList.add('ocupado');
+            finalParent.classList.add();
+            if (finalParent == document.getElementById('slot4')) {
+                let str = 'pos0';
+                finalParent.classList.add(str);
+            }
+            else if (finalParent == document.getElementById('slot5')) {
+                let str = 'pos1';
+                finalParent.classList.add(str);
+            }
+            else {
+                let str = 'pos2';
+                finalParent.classList.add(str);
+            }
+        }
+    });
+}
 
 function criarDeck(deck, paiEl) {
     for (let i = 0; i < deck.length; i++) {
@@ -187,6 +274,7 @@ function criarDeck(deck, paiEl) {
         paiEl.appendChild(cartaEl);
     }
     dragAll();
+    DragAllforCell();
 }
 let slotsEnemys = document.querySelectorAll('.enemyslot');
 slotsEnemys.forEach(slot => slot.classList.add('abble'));
@@ -243,6 +331,7 @@ function OponenteAi() {
 
 function batalhaEmSI() {
     batalhaEvent = true;
+    let mortesNoTurno = 0; 
     let slot1 = document.querySelector('#slot1');
     let slot2 = document.querySelector('#slot2');
     let slot3 = document.querySelector('#slot3');
@@ -269,19 +358,168 @@ function batalhaEmSI() {
         position++;
     }
 
+    position = 0;
     for (let slot of slotBem) {
-        if (slot.classList.contains('FundoBaralhoMorrer'))
-            FundoBaralhoMorrer(slot, baralhoObj, 0);
+        if (slot.classList.contains('AtaqueDuplo')) {
+            let danoRestante = causarDano(slot, slotMal[position]);
+            causarDanoOponente(danoRestante, vidaPlayerEl);
+        }
+        position++;
+    }
+    position = 0;
+    for (let slot of slotMal) {
+        if (slot.classList.contains('AtaqueDuplo')) {
+            let danoRestante = causarDano(slot, slotBem[position]);
+            causarDanoOponente(danoRestante, vidaInimigoEl);
+        }
+        position++;
+    }
+
+    for (let slot of slotBem) {
+        if (slot.classList.contains('GanharDano'))
+            GanharDano(slot);
+    }
+    for (let slot of slotMal) {
+        if (slot.classList.contains('GanharDano'))
+            GanharDano(slot);
+    }
+
+    for (let slot of slotBem) {
+        if (slot.classList.contains('GanharDanoTime'))
+            GanharDanoTime(slotBem);
+    }
+    for (let slot of slotMal) {
+        if (slot.classList.contains('GanharDanoTime'))
+            GanharDanoTime(slotMal);
+    }
+
+    for (let slot of slotBem) {
+        if (slot.classList.contains('GanharVida'))
+            GanharVida(slot);
+    }
+    for (let slot of slotMal) {
+        if (slot.classList.contains('GanharVida'))
+            GanharVida(slot);
+    }
+
+    for (let slot of slotBem) {
+        if (slot.classList.contains('GanharVidaTime'))
+            GanharVidaTime(slotBem);
+    }
+    for (let slot of slotMal) {
+        if (slot.classList.contains('GanharVidaTime'))
+            GanharVidaTime(slotMal);
+    }
+
+    
+    for (let slot of slotBem) {
+        if (slot.classList.contains('GanharCarta'))
+            GanharCarta(0);
+    }
+    for (let slot of slotMal) {
+        if (slot.classList.contains('GanharCarta'))
+            GanharCarta(1);
+    }
+
+    for (let slot of slotBem) {
+        if (slot.classList.contains('GanharMana'))
+            GanharMana(0);
+        }
+        for (let slot of slotMal) {
+            if (slot.classList.contains('GanharMana'))
+            GanharMana(1);
+        }
+
+    for (let slot of slotBem) {
+        if (slot.classList.contains('Invocar'))
+            Invocar(cartasDoJogoObj[18], deck);
+    }
+    for (let slot of slotMal) {
+        if (slot.classList.contains('Invocar'))
+            Invocar(cartasDoJogoObj[18], deckInimigo);
+    }
+
+    for (let slot of slotBem) {
+        if (slot.classList.contains('DanoEmTodos')) {
+            let danoRestante = DanoEmTodos(slot, slotMal);
+            causarDanoOponente(danoRestante, vidaPlayerEl);
+        }
+    }
+
+    for (let slot of slotMal) {
+        if (slot.classList.contains('DanoEmTodos')) {
+            let danoRestante = DanoEmTodos(slot, slotBem);
+            causarDanoOponente(danoRestante, vidaInimigoEl);
+        }
+    }
+    position = 0;
+    for (let slot of slotBem) {
+        if (slot.classList.contains('CausarDanoContinuo'))
+            CausarDanoContinuo(slotMal[position]);
+        position++;
+    }
+    position = 0;
+    for (let slot of slotMal) {
+        if (slot.classList.contains('CausarDanoContinuo'))
+            CausarDanoContinuo(slotBem[position]);
+        position++;
+    }
+    
+    for (let slot of slotBem) {
+        if (slot.classList.contains('PerdendoVida'))
+        PerdendoVida(slot);
+    }
+    for (let slot of slotMal) {
+        if (slot.classList.contains('PerdendoVida'))
+            PerdendoVida(slot);
+        }
+        
+        for (let slot of slotBem) {
+            if (slot.classList.contains('PerdendoDano'))
+            PerdendoDano(slot);
+        }
+        for (let slot of slotMal) {
+            if (slot.classList.contains('PerdendoDano'))
+            PerdendoDano(slot);
+        }
+        
+        for (let slot of slotBem) {
+            if (slot.classList.contains('FundoBaralhoMorrer'))
+            mortesNoTurno += FundoBaralhoMorrer(slot, baralhoOponente, 0);  
     }
     for (let slot of slotMal) {
         if (slot.classList.contains('FundoBaralhoMorrer'))
-            FundoBaralhoMorrer(slot, baralhoOponente, 1);
+        mortesNoTurno += FundoBaralhoMorrer(slot, baralhoObj, 1);
+    }
+    
+    for (let slot of slotBem) {
+        if (slot.classList.contains('Sanguessuga'))
+            Sanguessuga(slot);
+    }
+    for (let slot of slotMal) {
+        if (slot.classList.contains('Sanguessuga'))
+            Sanguessuga(slot);
+    }
+    for (let slot of slotBem) {
+        if (slot.classList.contains('GanharVidaMortes'))
+        GanharVidaMortes(slot, mortesNoTurno);
+    }
+    for (let slot of slotMal) {
+        if (slot.classList.contains('GanharVidaMortes'))
+        GanharVidaMortes(slot, mortesNoTurno);
+    }
+    
+    for (let slot of slotBem) {
+        if (slot.classList.contains('InvocarMortos'))
+            InvocarMortos(mortesNoTurno, deck);
+    }
+    for (let slot of slotMal) {
+        if (slot.classList.contains('InvocarMortos'))
+            InvocarMortos(mortesNoTurno, deckInimigo);
     }
 
     batalhaEvent = false;
 }
-
-
 let turnoEl = document.querySelector('#passa-turno');
 let turnoContadorEl = document.querySelector('#turno-contador');
 let turnoFase = 'vez-jogador';
@@ -290,7 +528,8 @@ let compraGratis = 5;
 definirMana();
 
 
-turnoEl.addEventListener('click', function () {
+turnoEl.addEventListener('click', passarTurno);
+function passarTurno() {
     switch (turnoFase) {
         case 'vez-jogador':
             turnoEl.src = 'img/escudo.png';
@@ -329,7 +568,7 @@ turnoEl.addEventListener('click', function () {
             }
             break;
     }
-});
+}
 
 
 /* compra cartas *//////////////////////////////////////////////////////////////
@@ -365,10 +604,10 @@ function FundoBaralhoMorrer(passivo, baralho, origem) {
     let vida = passivo.childNodes[2].innerHTML;
     vida = parseInt(vida);
     if (vida < 1) {
-        for (let i = 0; i < cartasDoJogoObj.length; i++){
+        for (let i = 0; i < cartasDoJogoObj.length; i++) {
             if (parseInt(passivo.childNodes[0].alt) === cartasDoJogoObj[i].id) {
                 if (i != 0)
-                    baralho.push(cartasDoJogoObj[i]); 
+                    baralho.push(cartasDoJogoObj[i]);
             }
         }
         passivo.innerHTML = '<img draggable="false"><p class="dmg"></p><p class="hp"></p>';
@@ -382,7 +621,9 @@ function FundoBaralhoMorrer(passivo, baralho, origem) {
             passivo.classList.add('abble');
             passivo.classList.add('enemyslot');
         }
+        return 1; 
     }
+    return 0; 
 }
 function causarDano(atacante, defensor) {
     let dano = atacante.childNodes[1].innerHTML;
@@ -390,7 +631,18 @@ function causarDano(atacante, defensor) {
     if (vida === "" || vida === undefined)
         return dano;
     else {
+        if (defensor.classList.contains('Defesa'))
+            dano -= 1;
+        if (defensor.classList.contains('Imunidade')) {
+            dano = 0;
+            defensor.classList.remove('Imunidade');
+        }
+
+        if (dano < 0)
+            dano = 0;
         vida = vida - dano;
+        if (atacante.classList.contains('Executar') == true && vida <= 2 && vida > 0)
+                vida = 0;  
         defensor.childNodes[2].innerHTML = vida;
         return 0;
     }
@@ -399,4 +651,111 @@ function causarDanoOponente(dano, alvo) {
     let vida = alvo.innerHTML;
     vida = vida - dano;
     alvo.innerHTML = vida;
+}
+function GanharVida(alvo) {
+    let vida = alvo.childNodes[2].innerHTML;
+    vida++;
+    alvo.childNodes[2].innerHTML = vida;
+}
+function GanharDano(alvo) {
+    let dano = alvo.childNodes[1].innerHTML;
+    dano++;
+    alvo.childNodes[1].innerHTML = dano;
+}
+function Sanguessuga(alvo) {
+    let dano = alvo.childNodes[1].innerHTML;
+    let vida = alvo.childNodes[2].innerHTML;
+    dano = parseInt(dano); 
+    vida = parseInt(vida); 
+    vida += dano;
+    alvo.childNodes[2].innerHTML = vida;
+}
+function GanharCarta(causador) {
+    GanharMana(causador);
+    if (causador == 0) {
+        click(CartaAreaEl);
+    }
+    else
+        criarDeckInimigo(1);
+}
+function GanharMana(causador) {
+    if (causador == 0) {
+        manaVar += 1;
+        definirMana();
+    }
+    else
+        manaVarEnemy += 1;
+}
+function GanharDanoTime(causadorArry) {
+    for (let alvo of causadorArry) {
+        let dano = alvo.childNodes[1].innerHTML;
+        dano++;
+        alvo.childNodes[1].innerHTML = dano;
+    }
+}
+function GanharVidaTime(causadorArry) {
+    for (let alvo of causadorArry) {
+        let vida = alvo.childNodes[2].innerHTML;
+        vida++;
+        alvo.childNodes[2].innerHTML = vida;
+    }
+}
+function Invocar(invocado, decke) {
+    decke.push(invocado);
+    criarDeck(deck, playerdeckEl);
+}
+function DanoEmTodos(inimigoArry, atacante) {
+    let dano = atacante.childNodes[1].innerHTML;
+    for (let alvo of inimigoArry) {
+        let vida = alvo.childNodes[2].innerHTML;
+        if (vida === "" || vida === undefined)
+            retorno += dano;
+        else {
+            if (defensor.classList.contains('Defesa') == true)
+                dano -= 2;
+            if (defensor.classList.contains('Imunidade') == true) {
+                dano = 0;
+                defensor.classList.remove('Imunidade');
+            }
+            if (dano < 0)
+                dano = 0;
+            vida = vida - dano;
+            if (atacante.classList.contains('Executar') == true && vida <= 2 && vida > 0)
+                vida = 0;  
+            alvo.childNodes[2].innerHTML = vida;
+            retorno += 0;
+        }
+    }
+    return retorno;
+}
+
+function CausarDanoContinuo(defensor) {
+    defensor.classList.add('PerdendoVida');
+}
+function PerdendoVida(alvo) {
+    let vida = alvo.childNodes[2].innerHTML;
+    vida = parseInt(vida); 
+    vida--; 
+    alvo.childNodes[2].innerHTML = vida;
+}
+function PerdendoDano(alvo) {
+    let dano = alvo.childNodes[1].innerHTML;
+    dano--;
+    if (dano < 1)
+        dano = 1;
+    alvo.childNodes[1].innerHTML = dano;
+}
+function GanharVidaMortes (passivo, numeroDeMortes){
+    let dano = passivo.childNodes[1].innerHTML;
+    let vida = passivo.childNodes[2].innerHTML;
+    for (let i=0; i< numeroDeMortes; i++){
+        dano++;
+        vida++;
+    }
+    passivo.childNodes[1].innerHTML = dano;
+    passivo.childNodes[2].innerHTML = vida;
+}
+function InvocarMortos(numeroDeMortes, baralho){
+    while (numeroDeMortes > 0)
+        Invocar(cartasDoJogoObj[3], baralho);
 }
