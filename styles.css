@@ -646,3 +646,12 @@ a {
     filter: hue-rotate(54deg);
 }
 /* fim */
+
+@media screen and (orientation: portrait) {
+    body {
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        transform: rotate(90deg);
+    }
+}
