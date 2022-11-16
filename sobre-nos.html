@@ -19,16 +19,58 @@
         </nav>
 
         <h1>Agradecimentos especiais à:</h1>
-        <p>Bruno Ferreira da Silva 
-            <br>-ssas
-        </p>
-        <p>Arthur Rodrigues Nepomuceno Milagres
-            <br>-
-        </p>
-        <p>Daniel Ferraz 
-            <br>
-        </p>
-    <script src="batalha.js"></script>
+        <!-- Abertura da div. -->
+<div style="position:relative; 
+    font-size:60px; 
+    width:300px; 
+    height:60px; 
+    overflow:hidden; 
+    margin:0 auto 0 auto; 
+    border:none">
+    <!-- O conteúdo da div. -->
+    <div 
+        style="float:left;"
+        style="position:absolute; 
+        top:0px; 
+        right:0px; 
+        z-index:99; 
+        background-color:transparent; 
+        width:40px; 
+        height:60px;" 
+        onmouseover="MouseoverMessageInAlertBox1()">
+        1
+    </div>
+    <div 
+        style="float:right;">3
+    </div>
+    <div 
+        style="text-align: center;"
+        style="position:absolute; 
+        top:0px; 
+        right:0px; 
+        z-index:99; 
+        background-color:transparent; 
+        width:40px; 
+        height:60px;" 
+        onmouseover="MouseoverMessageInAlertBox2()">
+        2
+    </div>
+    <div style="clear:both;"></div>
+    <!-- O div com easter egg. -->
+    <div 
+        style="position:absolute; 
+        top:0px; 
+        right:0px; 
+        z-index:99; 
+        background-color:transparent; 
+        width:40px; 
+        height:60px;" 
+        onmouseover="MouseoverMessageInAlertBox3()">
+    </div>
+</div>
+<!-- Fim da Div. -->
+ 
+    <script src="easterEgg.js"></script>
 </body>
 
 </html>
