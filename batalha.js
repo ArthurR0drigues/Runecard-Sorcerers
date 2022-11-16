@@ -177,19 +177,23 @@ function dragAll() {
         }
     });
 }
-function DragAllforCell() {
+function DragAllforMobile() {
     let CartasNoDeckEl = document.querySelectorAll('.drag');
     CartasNoDeckEl.forEach(carta => {
         let posY = carta.offsetTop;
         let posX = carta.offsetLeft;
+        let bodyEl = document.querySelector('body');
         carta.style.left = `${posX}px`;
         carta.style.top = `${posY}px`;
         function selecionarCartaCell(e) {
             carta.style.position = 'absolute';
-            carta.style.left = `calc(${e.pageX}px - 6.25vh)`;
-            carta.style.top = `calc(${e.pageY}px - 8.625vh)`;
+            for (let i=0; i < e.changedTouches.length; i++) {
+                if (e.changedTouches[i].pageX >= 0 && e.changedTouches[i].pageX < bodyEl.clientWidth)
+                    carta.style.left = `calc(${e.changedTouches[i].pageX}px - 6.25vh)`;
+                if (e.changedTouches[i].pageY >= 0 && e.changedTouches[i].pageY < bodyEl.clientHeight)
+                    carta.style.top = `calc(${e.changedTouches[i].pageY}px - 8.625vh)`;
+            }
         }
-        let bodyEl = document.querySelector('body');
         let slotabbleEl = document.querySelectorAll('.slotabble');
         let custo = carta.classList[1];
         let strArryC = custo.split(':');
@@ -213,9 +217,7 @@ function DragAllforCell() {
         carta.ontouchend = function (e) {
             bodyEl.removeEventListener('touchmove', selecionarCartaCell);
             carta.style.position = 'initial';
-            carta.ontouchend = null;
-            carta.style.left = `${posX}px`;
-            carta.style.top = `${posY}px`;
+            carta.ontouchmove = null;
             for (let slot of slotabbleEl) {
                 slot.style.background = 'radial-gradient(circle, rgba(185,186,19,1) 0%, rgba(50,148,134,1) 100%)';
             }
@@ -228,6 +230,7 @@ function DragAllforCell() {
             }
             if (finalParent == null)
                 return 0;
+
 
             let dano = carta.classList[2];
             let vida = carta.classList[3];
@@ -292,7 +295,7 @@ function criarDeck(deck, paiEl) {
         paiEl.appendChild(cartaEl);
     }
     dragAll();
-    DragAllforCell();
+    DragAllforMobile();
 }
 let slotsEnemys = document.querySelectorAll('.enemyslot');
 slotsEnemys.forEach(slot => slot.classList.add('abble'));
@@ -596,15 +599,15 @@ function passarTurno() {
             criarDeckInimigo(parseInt(turnoNumero / 10 + 1));
             if (vidaInimigoEl.innerHTML <= 0 && vidaPlayerEl.innerHTML <= 0) {
                 alert('EMPATE');
-                window.location.href = "http://127.0.0.1:5500/index.html";
+                window.location.href = "index.html";
             }
             else if (vidaInimigoEl.innerHTML <= 0) {
                 alert('VITORIA');
-                window.location.href = "http://127.0.0.1:5500/index.html";
+                window.location.href = "index.html";
             }
             else if (vidaPlayerEl.innerHTML <= 0) {
                 alert('DERROTA');
-                window.location.href = "http://127.0.0.1:5500/index.html";
+                window.location.href = "index.html";
             }
             break;
     }
