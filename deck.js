@@ -7,7 +7,7 @@ let Minion = {
     imagem: 'cartas/minion.png',
     id: 0,
     nome: 'Minion',
-    funcoes: ['causarDano', 'FundoBaralhoMorrer'] 
+    funcoes: ['causarDano', 'FundoBaralhoMorrer']
 };
 
 let Guaxinim = {
@@ -17,7 +17,7 @@ let Guaxinim = {
     imagem: 'cartas/guaxinim.png',
     id: 1,
     nome: 'Guaxinim',
-    funcoes: ['causarDano', 'FundoBaralhoMorrer'] 
+    funcoes: ['causarDano', 'FundoBaralhoMorrer']
 };
 
 let Tigre = {
@@ -27,17 +27,17 @@ let Tigre = {
     imagem: 'cartas/tigre.png',
     id: 2,
     nome: 'Tigre',
-    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'AtaqueDuplo', 'GanharDano'] 
+    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'AtaqueDuplo', 'GanharDano']
 };
 
 let Virus = {
-    vida: 3,
+    vida: 2,
     dano: 1,
-    custo: 2,
+    custo: 1,
     imagem: 'cartas/virus.png',
     id: 3,
     nome: 'Vírus',
-    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'InvocarMortos'] 
+    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'InvocarMortos']
 };
 
 let Goblin = {
@@ -47,7 +47,7 @@ let Goblin = {
     imagem: 'cartas/goblin.png',
     id: 4,
     nome: 'Goblin',
-    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'GanharMana'] 
+    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'GanharMana']
 };
 
 let Ciclope = {
@@ -57,7 +57,7 @@ let Ciclope = {
     imagem: 'cartas/ciclope.png',
     id: 5,
     nome: 'Ciclópe',
-    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'Executar'] 
+    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'Executar']
 };
 
 let Bonecodeneve = {
@@ -67,7 +67,7 @@ let Bonecodeneve = {
     imagem: 'cartas/bonecodeneve.png',
     id: 6,
     nome: 'Boneco de neve',
-    funcoes: ['causarDano', 'FundoBaralhoMorrer'] 
+    funcoes: ['causarDano', 'FundoBaralhoMorrer']
 };
 
 let Espartano = {
@@ -77,7 +77,7 @@ let Espartano = {
     imagem: 'cartas/espartano.png',
     id: 7,
     nome: 'Espartano',
-    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'GanharDano'] 
+    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'GanharDano']
 };
 
 let Viking = {
@@ -87,7 +87,7 @@ let Viking = {
     imagem: 'cartas/viking.png',
     id: 8,
     nome: 'Viking',
-    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'GanharVidaMortes'] 
+    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'GanharVidaMortes']
 };
 
 let Ninja = {
@@ -97,7 +97,7 @@ let Ninja = {
     imagem: 'cartas/ninja.png',
     id: 9,
     nome: 'Ninja',
-    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'Imunidade'] 
+    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'Imunidade']
 };
 
 let Bandido = {
@@ -107,7 +107,7 @@ let Bandido = {
     imagem: 'cartas/bandido.png',
     id: 10,
     nome: 'Bandido',
-    funcoes: ['causarDano', 'FundoBaralhoMorrer'] 
+    funcoes: ['causarDano', 'FundoBaralhoMorrer']
 };
 
 let Cavaleiro = {
@@ -117,7 +117,7 @@ let Cavaleiro = {
     imagem: 'cartas/cavaleiro.png',
     id: 11,
     nome: 'Cavaleiro',
-    funcoes: ['causarDano', 'FundoBaralhoMorrer'] 
+    funcoes: ['causarDano', 'FundoBaralhoMorrer']
 };
 
 let Monge = {
@@ -127,8 +127,8 @@ let Monge = {
     imagem: 'cartas/monge.png',
     id: 12,
     nome: 'Monge',
-    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'AtaqueDuplo'] 
-}; 
+    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'AtaqueDuplo']
+};
 
 let Anubis = {
     vida: 8,
@@ -137,8 +137,8 @@ let Anubis = {
     imagem: 'cartas/anubis.png',
     id: 13,
     nome: 'Anúbis',
-    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'GanharDanoTime'] 
-}; 
+    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'GanharDanoTime']
+};
 
 let Horus = {
     vida: 8,
@@ -147,8 +147,8 @@ let Horus = {
     imagem: 'cartas/horus.png',
     id: 14,
     nome: 'Hórus',
-    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'GanharVidaTime'] 
-}; 
+    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'GanharVidaTime']
+};
 
 let Mumia = {
     vida: 3,
@@ -157,8 +157,8 @@ let Mumia = {
     imagem: 'cartas/mumia.png',
     id: 15,
     nome: 'Múmia',
-    funcoes: ['causarDano', 'FundoBaralhoMorrer'] 
-}; 
+    funcoes: ['causarDano', 'FundoBaralhoMorrer']
+};
 
 let Necromancer = {
     vida: 4,
@@ -167,8 +167,8 @@ let Necromancer = {
     imagem: 'cartas/necromancer.png',
     id: 16,
     nome: 'Necromancer',
-    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'Invocar'] 
-}; 
+    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'Invocar']
+};
 
 let Lobisomen = {
     vida: 6,
@@ -177,8 +177,8 @@ let Lobisomen = {
     imagem: 'cartas/lobisomen.png',
     id: 17,
     nome: 'Lobisomen',
-    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'Defesa', 'Sanguessuga'] 
-}; 
+    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'Defesa', 'Sanguessuga']
+};
 
 let Esqueleto = {
     vida: 4,
@@ -187,8 +187,8 @@ let Esqueleto = {
     imagem: 'cartas/esqueleto.png',
     id: 18,
     nome: 'Esqueleto',
-    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'PerdendoDano'] 
-}; 
+    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'PerdendoDano']
+};
 
 let Dragao = {
     vida: 10,
@@ -197,8 +197,8 @@ let Dragao = {
     imagem: 'cartas/dragao.png',
     id: 19,
     nome: 'Dragão',
-    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'CausarDanoContinuo', 'Executar'] 
-}; 
+    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'CausarDanoContinuo', 'Executar']
+};
 
 let Aranha = {
     vida: 3,
@@ -207,8 +207,8 @@ let Aranha = {
     imagem: 'cartas/aranha.png',
     id: 20,
     nome: 'Aranha',
-    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'CausarDanoContinuo'] 
-}; 
+    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'CausarDanoContinuo']
+};
 
 let Cavaleirodastrevas = {
     vida: 2,
@@ -217,8 +217,8 @@ let Cavaleirodastrevas = {
     imagem: 'cartas/cavaleirodastrevas.png',
     id: 21,
     nome: 'Cavaleiro das trevas',
-    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'Defesa'] 
-}; 
+    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'Defesa']
+};
 
 let Bruxa = {
     vida: 4,
@@ -227,8 +227,8 @@ let Bruxa = {
     imagem: 'cartas/bruxa.png',
     id: 22,
     nome: 'Bruxa',
-    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'GanharCarta'] 
-}; 
+    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'GanharCarta']
+};
 
 let Vampiro = {
     vida: 2,
@@ -237,8 +237,8 @@ let Vampiro = {
     imagem: 'cartas/vampiro.png',
     id: 23,
     nome: 'Vampiro',
-    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'Sanguessuga'] 
-}; 
+    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'Sanguessuga']
+};
 
 let Unicornio = {
     vida: 5,
@@ -247,8 +247,8 @@ let Unicornio = {
     imagem: 'cartas/unicornio.png',
     id: 24,
     nome: 'Unicórnio',
-    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'GanharVida', 'GanharDano'] 
-}; 
+    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'GanharVida', 'GanharDano']
+};
 
 let Olhomaligno = {
     vida: 3,
@@ -257,8 +257,8 @@ let Olhomaligno = {
     imagem: 'cartas/olhomaligno.png',
     id: 25,
     nome: 'Olho maligno',
-    funcoes: ['causarDano', 'FundoBaralhoMorrer'] 
-}; 
+    funcoes: ['causarDano', 'FundoBaralhoMorrer']
+};
 
 let Barbanegra = {
     vida: 6,
@@ -267,8 +267,8 @@ let Barbanegra = {
     imagem: 'cartas/barbanegra.png',
     id: 26,
     nome: 'Barba negra',
-    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'DanoEmTodos'] 
-}; 
+    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'DanoEmTodos']
+};
 
 let Axalote = {
     vida: 3,
@@ -277,8 +277,8 @@ let Axalote = {
     imagem: 'cartas/axalote.png',
     id: 27,
     nome: 'Axalote',
-    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'GanharVida'] 
-}; 
+    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'GanharVida']
+};
 
 let Afogado = {
     vida: 4,
@@ -287,8 +287,8 @@ let Afogado = {
     imagem: 'cartas/afogado.png',
     id: 28,
     nome: 'Afogado',
-    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'PerdendoVida', 'Imunidade'] 
-}; 
+    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'PerdendoVida', 'Imunidade']
+};
 
 let Caranguejo = {
     vida: 3,
@@ -297,8 +297,8 @@ let Caranguejo = {
     imagem: 'cartas/caranguejo.png',
     id: 29,
     nome: 'Caranguejo',
-    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'AtaqueDuplo', 'Defesa'] 
-}; 
+    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'AtaqueDuplo', 'Defesa']
+};
 
 let Lula = {
     vida: 3,
@@ -307,13 +307,13 @@ let Lula = {
     imagem: 'cartas/lula.png',
     id: 30,
     nome: 'Lula',
-    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'DanoEmTodos', 'CausarDanoContinuo'] 
-}; 
+    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'DanoEmTodos', 'CausarDanoContinuo']
+};
 /*fim das cartas */
-let ALLCARDOFTHEGAME = [Afogado, Anubis, Aranha, Axalote, Bandido, Barbanegra, Bonecodeneve, Bruxa, Caranguejo, Cavaleiro, Cavaleirodastrevas, Ciclope, Dragao, Espartano, Esqueleto, Goblin, Guaxinim, Horus, Lobisomen, Lula, Minion, Monge, Mumia, Necromancer, Ninja, Olhomaligno, Tigre, Unicornio, Vampiro, Viking, Virus]; 
-ALLCARDOFTHEGAME = ordenarVetor(ALLCARDOFTHEGAME); 
+let ALLCARDOFTHEGAME = [Afogado, Anubis, Aranha, Axalote, Bandido, Barbanegra, Bonecodeneve, Bruxa, Caranguejo, Cavaleiro, Cavaleirodastrevas, Ciclope, Dragao, Espartano, Esqueleto, Goblin, Guaxinim, Horus, Lobisomen, Lula, Minion, Monge, Mumia, Necromancer, Ninja, Olhomaligno, Tigre, Unicornio, Vampiro, Viking, Virus];
+ALLCARDOFTHEGAME = ordenarVetor(ALLCARDOFTHEGAME);
 let ALLCARDOFTHEGAMEStr = JSON.stringify(ALLCARDOFTHEGAME);
-localStorage.setItem('cartas-jogo', ALLCARDOFTHEGAMEStr); 
+localStorage.setItem('cartas-jogo', ALLCARDOFTHEGAMEStr);
 /* vetor com todas as cartas desbloqueadas pelo jogador */
 let colecao = [Afogado, Anubis, Aranha, Axalote, Bandido, Barbanegra, Bonecodeneve, Bruxa, Caranguejo, Cavaleiro, Cavaleirodastrevas, Ciclope, Dragao, Espartano, Esqueleto, Goblin, Guaxinim, Horus, Lobisomen, Lula, Monge, Mumia, Necromancer, Ninja, Olhomaligno, Tigre, Unicornio, Vampiro, Viking, Virus];
 /*vetor com as cartas do jogador*/
