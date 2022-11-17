@@ -79,6 +79,45 @@ body {
     grid-column: 2 / 5;
 }
 
+#delete-data {
+    grid-row: 3 / 4;
+    grid-column: 5 / 6;
+    color: rgb(12, 12, 12);
+    background-color: rgb(219, 213, 213);
+    width: 10vh;
+    height: 10vh;
+    display: flex;
+    justify-self: flex-end;
+    align-self: center;
+    cursor: pointer;
+}
+
+#save-data {
+    grid-row: 3 / 4;
+    grid-column: 1 / 2;
+    color: rgb(12, 12, 12);
+    background-color: rgb(219, 213, 213);
+    width: 10vh;
+    height: 10vh;
+    display: flex;
+    justify-self: flex-start;
+    align-self: center;
+    cursor: pointer;
+}
+
+#load-data {
+    grid-row: 3 / 4;
+    grid-column: 1 / 2;
+    color: rgb(12, 12, 12);
+    background-color: rgb(219, 213, 213);
+    width: 10vh;
+    height: 10vh;
+    display: flex;
+    justify-self: center;
+    align-self: center;
+    cursor: pointer;
+}
+
 #jogar {
     grid-row: 2 / 3;
     grid-column: 2 / 3;
@@ -443,6 +482,9 @@ a {
     background: radial-gradient(circle, rgba(185,186,19,1) 0%, rgba(50,148,134,1) 100%);
 }   
 #area-inimigo div{
+    background: radial-gradient(circle, rgba(185,186,19,1) 0%, rgba(50,148,134,1) 100%);
+}
+.ocupado{
     background: radial-gradient(circle, rgba(185,186,19,1) 0%, rgba(50,148,134,1) 100%);
 }
 #oponente-obj{
