@@ -15,9 +15,9 @@ let baralhoObj = JSON.parse(baralhoJs);
 let playerdeckEl = document.querySelector('#player-deck');
 
 let VirusMinion = {
-    vida: 3,
+    vida: 2,
     dano: 1,
-    custo: 2,
+    custo: 1,
     imagem: 'cartas/virus.png',
     id: 3,
     nome: 'Vírus',
