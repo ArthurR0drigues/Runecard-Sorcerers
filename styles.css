@@ -60,6 +60,16 @@ body {
 
 /* estilos para o index */
 
+#sobre-nos h1{
+    display: flex;
+    justify-content: center;
+    color: rgba(240, 177, 18, 0.889);
+}
+
+#sobre-nos div{
+    color: rgba(240, 177, 18, 0.889);
+}
+
 #index h1,
 .titulo {
     text-align: center;
