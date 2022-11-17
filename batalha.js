@@ -1,3 +1,4 @@
+document.oncontextmenu = document.body.oncontextmenu = function () { return false; }
 /*vetor com as cartas na mao*/
 let deck = [];
 /*informaçoes do inimigo*/
@@ -79,8 +80,12 @@ baralhoOponente = embaralhar(baralhoOponente);
 let deckInimigo = [];
 function criarDeckInimigo(quantidade) {
     while (quantidade != 0) {
-        deckInimigo.push(baralhoOponente[0])
-        baralhoOponente.shift();
+        if (deckInimigo.length < 9){
+            if (baralhoOponente[0] != undefined){
+                deckInimigo.push(baralhoOponente[0])
+                baralhoOponente.shift()
+            }
+        }
         quantidade--;
     }
 }
@@ -187,11 +192,11 @@ function DragAllforMobile() {
         carta.style.top = `${posY}px`;
         function selecionarCartaCell(e) {
             carta.style.position = 'absolute';
-            for (let i=0; i < e.changedTouches.length; i++) {
+            for (let i = 0; i < e.changedTouches.length; i++) {
                 if (e.changedTouches[i].pageX >= 0 && e.changedTouches[i].pageX < bodyEl.clientWidth)
-                    carta.style.left = `calc(${e.changedTouches[i].pageX}px - 6.25vh)`;
+                    carta.style.left = `calc(${e.changedTouches[i].pageX}px - 53.75px)`;
                 if (e.changedTouches[i].pageY >= 0 && e.changedTouches[i].pageY < bodyEl.clientHeight)
-                    carta.style.top = `calc(${e.changedTouches[i].pageY}px - 8.625vh)`;
+                    carta.style.top = `calc(${e.changedTouches[i].pageY}px - 76px)`;
             }
         }
         let slotabbleEl = document.querySelectorAll('.slotabble');
@@ -294,8 +299,8 @@ function criarDeck(deck, paiEl) {
         });
         paiEl.appendChild(cartaEl);
     }
-    dragAll();
     DragAllforMobile();
+    dragAll();
 }
 let slotsEnemys = document.querySelectorAll('.enemyslot');
 slotsEnemys.forEach(slot => slot.classList.add('abble'));
@@ -327,6 +332,8 @@ function escolherEjogar(slotComInimigo) {
     deckInimigo[cartaSelecionada] = 'apague';
     deckInimigo = deckInimigo.filter(word => word != 'apague');
 }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function OponenteAi() {
     let slotabbleEl = document.querySelectorAll('.ocupado');
     let slot4El = document.querySelector('#slot4');
@@ -336,8 +343,12 @@ function OponenteAi() {
     for (let slot of slotabbleEl) {
         slot.classList.add('alvo');
     }
-    let ran = getRandomInt(3); 
-    slots[ran].classList.add('alvo', 'pos' + ran);  
+    let Ncard = 100; 
+    while (Ncard > 0){
+        let ran = getRandomInt(3);
+        slots[ran].classList.add('alvo', 'pos' + ran);
+        Ncard--;
+    }
     for (let slotes of slots) {
         if (slotes.classList.contains('alvo') == true) {
             let retorno = escolherEjogar(slotes);
@@ -593,8 +604,8 @@ function passarTurno() {
             console.log(`mana${manaVarEnemy}`);
             turnoNumero++;
             turnoContadorEl.innerHTML = 'Turno:' + '<br>' + turnoNumero;
+            compraGratis++;
             definirMana();
-            compraGratis = 1;
             batalhaEmSI();
             criarDeckInimigo(parseInt(turnoNumero / 10 + 1));
             if (vidaInimigoEl.innerHTML <= 0 && vidaPlayerEl.innerHTML <= 0) {
@@ -609,6 +620,7 @@ function passarTurno() {
                 alert('DERROTA');
                 window.location.href = "index.html";
             }
+            console.log(baralhoOponente.length);
             break;
     }
 }
@@ -621,7 +633,7 @@ CartaAreaEl.src = baralhoObj[0].imagem;
 textAreaEl.innerHTML = `Próximo:<br>${baralhoObj[0].nome}`;
 CartaAreaEl.addEventListener('click', function () {
     playerdeckEl.style.display = 'flex';
-    if (deck.length > 9)
+    if (deck.length > 8)
         return false;
 
     if (compraGratis < 1) {
@@ -649,8 +661,9 @@ function FundoBaralhoMorrer(passivo, baralho, origem) {
     if (vida < 1) {
         for (let i = 0; i < cartasDoJogoObj.length; i++) {
             if (parseInt(passivo.childNodes[0].alt) === cartasDoJogoObj[i].id) {
-                if (i != 0 && i != 3 && i != 18 && cartasDoJogoObj[i].funcoes[3] != 'Invocado')
+                if (i != 0 && i != 3 && i != 18 && cartasDoJogoObj[i].funcoes[3] != 'Invocado'){
                     baralho.push(cartasDoJogoObj[i]);
+                }
             }
         }
         passivo.innerHTML = '<img draggable="false"><p class="dmg"></p><p class="hp"></p>';
@@ -675,7 +688,7 @@ function causarDano(atacante, defensor) {
         return dano;
     else {
         if (defensor.classList.contains('Defesa'))
-            dano -= 2;
+            dano -= 1;
         if (defensor.classList.contains('Imunidade')) {
             dano = 0;
             defensor.classList.remove('Imunidade');
@@ -712,8 +725,8 @@ function Sanguessuga(alvo) {
     alvo.childNodes[2].innerHTML = vida;
 }
 function GanharCarta(causador) {
-    GanharMana(causador);
     if (causador == 1) {
+        compraGratis += 1;
         CartaAreaEl.click();
     }
     else
@@ -746,7 +759,7 @@ function GanharVidaTime(causadorArry) {
     }
 }
 function Invocar(invocado, decke) {
-    if (decke.length < 10)
+    if (decke.length < 9)
         decke.push(invocado);
 }
 function DanoEmTodos(atacante, inimigoArry) {
@@ -759,7 +772,7 @@ function DanoEmTodos(atacante, inimigoArry) {
             retorno += dano;
         else {
             if (alvo.classList.contains('Defesa') == true)
-                dano -= 2;
+                dano -= 1;
             if (alvo.classList.contains('Imunidade') == true) {
                 dano = 0;
                 alvo.classList.remove('Imunidade');
@@ -777,11 +790,12 @@ function DanoEmTodos(atacante, inimigoArry) {
 }
 
 function CausarDanoContinuo(defensor) {
-    defensor.classList.add('PerdendoVida');
+    if (defensor.childNodes[2].innerHTML != undefined)
+        defensor.classList.add('PerdendoVida');
 }
 function PerdendoVida(alvo) {
     let vida = alvo.childNodes[2].innerHTML;
-    if (vida != undefined || vida != 'NaN') {
+    if (vida != undefined){
         vida = parseInt(vida);
         vida--;
         alvo.childNodes[2].innerHTML = vida;
