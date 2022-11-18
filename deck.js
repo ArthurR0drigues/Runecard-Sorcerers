@@ -343,7 +343,7 @@ let PlantaCarnivora = {
 let CavaleiroFantasma = {
     vida: 5,
     dano: 1,
-    custo: 4,
+    custo: 3,
     imagem: 'cartas/cavaleirofantasma.png',
     id: 34,
     nome: 'Cavaleiro Fantasma',
