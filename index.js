@@ -38,11 +38,13 @@ loadDataEl.addEventListener('click', function () {
     if (dadoSalvoStr == undefined){
         encontrado = false; 
     }
+    if (encontrado == false){
+        alert('Senha não encontrada');
+        return; 
+    }
     let dadoSalvoJs = JSON.parse(dadoSalvoStr);
     localStorage.setItem('cartas-jogo', dadoSalvoJs[0]);
     localStorage.setItem('colecao', dadoSalvoJs[1]);
     localStorage.setItem('baralho', dadoSalvoJs[2]);
 
-    if (encontrado == false)
-        alert('Senha não encontrada');
 })
