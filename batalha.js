@@ -34,6 +34,27 @@ let EsqueletoMinion = {
     funcoes: ['causarDano', 'FundoBaralhoMorrer', 'PerdendoDano', 'Invocado']
 };
 
+let GalinhaRaivosa = {
+    vida: 2,
+    dano: 2,
+    custo: 0,
+    imagem: 'cartas/galinha.png',
+    id: 45,
+    nome: 'Galinha',
+    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'PerdendoDano', 'Invocado']
+};
+
+let Gelo = {
+    vida: 5,
+    dano: 0,
+    custo: 0,
+    imagem: 'cartas/gelo.png',
+    id: 62,
+    nome: 'Gelo',
+    funcoes: ['FundoBaralhoMorrer', 'Naoéumeastergg','éumagambiarra', 'Invocado']
+};
+
+
 function AdicionarAoDeck(deck, baralhoJs, quantidade) {
     for (let i = 0; i < quantidade; i++) {
         deck.push(baralhoJs[i]);
@@ -374,19 +395,39 @@ function batalhaEmSI() {
     let slot6 = document.querySelector('#slot6');
     let slotBem = [slot1, slot2, slot3];
     let slotMal = [slot4, slot5, slot6];
+    let position = 0;
 
     for (let slot of slotBem) {
-        if (slot.classList.contains('CopiarAdversario')) {
-            let danoRestante = CopiarAdversario(slot, slotMal);
-            causarDanoOponente(danoRestante, vidaPlayerEl);
-        }
+        if (slot.classList.contains('CausarDanoComVida'))
+            CausarDanoComVida(slot);
+    }
+    for (let slot of slotMal) {
+        if (slot.classList.contains('CausarDanoComVida'))
+            CausarDanoComVida(slot);
     }
 
+    for (let slot of slotBem) {
+        if (slot.classList.contains('CausarDanoComMana'))
+            CausarDanoComMana(slot, 0);
+    }
+    for (let slot of slotMal) {
+        if (slot.classList.contains('CausarDanoComMana'))
+            CausarDanoComMana(slot, 1);
+    }
+
+    position = 0;
+    for (let slot of slotBem) {
+        if (slot.classList.contains('CopiarAdversario')) {
+            CopiarAdversario(slot, slotMal[position]);
+        }
+        position++;
+    }
+    position = 0;
     for (let slot of slotMal) {
         if (slot.classList.contains('CopiarAdversario')) {
-            let danoRestante = CopiarAdversario(slot, slotBem);
-            causarDanoOponente(danoRestante, vidaInimigoEl);
+            CopiarAdversario(slot, slotBem[position]);
         }
+        position++;
     }
 
     for (let slot of slotBem) {
@@ -411,8 +452,7 @@ function batalhaEmSI() {
         if (slot.classList.contains('FundoBaralhoMorrer'))
             mortesNoTurno += FundoBaralhoMorrer(slot, baralhoObj, 1);
     }
-
-    let position = 0;
+    position = 0;
     for (let slot of slotBem) {
         if (slot.classList.contains('causarDano')) {
             let danoRestante = causarDano(slot, slotMal[position]);
@@ -443,6 +483,19 @@ function batalhaEmSI() {
         position++;
     }
 
+    position = 0;
+    for (let slot of slotBem) {
+        if (slot.classList.contains('Congelar'))
+            Congelar(slotMal[position]);
+        position++;
+    }
+    position = 0;
+    for (let slot of slotMal) {
+        if (slot.classList.contains('Congelar'))
+            Congelar(slotBem[position]);
+        position++;
+    }
+
     for (let slot of slotBem) {
         if (slot.classList.contains('PerdendoVida'))
             PerdendoVida(slot);
@@ -486,6 +539,16 @@ function batalhaEmSI() {
         if (slot.classList.contains('Sanguessuga'))
             Sanguessuga(slot);
     }
+
+    for (let slot of slotBem) {
+        if (slot.classList.contains('CurarComMana'))
+            CurarComMana(slot, 0);
+    }
+    for (let slot of slotMal) {
+        if (slot.classList.contains('CurarComMana'))
+            CurarComMana(slot, 1);
+    }
+
     for (let slot of slotBem) {
         if (slot.classList.contains('GanharDano'))
             GanharDano(slot);
@@ -520,6 +583,15 @@ function batalhaEmSI() {
     for (let slot of slotMal) {
         if (slot.classList.contains('GanharVidaTime'))
             GanharVidaTime(slotMal);
+    }
+
+    for (let slot of slotBem) {
+        if (slot.classList.contains('GanharDefesaTime'))
+            GanharDefesaTime(slotBem);
+    }
+    for (let slot of slotMal) {
+        if (slot.classList.contains('GanharDefesaTime'))
+            GanharDefesaTime(slotMal);
     }
 
     for (let slot of slotBem) {
@@ -672,15 +744,15 @@ CartaAreaEl.addEventListener('click', function () {
     if (manaVar == 0)
         return;
     if (compraGratis < 1) {
-        if (manaVar != 0){
+        if (manaVar != 0) {
             manaVar--;
         }
     }
     definirMana();
     CartaAreaEl.src = baralhoObj[1].imagem;
     if (compraGratis != 0)
-    compraGratis--;
-    if (compraGratis > 0){
+        compraGratis--;
+    if (compraGratis > 0) {
         textAreaEl.innerHTML = `Próximo:<br>${baralhoObj[1].nome}`;
     }
     else
@@ -690,14 +762,60 @@ CartaAreaEl.addEventListener('click', function () {
     criarDeck(deck, playerdeckEl);
 });
 
+let MinionMaligno = {
+    vida: 1 + 2 * ((turnoNumero / 10) | 0),
+    dano: 1 + 2 * ((turnoNumero / 10) | 0),
+    custo: (((vida + dano) / 2) | 0) - 1,
+    imagem: 'cartas/minionmaligno.png',
+    id: 61,
+    nome: 'Minion Maligno',
+    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'Gambiarra','Evoluir']
+};
 //area das funçoes///////////////////////////////////////////////////////////////////////////
 function FundoBaralhoMorrer(passivo, baralho, origem) {
     let vida = passivo.childNodes[2].innerHTML;
+    let dano = passivo.childNodes[1].innerHTML;
+    dano = parseInt(dano);
     vida = parseInt(vida);
     if (vida < 1) {
+        if (passivo.classList.contains('CausarDanoMorrer')) {
+            if (origem === 0)
+                DanoEmTodos(passivo, slotBem);
+            else
+                DanoEmTodos(passivo, slotMal);
+        }
+        if (passivo.classList.contains('InvocarMorrer')) {
+            if (origem === 0)
+                Invocar(cartasDoJogoObj[GalinhaRaivosa], deck);
+            else
+                Invocar(cartasDoJogoObj[GalinhaRaivosa], deckInimigo);
+        }
+        if (passivo.classList.contains('InvocarMorrerGelo')) {
+            if (origem === 0)
+                Invocar(cartasDoJogoObj[Gelo], deck);
+            else
+                Invocar(cartasDoJogoObj[Gelo], deckInimigo);
+        }
+        if (passivo.classList.contains('Persistir')) {
+            if (origem === 0)
+                Invocar(MinionMaligno, deck);
+            else
+                Invocar(MinionMaligno, deckInimigo);
+        }
+        if (passivo.classList.contains('Evoluir')) {
+            if (origem === 0)
+                Invocar(cartasDoJogoObj[44], deck);
+            else
+                Invocar(cartasDoJogoObj[44], deckInimigo);
+        }
+        if (passivo.classList.contains('Desejos')) {
+            for (let i = 0; i < 3; i++) {
+                GanharCarta(origem); 
+            }
+        }
         for (let i = 0; i < cartasDoJogoObj.length; i++) {
             if (parseInt(passivo.childNodes[0].alt) === cartasDoJogoObj[i].id) {
-                if (i != 0 && i != 3 && i != 18 && cartasDoJogoObj[i].funcoes[3] != 'Invocado') {
+                if (i != 0 && cartasDoJogoObj[i].funcoes[3] != 'Invocado') {
                     baralho.push(cartasDoJogoObj[i]);
                 }
             }
@@ -720,6 +838,9 @@ function FundoBaralhoMorrer(passivo, baralho, origem) {
 function causarDano(atacante, defensor) {
     let dano = atacante.childNodes[1].innerHTML;
     let vida = defensor.childNodes[2].innerHTML;
+    if (atacante.classList.contains('Congelado')) {
+        return 0;
+    }
     if (vida === "" || vida === undefined)
         return dano;
     else {
@@ -800,6 +921,11 @@ function GanharVidaTime(causadorArry) {
         }
     }
 }
+function GanharDefesaTime(causadorArry) {
+    for (let alvo of causadorArry) {
+        alvo.classList.add('Defesa');
+    }
+}
 function Invocar(invocado, decke) {
     if (decke.length < 9) {
         decke.push(invocado);
@@ -841,6 +967,10 @@ function DanoEmTodos(atacante, inimigoArry) {
 function CausarDanoContinuo(defensor) {
     if (defensor.childNodes[2].innerHTML != undefined)
         defensor.classList.add('PerdendoVida');
+}
+function Congelar(defensor) {
+    if (defensor.childNodes[2].innerHTML != undefined)
+        defensor.classList.add('Congelado');
 }
 function PerdendoVida(alvo) {
     let vida = alvo.childNodes[2].innerHTML;
@@ -886,15 +1016,40 @@ function ImunidadeTodos(causadorArry) {
     }
 }
 function CopiarAdversario(atacante, defensor) {
+    console.log(defensor);
     if (defensor.childNodes == undefined)
-        return; 
+        return;
     let ataqueDefensor = defensor.childNodes[1].innerHTML;
     let vidaDefensor = defensor.childNodes[2].innerHTML;
-    if (vida === "" || vida === undefined)
+    if (vidaDefensor === "" || vidaDefensor === undefined)
         return;
     else {
         atacante.childNodes[1].innerHTML = ataqueDefensor;
         atacante.childNodes[2].innerHTML = vidaDefensor;
         atacante.classList.remove('CopiarAdversario');
     }
+}
+function CausarDanoComVida(passivo) {
+    let dano = passivo.childNodes[1].innerHTML;
+    let vida = passivo.childNodes[2].innerHTML;
+    dano = parseInt(dano);
+    vida = parseInt(vida);
+    passivo.childNodes[1].innerHTML = vida;
+}
+
+function CausarDanoComMana(passivo, origem) {
+    let dano = passivo.childNodes[1].innerHTML;
+    dano = parseInt(dano);
+    if (origem == 0)
+        passivo.childNodes[1].innerHTML = manaVar;
+    else
+        passivo.childNodes[1].innerHTML = manaVarEnemy;
+}
+function CurarComMana(passivo, origem) {
+    let vida = passivo.childNodes[2].innerHTML;
+    vida = parseInt(vida);
+    if (origem == 0)
+        passivo.childNodes[2].innerHTML = vida + manaVar;
+    else
+        passivo.childNodes[2].innerHTML = vida + manaVarEnemy;
 }
