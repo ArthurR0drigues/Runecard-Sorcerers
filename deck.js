@@ -311,7 +311,7 @@ let Lula = {
 };
 
 let Fantasma = {
-    vida: 3,
+    vida: 4,
     dano: 1,
     custo: 4,
     imagem: 'cartas/fantasma.png',
@@ -399,13 +399,233 @@ let CerebroMaligno = {
     nome: 'Cérebro maligno',
     funcoes: ['causarDano', 'FundoBaralhoMorrer']
 };
+
+let Oni = {
+    vida: 4,
+    dano: 2,
+    custo: 3,
+    imagem: 'cartas/oni.png',
+    id: 40,
+    nome: 'Oni',
+    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'CausarDanoMorrer']
+};
+
+let IceLord = {
+    vida: 7,
+    dano: 7,
+    custo: 7,
+    imagem: 'cartas/icelord.png',
+    id: 41,
+    nome: 'Ice Lord',
+    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'CausarDanoComVida', 'GanharVida']
+};
+
+let PeixeMonstro = {
+    vida: 3,
+    dano: 3,
+    custo: 2,
+    imagem: 'cartas/peixemonstro.png',
+    id: 42,
+    nome: 'Peixe Monstro',
+    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'CausarDanoComVida']
+};
+
+let Assassino = {
+    vida: 4,
+    dano: 3,
+    custo: 4,
+    imagem: 'cartas/assassino.png',
+    id: 43,
+    nome: 'Assassino',
+    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'Executar', 'DanoAumentado']
+};
+
+let Barbaro = {
+    vida: 4,
+    dano: 3,
+    custo: 3,
+    imagem: 'cartas/barbaro.png',
+    id: 44,
+    nome: 'Bárbaro',
+    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'Persistir']
+};
+
+let Galinha = {
+    vida: 1,
+    dano: 1,
+    custo: 2,
+    imagem: 'cartas/galinha.png',
+    id: 45,
+    nome: 'Galinha',
+    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'InvocarMorrer']
+};
+
+let Mago = {
+    vida: 5,
+    dano: 1,
+    custo: 5,
+    imagem: 'cartas/mago.png',
+    id: 46,
+    nome: 'Mago',
+    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'CausarDanoComMana']
+};
+
+let Bode = {
+    vida: 2,
+    dano: 4,
+    custo: 2,
+    imagem: 'cartas/bode.png',
+    id: 47,
+    nome: 'Bode',
+    funcoes: ['causarDano', 'FundoBaralhoMorrer']
+};
+
+let Raposa = {
+    vida: 5,
+    dano: 1,
+    custo: 2,
+    imagem: 'cartas/raposa.png',
+    id: 48,
+    nome: 'Raposa',
+    funcoes: ['causarDano', 'FundoBaralhoMorrer']
+};
+
+let CranioMaligno = {
+    vida: 6,
+    dano: 6,
+    custo: 6,
+    imagem: 'cartas/craniomaligno.png',
+    id: 49,
+    nome: 'Crânio Maligno',
+    funcoes: ['causarDano', 'FundoBaralhoMorrer']
+};
+
+let Naja = {
+    vida: 3,
+    dano: 1,
+    custo: 3,
+    imagem: 'cartas/naja.png',
+    id: 50,
+    nome: 'Naja',
+    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'CausarDanoContinuo', 'AtaqueDuplo']
+};
+
+let Cleopatra = {
+    vida: 6,
+    dano: 4,
+    custo: 5,
+    imagem: 'cartas/cleopatra.png',
+    id: 51,
+    nome: 'Cleópatra',
+    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'GanharDefesaTime']
+};
+
+let Ascendido = {
+    vida: 4,
+    dano: 4,
+    custo: 6,
+    imagem: 'cartas/ascendido.png',
+    id: 52,
+    nome: 'Ascendido',
+    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'CurarComMana']
+};
+
+let Enguia = {
+    vida: 3,
+    dano: 1,
+    custo: 2,
+    imagem: 'cartas/enguia.png',
+    id: 53,
+    nome: 'Enguia',
+    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'CausarDanoMorrer']
+};
+
+let CasteloDeAreia = {
+    vida: 6,
+    dano: 0,
+    custo: 2,
+    imagem: 'cartas/castelodeareia.png',
+    id: 54,
+    nome: 'Castelo de areia',
+    funcoes: ['causarDano', 'FundoBaralhoMorrer']
+};
+
+let Tartaruga = {
+    vida: 3,
+    dano: 0,
+    custo: 0,
+    imagem: 'cartas/tartaruga.png',
+    id: 55,
+    nome: 'Tartaruga',
+    funcoes: ['causarDano', 'FundoBaralhoMorrer']
+};
+
+let Orc = {
+    vida: 5,
+    dano: 3,
+    custo: 6,
+    imagem: 'cartas/orc.png',
+    id: 56,
+    nome: 'Orc',
+    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'GanharVida', 'GanharDano', 'Defesa']
+};
+
+let MinionDeGelo = {
+    vida: 1,
+    dano: 1,
+    custo: 0,
+    imagem: 'cartas/miniondegelo.png',
+    id: 57,
+    nome: 'Minion de gelo',
+    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'Defesa']
+};
+
+let Aurora = {
+    vida: 6,
+    dano: 2,
+    custo: 4,
+    imagem: 'cartas/aurora.png',
+    id: 58,
+    nome: 'Aurora',
+    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'Congelar']
+};
+
+let Genio = {
+    vida: 4,
+    dano: 2,
+    custo: 4,
+    imagem: 'cartas/genio.png',
+    id: 59,
+    nome: 'Gênio',
+    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'Desejos']
+};
+
+let Colosso = {
+    vida: 8,
+    dano: 2,
+    custo: 5,
+    imagem: 'cartas/colosso.png',
+    id: 60,
+    nome: 'Colosso',
+    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'InvocarMorrerGelo']
+};
+
+let MinionMaligno = {
+    vida: 1,
+    dano: 1,
+    custo: 0,
+    imagem: 'cartas/minionmaligno.png',
+    id: 61,
+    nome: 'Minion Maligno',
+    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'Evoluir']
+};
 /*fim das cartas */
-let ALLCARDOFTHEGAME = [Afogado, Anubis, Aranha, Axalote, Bandido, Barbanegra, Bonecodeneve, Bruxa, Caranguejo, Cavaleiro, Cavaleirodastrevas, Ciclope, Dragao, Espartano, Esqueleto, Goblin, Guaxinim, Horus, Lobisomen, Lula, Minion, Monge, Mumia, Necromancer, Ninja, Olhomaligno, Tigre, Unicornio, Vampiro, Viking, Virus, Fantasma, Mimico, PlantaCarnivora, CavaleiroFantasma, Ent, GolemDeGelo, Vespa, AguaViva, CerebroMaligno];
+let ALLCARDOFTHEGAME = [Afogado, Anubis, Aranha, Axalote, Bandido, Barbanegra, Bonecodeneve, Bruxa, Caranguejo, Cavaleiro, Cavaleirodastrevas, Ciclope, Dragao, Espartano, Esqueleto, Goblin, Guaxinim, Horus, Lobisomen, Lula, Minion, Monge, Mumia, Necromancer, Ninja, Olhomaligno, Tigre, Unicornio, Vampiro, Viking, Virus, Fantasma, Mimico, PlantaCarnivora, CavaleiroFantasma, Ent, GolemDeGelo, Vespa, AguaViva, CerebroMaligno, Oni, IceLord, PeixeMonstro, Assassino, Barbaro, Galinha, Mago, Bode, Raposa, CranioMaligno, Naja, Cleopatra, Ascendido, Enguia, CasteloDeAreia, Tartaruga, Orc, MinionDeGelo, Aurora, Genio, Colosso, MinionMaligno];
 ALLCARDOFTHEGAME = ordenarVetor(ALLCARDOFTHEGAME);
 let ALLCARDOFTHEGAMEStr = JSON.stringify(ALLCARDOFTHEGAME);
 localStorage.setItem('cartas-jogo', ALLCARDOFTHEGAMEStr);
 /* vetor com todas as cartas desbloqueadas pelo jogador */
-let colecao = [Afogado, Anubis, Aranha, Axalote, Bandido, Barbanegra, Bonecodeneve, Bruxa, Caranguejo, Cavaleiro, Cavaleirodastrevas, Ciclope, Dragao, Espartano, Esqueleto, Goblin, Guaxinim, Horus, Lobisomen, Lula, Monge, Mumia, Necromancer, Ninja, Olhomaligno, Tigre, Unicornio, Vampiro, Viking, Virus, Fantasma, Mimico, PlantaCarnivora, CavaleiroFantasma, Ent, GolemDeGelo, Vespa, AguaViva, CerebroMaligno];
+let colecao = [Afogado, Anubis, Aranha, Axalote, Bandido, Barbanegra, Bonecodeneve, Bruxa, Caranguejo, Cavaleiro, Cavaleirodastrevas, Ciclope, Dragao, Espartano, Esqueleto, Goblin, Guaxinim, Horus, Lobisomen, Lula, Monge, Mumia, Necromancer, Ninja, Olhomaligno, Tigre, Unicornio, Vampiro, Viking, Virus, Fantasma, Mimico, PlantaCarnivora, CavaleiroFantasma, Ent, GolemDeGelo, Vespa, AguaViva, CerebroMaligno, Oni, IceLord, PeixeMonstro, Assassino, Barbaro, Galinha, Mago, Bode, Raposa, CranioMaligno, Naja, Cleopatra, Ascendido, Enguia, CasteloDeAreia, Tartaruga, Orc, MinionDeGelo, Aurora, Genio, Colosso, MinionMaligno];
 /*vetor com as cartas do jogador*/
 let baralho = [Afogado, Anubis, Aranha, Axalote, Bandido, Barbanegra, Bonecodeneve, Bruxa, Caranguejo, Cavaleiro];
 
