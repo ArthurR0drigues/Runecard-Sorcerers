@@ -551,7 +551,7 @@ function batalhaEmSI() {
 
     for (let slot of slotBem) {
         if (slot.classList.contains('Invocar'))
-            Invocar(cartasDoJogoObj[18], deckInimigo);
+            Invocar(EsqueletoMinion, deckInimigo);
     }
     for (let slot of slotMal) {
         if (slot.classList.contains('Invocar'))
@@ -624,6 +624,7 @@ function passarTurno() {
             CartaAreaEl.style.display = 'none';
             textAreaEl.style.display = 'none';
             textAreaEl.innerHTML = `Próximo:<br>${baralhoObj[0].nome}`;
+            compraGratis++;
             OponenteAi();
             break;
         case 'vez-inimigo':
@@ -639,7 +640,6 @@ function passarTurno() {
             console.log(`manaMaxima${manaMaxima}`);
             turnoNumero++;
             turnoContadorEl.innerHTML = 'Turno:' + '<br>' + turnoNumero;
-            compraGratis++;
             definirMana();
             batalhaEmSI();
             criarDeckInimigo(1 + ((turnoNumero / 10) | 0));
@@ -668,19 +668,21 @@ textAreaEl.innerHTML = `Próximo:<br>${baralhoObj[0].nome}`;
 CartaAreaEl.addEventListener('click', function () {
     playerdeckEl.style.display = 'flex';
     if (deck.length > 8)
-        return false;
-
+        return;
+    if (manaVar == 0)
+        return;
     if (compraGratis < 1) {
-        if (manaVar == 0)
-            return 0;
-        manaVar--;
-        definirMana();
+        if (manaVar != 0){
+            manaVar--;
+        }
     }
-    compraGratis--;
+    definirMana();
     CartaAreaEl.src = baralhoObj[1].imagem;
-
-    if (compraGratis > 0)
+    if (compraGratis != 0)
+    compraGratis--;
+    if (compraGratis > 0){
         textAreaEl.innerHTML = `Próximo:<br>${baralhoObj[1].nome}`;
+    }
     else
         textAreaEl.innerHTML = `Próximo:-1⭐<br>${baralhoObj[1].nome}`;
     AdicionarAoDeck(deck, baralhoObj, 1);
@@ -871,7 +873,7 @@ function GanharDanoMortes(passivo, numeroDeMortes) {
 function InvocarMortos(numeroDeMortes, baralho) {
     let i = numeroDeMortes;
     while (i > 0) {
-        Invocar(cartasDoJogoObj[3], baralho);
+        Invocar(VirusMinion, baralho);
         i--;
     }
 }
@@ -884,6 +886,8 @@ function ImunidadeTodos(causadorArry) {
     }
 }
 function CopiarAdversario(atacante, defensor) {
+    if (defensor.childNodes == undefined)
+        return; 
     let ataqueDefensor = defensor.childNodes[1].innerHTML;
     let vidaDefensor = defensor.childNodes[2].innerHTML;
     if (vida === "" || vida === undefined)
