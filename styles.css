@@ -694,15 +694,18 @@ a {
 .Imunidade{
     opacity: 0.5;
 }
+
+.Defesa{
+    filter: sepia(30%);
+}
+
 .PerdendoVida{
     filter: hue-rotate(74deg);  
 }
 .Congelado{
     filter: invert(1);
 }
-.Defesa{
-    filter: sepia(30%);
-}
+
 .Angry{
     filter: saturate(150%);
 }
