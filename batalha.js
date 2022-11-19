@@ -41,7 +41,7 @@ let GalinhaRaivosa = {
     imagem: 'cartas/galinha.png',
     id: 45,
     nome: 'Galinha',
-    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'PerdendoDano', 'Invocado']
+    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'Angry', 'Invocado']
 };
 
 let Gelo = {
@@ -384,17 +384,17 @@ function OponenteAi() {
     }
 }
 
+let slot1 = document.querySelector('#slot1');
+let slot2 = document.querySelector('#slot2');
+let slot3 = document.querySelector('#slot3');
+let slot4 = document.querySelector('#slot4');
+let slot5 = document.querySelector('#slot5');
+let slot6 = document.querySelector('#slot6');
+let slotBem = [slot1, slot2, slot3];
+let slotMal = [slot4, slot5, slot6];
 function batalhaEmSI() {
     batalhaEvent = true;
     let mortesNoTurno = 0;
-    let slot1 = document.querySelector('#slot1');
-    let slot2 = document.querySelector('#slot2');
-    let slot3 = document.querySelector('#slot3');
-    let slot4 = document.querySelector('#slot4');
-    let slot5 = document.querySelector('#slot5');
-    let slot6 = document.querySelector('#slot6');
-    let slotBem = [slot1, slot2, slot3];
-    let slotMal = [slot4, slot5, slot6];
     let position = 0;
 
     for (let slot of slotBem) {
@@ -762,15 +762,6 @@ CartaAreaEl.addEventListener('click', function () {
     criarDeck(deck, playerdeckEl);
 });
 
-let MinionMaligno = {
-    vida: 1 + 2 * ((turnoNumero / 10) | 0),
-    dano: 1 + 2 * ((turnoNumero / 10) | 0),
-    custo: (((vida + dano) / 2) | 0) - 1,
-    imagem: 'cartas/minionmaligno.png',
-    id: 61,
-    nome: 'Minion Maligno',
-    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'Gambiarra','Evoluir']
-};
 //area das funçoes///////////////////////////////////////////////////////////////////////////
 function FundoBaralhoMorrer(passivo, baralho, origem) {
     let vida = passivo.childNodes[2].innerHTML;
@@ -779,31 +770,25 @@ function FundoBaralhoMorrer(passivo, baralho, origem) {
     vida = parseInt(vida);
     if (vida < 1) {
         if (passivo.classList.contains('CausarDanoMorrer')) {
-            if (origem === 0)
+            if (origem === 1)
                 DanoEmTodos(passivo, slotBem);
             else
                 DanoEmTodos(passivo, slotMal);
         }
         if (passivo.classList.contains('InvocarMorrer')) {
-            if (origem === 0)
-                Invocar(cartasDoJogoObj[GalinhaRaivosa], deck);
+            if (origem === 1)
+                Invocar(GalinhaRaivosa, deck);
             else
-                Invocar(cartasDoJogoObj[GalinhaRaivosa], deckInimigo);
+                Invocar(GalinhaRaivosa, deckInimigo);
         }
         if (passivo.classList.contains('InvocarMorrerGelo')) {
-            if (origem === 0)
-                Invocar(cartasDoJogoObj[Gelo], deck);
+            if (origem === 1)
+                Invocar(Gelo, deck);
             else
-                Invocar(cartasDoJogoObj[Gelo], deckInimigo);
+                Invocar(Gelo, deckInimigo);
         }
         if (passivo.classList.contains('Persistir')) {
-            if (origem === 0)
-                Invocar(MinionMaligno, deck);
-            else
-                Invocar(MinionMaligno, deckInimigo);
-        }
-        if (passivo.classList.contains('Evoluir')) {
-            if (origem === 0)
+            if (origem === 1)
                 Invocar(cartasDoJogoObj[44], deck);
             else
                 Invocar(cartasDoJogoObj[44], deckInimigo);
@@ -815,7 +800,7 @@ function FundoBaralhoMorrer(passivo, baralho, origem) {
         }
         for (let i = 0; i < cartasDoJogoObj.length; i++) {
             if (parseInt(passivo.childNodes[0].alt) === cartasDoJogoObj[i].id) {
-                if (i != 0 && cartasDoJogoObj[i].funcoes[3] != 'Invocado') {
+                if (i != 0 && i != 44 && cartasDoJogoObj[i].funcoes[3] != 'Invocado') {
                     baralho.push(cartasDoJogoObj[i]);
                 }
             }
@@ -1040,7 +1025,7 @@ function CausarDanoComVida(passivo) {
 function CausarDanoComMana(passivo, origem) {
     let dano = passivo.childNodes[1].innerHTML;
     dano = parseInt(dano);
-    if (origem == 0)
+    if (origem == 1)
         passivo.childNodes[1].innerHTML = manaVar;
     else
         passivo.childNodes[1].innerHTML = manaVarEnemy;
@@ -1048,7 +1033,7 @@ function CausarDanoComMana(passivo, origem) {
 function CurarComMana(passivo, origem) {
     let vida = passivo.childNodes[2].innerHTML;
     vida = parseInt(vida);
-    if (origem == 0)
+    if (origem == 1)
         passivo.childNodes[2].innerHTML = vida + manaVar;
     else
         passivo.childNodes[2].innerHTML = vida + manaVarEnemy;
