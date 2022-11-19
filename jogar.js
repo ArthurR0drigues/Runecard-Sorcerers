@@ -1,24 +1,42 @@
 let CardGame = localStorage.getItem('cartas-jogo');
 let CardGameObj = JSON.parse(CardGame);
 /* JOGAR */
-let bruno = {
+let Gladiadores = {
     oponente: 'Oponente 1',
-    img: 'img/carta-base.png',
-    deck: CardGameObj.slice(1, 10) 
+    img: 'cartas/minion.png',   
+    deck: CardGameObj.slice(1, 10)
 };
 
-let boi = {
+let Floresta = {
     oponente: 'Oponente 2',
-    img: 'img/carta.png',   
-    deck: CardGameObj.slice(11, 20)
+    img: 'img/carta-base.png',
+    deck: CardGameObj.slice(11, 20) 
 };
-let loloy = {
+
+let Neve = {
     oponente: 'Oponente 3',
-    img: 'cartas/minion.png',   
+    img: 'img/carta.png',   
     deck: CardGameObj.slice(21, 30)
 };
+let Deserto = {
+    oponente: 'Oponente 4',
+    img: 'cartas/minion.png',   
+    deck: CardGameObj.slice(31, 40)
+};
+let Fantasia = {
+    oponente: 'Oponente 5',
+    img: 'img/carta-base.png',
+    deck: CardGameObj.slice(41, 50) 
+};
+
+let Oceano = {
+    oponente: 'Oponente 6',
+    img: 'img/carta.png',   
+    deck: CardGameObj.slice(51, 60)
+};
+
 //seletor de oponentes
-let batalhasDisponiveis = [bruno, boi, loloy];
+let batalhasDisponiveis = [Gladiadores, Floresta, Neve, Deserto, Fantasia, Oceano];
 let oponenteAtual = -1;
 let oponenteEl = document.querySelector('#img-oponente');
 let nomeOponenteEl = document.querySelector('#nome-oponente');
