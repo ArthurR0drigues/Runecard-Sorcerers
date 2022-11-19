@@ -695,7 +695,20 @@ a {
     opacity: 0.5;
 }
 .PerdendoVida{
-    filter: hue-rotate(54deg);
+    filter: hue-rotate(74deg);  
+}
+.Congelado{
+    filter: invert(1);
+}
+.Defesa{
+    filter: sepia(30%);
+}
+.Angry{
+    filter: saturate(150%);
+}
+.DanoAumentado{
+    filter: blur(1px);
+    filter: brightness(150%);
 }
 /* fim */
 
