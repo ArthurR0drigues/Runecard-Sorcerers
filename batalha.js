@@ -29,7 +29,7 @@ let EsqueletoMinion = {
     dano: 3,
     custo: 2,
     imagem: 'cartas/esqueleto.png',
-    id: 18,
+    id: 33,
     nome: 'Esqueleto',
     funcoes: ['causarDano', 'FundoBaralhoMorrer', 'PerdendoDano', 'Invocado']
 };
@@ -38,8 +38,8 @@ let GalinhaRaivosa = {
     vida: 2,
     dano: 2,
     custo: 0,
-    imagem: 'cartas/galinha.png',
-    id: 45,
+    imagem: 'cartas/galinharaivosa.png',
+    id: 63,
     nome: 'Galinha',
     funcoes: ['causarDano', 'FundoBaralhoMorrer', 'Angry', 'Invocado']
 };
@@ -683,6 +683,7 @@ let turnoFase = 'vez-jogador';
 let turnoNumero = 1;
 let compraGratis = 5;
 let manaMaxima = 1;
+let bonus = 1; 
 definirMana();
 
 
@@ -704,9 +705,12 @@ function passarTurno() {
             turnoFase = 'vez-jogador';
             CartaAreaEl.style.display = 'block';
             textAreaEl.style.display = 'block';
-            manaVar += 1 + ((turnoNumero / 10) | 0);
-            manaVarEnemy += 1 + ((turnoNumero / 10) | 0);
-            manaMaxima += 1 + ((turnoNumero / 10) | 0);
+            if (turnoNumero == 50){
+                bonus = 0; 
+            }
+            manaVar += 1 + ((turnoNumero / 10) | 0) * bonus;
+            manaVarEnemy += 1 + ((turnoNumero / 10) | 0) * bonus;
+            manaMaxima += 1 + ((turnoNumero / 10) | 0) * bonus;
             console.log(`manaEnemy${manaVarEnemy}`);
             console.log(`manaPlayer${manaVar}`);
             console.log(`manaMaxima${manaMaxima}`);
@@ -789,9 +793,9 @@ function FundoBaralhoMorrer(passivo, baralho, origem) {
         }
         if (passivo.classList.contains('Persistir')) {
             if (origem === 1)
-                Invocar(cartasDoJogoObj[44], deck);
+                Invocar(cartasDoJogoObj[6], deck);
             else
-                Invocar(cartasDoJogoObj[44], deckInimigo);
+                Invocar(cartasDoJogoObj[6], deckInimigo);
         }
         if (passivo.classList.contains('Desejos')) {
             for (let i = 0; i < 3; i++) {
