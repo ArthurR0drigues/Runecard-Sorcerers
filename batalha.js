@@ -804,7 +804,7 @@ function FundoBaralhoMorrer(passivo, baralho, origem) {
         }
         for (let i = 0; i < cartasDoJogoObj.length; i++) {
             if (parseInt(passivo.childNodes[0].alt) === cartasDoJogoObj[i].id) {
-                if (i != 0 && i != 44 && cartasDoJogoObj[i].funcoes[3] != 'Invocado') {
+                if (i != 0 && i != 44 && i != 6 && cartasDoJogoObj[i].funcoes[3] != 'Invocado') {
                     baralho.push(cartasDoJogoObj[i]);
                 }
             }
