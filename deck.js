@@ -12,7 +12,7 @@ let Minion = {
 
 let MinionMaligno = {
     vida: 1,
-    dano: 1,
+    dano: 2,
     custo: 0,
     imagem: 'cartas/minionmaligno.png',
     id: 1,
