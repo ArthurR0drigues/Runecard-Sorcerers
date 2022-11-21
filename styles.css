@@ -505,12 +505,12 @@ a {
     height: 12.5vh;
 }
 .drag:active{
-    width: 161.25px;
-    height: 228px;
+    width: 24.54vh;
+    height: 34.7vh;
 }
 .drag{
-    width: 107.5px;
-    height: 152px;
+    width: 16.36vh;
+    height: 23.13vh;
 }
 #arena div:not(#player-deck) img{
     width: 20vh;
@@ -723,3 +723,4 @@ a {
         transform: rotate(90deg);
     }
 }
+
