@@ -19,7 +19,7 @@ let VirusMinion = {
     dano: 1,
     custo: 1,
     imagem: 'cartas/virus.png',
-    id: 3,
+    id: 12,
     nome: 'Vírus',
     funcoes: ['causarDano', 'FundoBaralhoMorrer', 'InvocarMortos', 'Invocado']
 };
