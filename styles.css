@@ -64,10 +64,22 @@ body {
     display: flex;
     justify-content: center;
     color: rgba(240, 177, 18, 0.889);
+    text-shadow: white 1px 1px;
 }
 
-#sobre-nos div{
+#sobre-nos p{
+    display: flex;
+    color: rgb(228, 182, 57);
+    text-shadow: white 1px 1px;
+    text-align: center;
+}
+
+.numeracao{
     color: rgba(240, 177, 18, 0.889);
+    display: flex;
+    justify-content: center;
+    text-shadow: white 1px 1px;
+    
 }
 
 #index h1,
