@@ -667,6 +667,10 @@ function criarAllcard(colecao, paiEl) {
         if (paiEl == null) {
             return false;
         }
+        if (colecao[i].id == 61){
+            cartaEl.style.display = 'none'; 
+            cartaEl.classList.add('hide');
+        }
         paiEl.appendChild(cartaEl);
         cartaEl.addEventListener('click', function (e) {
             if (cartaEl.classList.contains('adicionar-baralho') === true) {
@@ -768,3 +772,10 @@ if (baralho.length < 10) {
     avisoLenEl.style.display = 'inline';
     avisoMaxEl.style.display = 'none';
 }
+
+cheet('j a s o n', function () {
+    let hideEl = document.querySelector('.hide'); 
+    console.log(hideEl); 
+    hideEl.style.display = 'inline'; 
+    hideEl.classList.remove('hide');
+});
