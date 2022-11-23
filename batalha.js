@@ -3,6 +3,7 @@ document.oncontextmenu = document.body.oncontextmenu = function () { return fals
 let deck = [];
 /*informaçoes do inimigo*/
 let baralhoOponente = JSON.parse(localStorage.getItem('baralhoOponente'));
+let falaOponente = JSON.parse(localStorage.getItem('falaOponente'));
 let objectImageEl = document.querySelector('#oponente-obj');
 objectImageEl.src = localStorage.getItem('oponente');
 let vidaInimigoEl = document.querySelector('#vida-inimigo');
@@ -51,7 +52,7 @@ let Gelo = {
     imagem: 'cartas/gelo.png',
     id: 62,
     nome: 'Gelo',
-    funcoes: ['FundoBaralhoMorrer', 'Naoéumeastergg','éumagambiarra', 'Invocado']
+    funcoes: ['FundoBaralhoMorrer', 'Naoéumeastergg', 'éumagambiarra', 'Invocado']
 };
 
 
@@ -115,6 +116,26 @@ criarDeck(deck, playerdeckEl);
 let manaVar = 1;
 let manaVarEnemy = 1;
 
+let infoCardEl = document.querySelector('#info-card');
+function mostrarInformacoes(e) {
+    infoCardEl.innerHTML = 'Carta Info:<br>'
+    infoCardEl.innerHTML += '🗡️' + e.currentTarget.classList[2] + '<br>';
+    infoCardEl.innerHTML += '❤️' + e.currentTarget.classList[3];
+    infoCardEl.style.left = `calc(${e.pageX}px + 1vh)`;
+    infoCardEl.style.top = `calc(${e.pageY}px - 5vh)`;
+}
+function adicionarInfo(carta) {
+    carta.addEventListener('mouseover', mostrarInformacoes);
+    carta.addEventListener('mousemove', mostrarInformacoes);
+    carta.addEventListener('mouseout', function () {
+        infoCardEl.style.top = '-1000px';
+    });
+}
+cheet('i', function () {
+    let hideEl = document.querySelector('#info-card'); 
+    hideEl.classList.toggle('hide');
+});
+
 function dragAll() {
     let CartasNoDeckEl = document.querySelectorAll('.drag');
     CartasNoDeckEl.forEach(carta => {
@@ -127,7 +148,11 @@ function dragAll() {
             carta.style.left = `calc(${e.pageX}px - 80.625px)`;
             carta.style.top = `calc(${e.pageY}px - 114px)`;
         }
+        adicionarInfo(carta);
         carta.onmousedown = function (e) {
+            infoCardEl.style.top = '-1000px';
+            carta.removeEventListener('mousemove', mostrarInformacoes);
+            carta.removeEventListener('mouseover', mostrarInformacoes);
             carta = e.currentTarget;
 
             let bodyEl = document.querySelector('body');
@@ -145,6 +170,8 @@ function dragAll() {
                 }
             }
             carta.onmouseup = function (e) {
+                infoCardEl.style.top = '-1000px';
+                adicionarInfo(carta); 
                 bodyEl.removeEventListener('mousemove', selecionarCarta);
                 carta.style.position = 'initial';
                 carta.onmouseup = null;
@@ -683,7 +710,7 @@ let turnoFase = 'vez-jogador';
 let turnoNumero = 1;
 let compraGratis = 5;
 let manaMaxima = 1;
-let bonus = 1; 
+let bonus = 1;
 definirMana();
 
 
@@ -705,8 +732,8 @@ function passarTurno() {
             turnoFase = 'vez-jogador';
             CartaAreaEl.style.display = 'block';
             textAreaEl.style.display = 'block';
-            if (turnoNumero == 50){
-                bonus = 0; 
+            if (turnoNumero == 50) {
+                bonus = 0;
             }
             manaVar += 1 + ((turnoNumero / 10) | 0) * bonus;
             manaVarEnemy += 1 + ((turnoNumero / 10) | 0) * bonus;
@@ -734,7 +761,25 @@ function passarTurno() {
             break;
     }
 }
+/* falas *////
+let falaAtual = 0
+let falasEl = document.querySelector('#falas');
+falasEl.innerHTML = falaOponente[falaAtual];
+cheet('x', function () {
+    falaAtual++;
+    if (falaAtual + 1 <= falaOponente.length)
+        falasEl.innerHTML = falaOponente[falaAtual];
+    else
+        falaAtual--;
+});
 
+cheet('z', function () {
+    falaAtual--;
+    if (falaAtual >= 0)
+        falasEl.innerHTML = falaOponente[falaAtual];
+    else
+        falaAtual++;
+});
 
 /* compra cartas *//////////////////////////////////////////////////////////////
 let CartaAreaEl = document.querySelector('#baralho-area');
@@ -799,7 +844,7 @@ function FundoBaralhoMorrer(passivo, baralho, origem) {
         }
         if (passivo.classList.contains('Desejos')) {
             for (let i = 0; i < 3; i++) {
-                GanharCarta(origem); 
+                GanharCarta(origem);
             }
         }
         for (let i = 0; i < cartasDoJogoObj.length; i++) {
@@ -1042,3 +1087,4 @@ function CurarComMana(passivo, origem) {
     else
         passivo.childNodes[2].innerHTML = vida + manaVarEnemy;
 }
+
