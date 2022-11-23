@@ -419,10 +419,23 @@ let slot5 = document.querySelector('#slot5');
 let slot6 = document.querySelector('#slot6');
 let slotBem = [slot1, slot2, slot3];
 let slotMal = [slot4, slot5, slot6];
+
 function batalhaEmSI() {
+    
     batalhaEvent = true;
     let mortesNoTurno = 0;
     let position = 0;
+
+    function FundoMorrer(){
+        for (let slot of slotBem) {
+            if (slot.classList.contains('FundoBaralhoMorrer'))
+                mortesNoTurno += FundoBaralhoMorrer(slot, baralhoOponente, 0);
+        }
+        for (let slot of slotMal) {
+            if (slot.classList.contains('FundoBaralhoMorrer'))
+                mortesNoTurno += FundoBaralhoMorrer(slot, baralhoObj, 1);
+        }
+    }
 
     for (let slot of slotBem) {
         if (slot.classList.contains('CausarDanoComVida'))
@@ -471,14 +484,8 @@ function batalhaEmSI() {
         }
     }
 
-    for (let slot of slotBem) {
-        if (slot.classList.contains('FundoBaralhoMorrer'))
-            mortesNoTurno += FundoBaralhoMorrer(slot, baralhoOponente, 0);
-    }
-    for (let slot of slotMal) {
-        if (slot.classList.contains('FundoBaralhoMorrer'))
-            mortesNoTurno += FundoBaralhoMorrer(slot, baralhoObj, 1);
-    }
+    FundoMorrer(); 
+
     position = 0;
     for (let slot of slotBem) {
         if (slot.classList.contains('causarDano')) {
@@ -532,14 +539,7 @@ function batalhaEmSI() {
             PerdendoVida(slot);
     }
 
-    for (let slot of slotBem) {
-        if (slot.classList.contains('FundoBaralhoMorrer'))
-            mortesNoTurno += FundoBaralhoMorrer(slot, baralhoOponente, 0);
-    }
-    for (let slot of slotMal) {
-        if (slot.classList.contains('FundoBaralhoMorrer'))
-            mortesNoTurno += FundoBaralhoMorrer(slot, baralhoObj, 1);
-    }
+    FundoMorrer(); 
 
     position = 0;
     for (let slot of slotBem) {
@@ -693,14 +693,7 @@ function batalhaEmSI() {
             InvocarMortos(mortesNoTurno, deck);
     }
 
-    for (let slot of slotBem) {
-        if (slot.classList.contains('FundoBaralhoMorrer'))
-            mortesNoTurno += FundoBaralhoMorrer(slot, baralhoOponente, 0);
-    }
-    for (let slot of slotMal) {
-        if (slot.classList.contains('FundoBaralhoMorrer'))
-            mortesNoTurno += FundoBaralhoMorrer(slot, baralhoObj, 1);
-    }
+    FundoMorrer(); 
 
     batalhaEvent = false;
 }
@@ -957,7 +950,8 @@ function GanharVidaTime(causadorArry) {
 }
 function GanharDefesaTime(causadorArry) {
     for (let alvo of causadorArry) {
-        alvo.classList.add('Defesa');
+        if (alvo.childNodes[2].innerHTML)
+            alvo.classList.add('Defesa');
     }
 }
 function Invocar(invocado, decke) {
@@ -999,11 +993,11 @@ function DanoEmTodos(atacante, inimigoArry) {
 }
 
 function CausarDanoContinuo(defensor) {
-    if (defensor.childNodes[2].innerHTML != undefined)
+    if (defensor.childNodes[2].innerHTML)
         defensor.classList.add('PerdendoVida');
 }
 function Congelar(defensor) {
-    if (defensor.childNodes[2].innerHTML != undefined)
+    if (defensor.childNodes[2].innerHTML)
         defensor.classList.add('Congelado');
 }
 function PerdendoVida(alvo) {
