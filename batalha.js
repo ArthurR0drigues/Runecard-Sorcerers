@@ -119,6 +119,7 @@ let manaVarEnemy = 1;
 let infoCardEl = document.querySelector('#info-card');
 function mostrarInformacoes(e) {
     infoCardEl.innerHTML = 'Carta Info:<br>'
+    infoCardEl.innerHTML += '⭐' + e.currentTarget.classList[1] + '<br>';
     infoCardEl.innerHTML += '🗡️' + e.currentTarget.classList[2] + '<br>';
     infoCardEl.innerHTML += '❤️' + e.currentTarget.classList[3];
     infoCardEl.style.left = `calc(${e.pageX}px + 1vh)`;
@@ -132,7 +133,7 @@ function adicionarInfo(carta) {
     });
 }
 cheet('i', function () {
-    let hideEl = document.querySelector('#info-card'); 
+    let hideEl = document.querySelector('#info-card');
     hideEl.classList.toggle('hide');
 });
 
@@ -171,7 +172,7 @@ function dragAll() {
             }
             carta.onmouseup = function (e) {
                 infoCardEl.style.top = '-1000px';
-                adicionarInfo(carta); 
+                adicionarInfo(carta);
                 bodyEl.removeEventListener('mousemove', selecionarCarta);
                 carta.style.position = 'initial';
                 carta.onmouseup = null;
@@ -421,12 +422,12 @@ let slotBem = [slot1, slot2, slot3];
 let slotMal = [slot4, slot5, slot6];
 
 function batalhaEmSI() {
-    
+
     batalhaEvent = true;
     let mortesNoTurno = 0;
     let position = 0;
 
-    function FundoMorrer(){
+    function FundoMorrer() {
         for (let slot of slotBem) {
             if (slot.classList.contains('FundoBaralhoMorrer'))
                 mortesNoTurno += FundoBaralhoMorrer(slot, baralhoOponente, 0);
@@ -484,7 +485,7 @@ function batalhaEmSI() {
         }
     }
 
-    FundoMorrer(); 
+    FundoMorrer();
 
     position = 0;
     for (let slot of slotBem) {
@@ -539,7 +540,7 @@ function batalhaEmSI() {
             PerdendoVida(slot);
     }
 
-    FundoMorrer(); 
+    FundoMorrer();
 
     position = 0;
     for (let slot of slotBem) {
@@ -693,7 +694,7 @@ function batalhaEmSI() {
             InvocarMortos(mortesNoTurno, deck);
     }
 
-    FundoMorrer(); 
+    FundoMorrer();
 
     batalhaEvent = false;
 }
@@ -728,6 +729,10 @@ function passarTurno() {
             if (turnoNumero == 50) {
                 bonus = 0;
             }
+            if (turnoNumero >= 75) {
+                causarDanoOponente(2, vidaInimigoEl);
+                causarDanoOponente(2, vidaPlayerEl);
+            }
             manaVar += 1 + ((turnoNumero / 10) | 0) * bonus;
             manaVarEnemy += 1 + ((turnoNumero / 10) | 0) * bonus;
             manaMaxima += 1 + ((turnoNumero / 10) | 0) * bonus;
@@ -741,15 +746,15 @@ function passarTurno() {
             criarDeckInimigo(1 + ((turnoNumero / 10) | 0));
             if (vidaInimigoEl.innerHTML <= 0 && vidaPlayerEl.innerHTML <= 0) {
                 alert('EMPATE');
-                window.location.href = "index.html";
+                window.location.href = "jogar.html";
             }
             else if (vidaInimigoEl.innerHTML <= 0) {
                 alert('VITORIA');
-                window.location.href = "index.html";
+                window.location.href = "jogar.html";
             }
             else if (vidaPlayerEl.innerHTML <= 0) {
                 alert('DERROTA');
-                window.location.href = "index.html";
+                window.location.href = "jogar.html";
             }
             break;
     }
@@ -1030,6 +1035,8 @@ function GanharDanoMortes(passivo, numeroDeMortes) {
 }
 function InvocarMortos(numeroDeMortes, baralho) {
     let i = numeroDeMortes;
+    if (i > 3)
+        i = 3;
     while (i > 0) {
         Invocar(VirusMinion, baralho);
         i--;
