@@ -212,8 +212,8 @@ let Ent = {
 
 let MinionDeGelo = {
     vida: 1,
-    dano: 1,
-    custo: 0,
+    dano: 2,
+    custo: 1,
     imagem: 'cartas/miniondegelo.png',
     id: 21,
     nome: 'Minion de gelo',
