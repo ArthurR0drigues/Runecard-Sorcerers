@@ -786,7 +786,7 @@ CartaAreaEl.src = baralhoObj[0].imagem;
 textAreaEl.innerHTML = `Próximo:<br>${baralhoObj[0].nome}`;
 CartaAreaEl.addEventListener('click', function () {
     playerdeckEl.style.display = 'flex';
-    if (deck.length > 8)
+    if (deck.length > 7)
         return;
     if (manaVar == 0)
         return;
