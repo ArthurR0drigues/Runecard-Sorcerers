@@ -441,8 +441,8 @@ let Olhomaligno = {
 };
 
 let Vampiro = {
-    vida: 2,
-    dano: 2,
+    vida: 3,
+    dano: 1,
     custo: 2,
     imagem: 'cartas/vampiro.png',
     id: 44,
@@ -627,10 +627,10 @@ ALLCARDOFTHEGAME = ordenarVetor(ALLCARDOFTHEGAME);
 let ALLCARDOFTHEGAMEStr = JSON.stringify(ALLCARDOFTHEGAME);
 localStorage.setItem('cartas-jogo', ALLCARDOFTHEGAMEStr);
 /* vetor com todas as cartas desbloqueadas pelo jogador */
-let colecao = [Afogado, Anubis, Aranha, Axalote, Bandido, Barbanegra, Bonecodeneve, Bruxa, Caranguejo, Cavaleiro, Cavaleirodastrevas, Ciclope, Dragao, Espartano, Esqueleto, Goblin, Guaxinim, Horus, Lobisomen, Lula, Monge, Mumia, Necromancer, Ninja, Olhomaligno, Tigre, Unicornio, Vampiro, Viking, Virus, Fantasma, Mimico, PlantaCarnivora, CavaleiroFantasma, Ent, GolemDeGelo, Vespa, AguaViva, CerebroMaligno, Oni, IceLord, PeixeMonstro, Assassino, Barbaro, Galinha, Mago, Bode, Raposa, CranioMaligno, Naja, Cleopatra, Ascendido, Enguia, CasteloDeAreia, Tartaruga, Orc, MinionDeGelo, Aurora, Genio, Colosso, MinionMaligno];
+let colecao = ALLCARDOFTHEGAME.slice(1, 11);
+colecao.push(Assassino); 
 /*vetor com as cartas do jogador*/
-let baralho = [Afogado, Anubis, Aranha, Axalote, Bandido, Barbanegra, Bonecodeneve, Bruxa, Caranguejo, Cavaleiro];
-
+let baralho = colecao.slice(0, 10);
 
 //ordenar o vetor   
 function ordenarVetor(vetor) {
@@ -726,6 +726,9 @@ function criarBaralho(baralho, paiEl) {
 };
 
 //salva as informações
+let aux = localStorage.getItem('colecao');
+if (aux != undefined)
+    colecao = JSON.parse(aux); 
 let colecaoStr = JSON.stringify(colecao);
 localStorage.setItem('colecao', colecaoStr);
 
@@ -779,3 +782,5 @@ cheet('j a s o n', function () {
     hideEl.style.display = 'inline'; 
     hideEl.classList.remove('hide');
 });
+let cartasDesbloqueadasEl = document.querySelector('#cartas-desbloqueadas'); 
+cartasDesbloqueadasEl.innerHTML += ": " + colecao.length + '/61';
