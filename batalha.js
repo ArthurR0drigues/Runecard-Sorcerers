@@ -750,6 +750,11 @@ function passarTurno() {
             }
             else if (vidaInimigoEl.innerHTML <= 0) {
                 alert('VITORIA');
+                if (falaOponente.length < 10) {
+                    let dinheiroDoJogador = parseInt(localStorage.getItem('dinheiro'));
+                    dinheiroDoJogador += ((101 - turnoNumero * (vidaPlayerEl.innerHTML / 50) + manaMaxima /turnoNumero) | 0);
+                    localStorage.setItem('dinheiro', dinheiroDoJogador);
+                }
                 window.location.href = "jogar.html";
             }
             else if (vidaPlayerEl.innerHTML <= 0) {
