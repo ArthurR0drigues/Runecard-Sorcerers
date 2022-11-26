@@ -11,40 +11,40 @@ let Tutorial = {
 let Gladiadores = {
     oponente: 'Oponente 1',
     img: 'cartas/minion.png',   
-    deck: CardGameObj.slice(1, 10),
+    deck: CardGameObj.slice(1, 11),
     falas: [""]
 };
 
 let Floresta = {
     oponente: 'Oponente 2',
     img: 'img/carta-base.png',
-    deck: CardGameObj.slice(11, 20),
+    deck: CardGameObj.slice(11, 21),
     falas: [""]
 };
 
 let Neve = {
     oponente: 'Oponente 3',
     img: 'img/carta.png',   
-    deck: CardGameObj.slice(21, 30),
+    deck: CardGameObj.slice(21, 31),
     falas: [""]
 };
 let Deserto = {
     oponente: 'Oponente 4',
     img: 'cartas/minion.png',   
-    deck: CardGameObj.slice(31, 40),
+    deck: CardGameObj.slice(31, 41),
     falas: [""]
 };
 let Fantasia = {
     oponente: 'Oponente 5',
     img: 'img/carta-base.png',
-    deck: CardGameObj.slice(41, 50),
+    deck: CardGameObj.slice(41, 51),
     falas: [""]
 };
 
 let Oceano = {
     oponente: 'Oponente 6',
     img: 'img/carta.png',   
-    deck: CardGameObj.slice(51, 60),
+    deck: CardGameObj.slice(51, 61),
     falas: [""]
 };
 
