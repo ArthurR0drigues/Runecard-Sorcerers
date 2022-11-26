@@ -12,22 +12,44 @@
         rel="stylesheet">
 </head>
 
-<body id="shop-background">
-    <main id="loja">
+<body class="taverna">
+    <main id="comprar">
         <nav class="voltar">
-            <a href="index.html"><div class="volta">↩</div></a> 
+            <a href="index.html">
+                <div class="volta">↩</div>
+            </a>
         </nav>
-        <h1 class="titulo">Loja</h1> 
+        <h1 class="titulo" id="titulo-loja">Loja</h1>
         <div id="dinheiro">
             <p id="gemas-player">💎0</p>
         </div>
+        <img src="img/carrinho-de-compras.png" class="imagem-loja" id="carrinho" draggable="false">
+        <p id="text-shop">Re rolar</p>
+        <img src="img/setas-circulares.png" class="imagem-loja" id="reciclar" draggable="false">
         <section id="loja-cartas">
-            <div class="carta-venda"></div>
-            <div class="carta-venda"></div>
-            <div class="carta-venda"></div>
-            <div class="carta-venda"></div>
+            <div class="carta-venda" id="comprar-um">
+                <img src="" draggable="false">
+                <button class="botao-comprar">Comprar💰</button>
+                <button class="botao-trancar">Congelar🧊</button>
+            </div>
+            <div class="carta-venda" id="comprar-dois">
+                <img src="" draggable="false">
+                <button class="botao-comprar">Comprar💰</button>
+                <button class="botao-trancar">Congelar🧊</button>
+            </div>
+            <div class="carta-venda" id="comprar-tres">
+                <img src="" draggable="false">
+                <button class="botao-comprar">Comprar💰</button>
+                <button class="botao-trancar">Congelar🧊</button>
+            </div>
+            <div class="carta-venda" id="comprar-quatro">
+                <img src="" draggable="false">
+                <button class="botao-comprar">Comprar💰</button>
+                <button class="botao-trancar">Congelar🧊</button>
+            </div>
         </section>
     </main>
+    <script src="shop.js"></script>
 </body>
 
 </html>
