@@ -4,6 +4,9 @@ deleteDataEl.addEventListener('click', function () {
         localStorage.removeItem('cartas-jogo');
         localStorage.removeItem('baralho');
         localStorage.removeItem('colecao');
+        localStorage.removeItem('dinheiro');
+        localStorage.removeItem('loja');
+        localStorage.removeItem('lojaClass');
         document.location.reload(true);
     }
 })
@@ -48,3 +51,8 @@ loadDataEl.addEventListener('click', function () {
     localStorage.setItem('baralho', dadoSalvoJs[2]);
 
 })
+let dinheiroDoJogador = parseInt(localStorage.getItem('dinheiro')); 
+if (isNaN(dinheiroDoJogador))
+    localStorage.setItem('dinheiro', 50);
+else 
+    localStorage.setItem('dinheiro', dinheiroDoJogador);
