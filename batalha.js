@@ -483,7 +483,7 @@ function batalhaEmSI() {
     for (let slot of slotMal) {
         if (slot.classList.contains('DanoEmTodos')) {
             let danoRestante = DanoEmTodos(slot, slotBem);
-            causarDanoOponente(danoRestante, vidaInimigoEl);
+            causarDanoOponente(danoRestante, vidaInimigoEld);
         }
     }
 
@@ -493,7 +493,7 @@ function batalhaEmSI() {
     for (let slot of slotBem) {
         if (slot.classList.contains('causarDano')) {
             let danoRestante = causarDano(slot, slotMal[position]);
-            causarDanoOponente(danoRestante, vidaPlayerEl);
+            causarDanoOponente(danoRestante, vidaPlayerEl, slot);
         }
         position++;
     }
@@ -501,7 +501,7 @@ function batalhaEmSI() {
     for (let slot of slotMal) {
         if (slot.classList.contains('causarDano')) {
             let danoRestante = causarDano(slot, slotBem[position]);
-            causarDanoOponente(danoRestante, vidaInimigoEl);
+            causarDanoOponente(danoRestante, vidaInimigoEl, slot);
         }
         position++;
     }
@@ -548,7 +548,7 @@ function batalhaEmSI() {
     for (let slot of slotBem) {
         if (slot.classList.contains('AtaqueDuplo')) {
             let danoRestante = causarDano(slot, slotMal[position]);
-            causarDanoOponente(danoRestante, vidaPlayerEl);
+            causarDanoOponente(danoRestante, vidaPlayerEl, slot);
         }
         position++;
     }
@@ -556,7 +556,7 @@ function batalhaEmSI() {
     for (let slot of slotMal) {
         if (slot.classList.contains('AtaqueDuplo')) {
             let danoRestante = causarDano(slot, slotBem[position]);
-            causarDanoOponente(danoRestante, vidaInimigoEl);
+            causarDanoOponente(danoRestante, vidaInimigoEl, slot);
         }
         position++;
     }
@@ -724,55 +724,59 @@ function passarTurno() {
             OponenteAi();
             break;
         case 'vez-inimigo':
-            turnoEl.src = 'img/espada.png';
-            turnoFase = 'vez-jogador';
-            CartaAreaEl.style.display = 'block';
-            textAreaEl.style.display = 'block';
-            if (turnoNumero == 50) {
-                bonus = 0;
-            }
-            if (turnoNumero >= 75) {
-                causarDanoOponente(2, vidaInimigoEl);
-                causarDanoOponente(2, vidaPlayerEl);
-            }
-            manaVar += 1 + ((turnoNumero / 10) | 0) * bonus;
-            manaVarEnemy += 1 + ((turnoNumero / 10) | 0) * bonus;
-            manaMaxima += 1 + ((turnoNumero / 10) | 0) * bonus;
-            console.log(`manaEnemy${manaVarEnemy}`);
-            console.log(`manaPlayer${manaVar}`);
-            console.log(`manaMaxima${manaMaxima}`);
-            turnoNumero++;
-            turnoContadorEl.innerHTML = 'Turno:' + '<br>' + turnoNumero;
-            definirMana();
-            batalhaEmSI();
-            criarDeckInimigo(1 + ((turnoNumero / 10) | 0));
-            if (vidaInimigoEl.innerHTML <= 0 && vidaPlayerEl.innerHTML <= 0) {
-                alert('EMPATE');
-                window.location.href = "jogar.html";
-            }
-            else if (vidaInimigoEl.innerHTML <= 0) {
-                alert('VITORIA');
-                if (falaOponente.length < 10) {
-                    let dinheiroDoJogador = parseInt(localStorage.getItem('dinheiro'));
-                    dinheiroDoJogador += ((101 - turnoNumero * (vidaPlayerEl.innerHTML / 50) + manaMaxima /turnoNumero) | 0);
-                    localStorage.setItem('dinheiro', dinheiroDoJogador);
+            setTimeout(() => {
+                
+                turnoEl.src = 'img/espada.png';
+                turnoFase = 'vez-jogador';
+                CartaAreaEl.style.display = 'block';
+                textAreaEl.style.display = 'block';
+                if (turnoNumero == 50) {
+                    bonus = 0;
                 }
-                window.location.href = "jogar.html";
+                if (turnoNumero >= 75) {
+                    causarDanoOponente(2, vidaInimigoEl);
+                    causarDanoOponente(2, vidaPlayerEl);
+                }
+                manaVar += 1 + ((turnoNumero / 10) | 0) * bonus;
+                manaVarEnemy += 1 + ((turnoNumero / 10) | 0) * bonus;
+                manaMaxima += 1 + ((turnoNumero / 10) | 0) * bonus;
+                console.log(`manaEnemy${manaVarEnemy}`);
+                console.log(`manaPlayer${manaVar}`);
+                console.log(`manaMaxima${manaMaxima}`);
+                turnoNumero++;
+                turnoContadorEl.innerHTML = 'Turno:' + '<br>' + turnoNumero;
+                definirMana();
+                batalhaEmSI();
+                criarDeckInimigo(1 + ((turnoNumero / 10) | 0));
+                if (vidaInimigoEl.innerHTML <= 0 && vidaPlayerEl.innerHTML <= 0) {
+                    alert('EMPATE');
+                    window.location.href = "jogar.html";
+                }
+                else if (vidaInimigoEl.innerHTML <= 0) {
+                    alert('VITORIA');
+                    if (falaOponente.length < 10) {
+                        let dinheiroDoJogador = parseInt(localStorage.getItem('dinheiro'));
+                        dinheiroDoJogador += ((101 - turnoNumero * (vidaPlayerEl.innerHTML / 50) + manaMaxima /turnoNumero) | 0);
+                        dinheiroDoJogador += 100; 
+                        localStorage.setItem('dinheiro', dinheiroDoJogador);
+                    }
+                    window.location.href = "jogar.html";
+                }
+                else if (vidaPlayerEl.innerHTML <= 0) {
+                    alert('DERROTA');
+                    window.location.href = "jogar.html";
+                }
+            }, 500);
+                break;
             }
-            else if (vidaPlayerEl.innerHTML <= 0) {
-                alert('DERROTA');
-                window.location.href = "jogar.html";
-            }
-            break;
-    }
-}
-/* falas *////
-let falaAtual = 0
-let falasEl = document.querySelector('#falas');
-falasEl.innerHTML = falaOponente[falaAtual];
-cheet('x', function () {
-    falaAtual++;
-    if (falaAtual + 1 <= falaOponente.length)
+        }
+        /* falas *////
+        let falaAtual = 0
+        let falasEl = document.querySelector('#falas');
+        falasEl.innerHTML = falaOponente[falaAtual];
+        cheet('x', function () {
+            falaAtual++;
+            if (falaAtual + 1 <= falaOponente.length)
         falasEl.innerHTML = falaOponente[falaAtual];
     else
         falaAtual--;
@@ -859,7 +863,9 @@ function FundoBaralhoMorrer(passivo, baralho, origem) {
                 }
             }
         }
-        passivo.innerHTML = '<img draggable="false"><p class="dmg"></p><p class="hp"></p>';
+        setTimeout(() =>{
+            passivo.innerHTML = '<img draggable="false"><p class="dmg">⠀</p><p class="hp">⠀</p>';
+        }, 500)
         while (passivo.classList != "") {
             passivo.classList.remove(passivo.classList[0]);
         }
@@ -880,7 +886,7 @@ function causarDano(atacante, defensor) {
     if (atacante.classList.contains('Congelado')) {
         return 0;
     }
-    if (vida === "" || vida === undefined)
+    if (vida === "" || vida === undefined || isNaN(vida) == true)
         return dano;
     else {
         if (defensor.classList.contains('Defesa'))
@@ -900,13 +906,36 @@ function causarDano(atacante, defensor) {
             atacante.classList.remove('DanoAumentado');
         }
         defensor.childNodes[2].innerHTML = vida;
+        atacante.childNodes[0].style.transition = '200ms';
+
+        if (atacante.classList.contains('enemyslot'))
+            atacante.childNodes[0].style.transform = 'translateY(40px)';
+        else 
+            atacante.childNodes[0].style.transform = 'translateY(-40px)';
+
+        setTimeout(() =>{
+            atacante.childNodes[0].style.transform = 'translateY(0px)';
+        }, 500)
+        
         return 0;
     }
 }
-function causarDanoOponente(dano, alvo) {
+function causarDanoOponente(dano, alvo, atacante) {
+    if (dano < 1)
+     return;
     let vida = alvo.innerHTML;
     vida = vida - dano;
     alvo.innerHTML = vida;
+    atacante.childNodes[0].style.transition = '200ms';
+
+    if (atacante.classList.contains('enemyslot'))
+        atacante.childNodes[0].style.transform = 'translateY(300px)';
+    else 
+        atacante.childNodes[0].style.transform = 'translateY(-300px)';
+
+    setTimeout(() =>{
+        atacante.childNodes[0].style.transform = 'translateY(0px)';
+    }, 500)
 }
 function GanharVida(alvo) {
     let vida = alvo.childNodes[2].innerHTML;
@@ -1058,7 +1087,6 @@ function ImunidadeTodos(causadorArry) {
     }
 }
 function CopiarAdversario(atacante, defensor) {
-    console.log(defensor);
     if (defensor.childNodes == undefined)
         return;
     let ataqueDefensor = defensor.childNodes[1].innerHTML;
