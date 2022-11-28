@@ -34,7 +34,7 @@ body {
 
 .batalha {
   position: relative;
-  background-color: rgb(52, 58, 68);
+  background-image: none;
   background-repeat: no-repeat;
   background-size: cover;
 }
