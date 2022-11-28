@@ -2,6 +2,7 @@ html,
 body {
   min-height: 100%;
   user-select: none;
+  background-position: center bottom; 
 }
 
 :root {
