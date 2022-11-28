@@ -915,8 +915,12 @@ a {
   font-size: 5vh;
   font-weight: 200;
   font-family: "Dancing Script", cursive;
-  color: rgb(13, 198, 223);
-  text-shadow: 2px 2px rgb(3, 3, 3);
+  color: rgb(255, 255, 255);
+  text-shadow: 2px 2px rgb(78, 216, 221);
+  background-color: gray;
+  padding: 10px; 
+  border: var(--borda-escura);
+  border-radius: var(--borda-redondinha);
 }
 
 #carrinho {
