@@ -28,7 +28,7 @@ saveDataEl.addEventListener('click', function () {
 
 let dinheiroDoJogador = parseInt(localStorage.getItem('dinheiro'));
 if (isNaN(dinheiroDoJogador))
-    localStorage.setItem('dinheiro', 50);
+    localStorage.setItem('dinheiro', 20);
 else
     localStorage.setItem('dinheiro', dinheiroDoJogador);
 
