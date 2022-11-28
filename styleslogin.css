@@ -1,0 +1,114 @@
+.login {
+  font-family: 'Arimo', sans-serif;
+  background-color: rgba(33, 148, 194, 0.733);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 30px;
+  border-radius: 50px;
+  color: white;
+  border: 5px solid whitesmoke;
+}
+
+img {
+  max-width: 150px;
+
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+  font-family: "Dancing Script", cursive;
+  color: black;
+  font-size: 40px;
+  font-weight: 700;
+  font-family: "Dancing Script", cursive;
+}
+
+input {
+  padding: 15px;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  border-radius: 50px;
+  border: ridge gray 5px;
+  border-radius: 50px;
+  font-size: 18px;
+  font-weight: 700;
+  font-family: "Dancing Script", cursive;
+}
+
+button {
+  background-color: white;
+  padding: 15px;
+  width: 100%;
+  border: ridge gray 5px;
+  border-radius: 50px;
+  font-size: 24px;
+  font-weight: 700;
+  font-family: "Dancing Script", cursive;
+}
+
+button:hover {
+  background-color: rgb(154, 218, 235);
+  cursor: pointer;
+  transition: 300ms;
+}
+
+
+body {
+  height: 100vh;
+  background: black;
+
+}
+
+.slider-thumb::before {
+  position: absolute;
+  content: "";
+  left: 30%;
+  top: 20%;
+  width: 450px;
+  height: 450px;
+  background: #3e404e;
+  border-radius: 62% 47% 82% 35% / 45% 45% 80% 66%;
+  will-change: border-radius, transform, opacity;
+  animation: sliderShape 5s linear infinite;
+  display: block;
+  z-index: -1;
+  -webkit-animation: sliderShape 5s linear infinite;
+}
+
+@keyframes sliderShape {
+
+  0%,
+  100% {
+    border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+    transform: translate3d(0, 0, 0) rotateZ(0.01deg);
+  }
+
+  34% {
+    border-radius: 70% 30% 46% 54% / 30% 29% 71% 70%;
+    transform: translate3d(0, 5px, 0) rotateZ(0.01deg);
+  }
+
+  50% {
+    transform: translate3d(0, 0, 0) rotateZ(0.01deg);
+  }
+
+  67% {
+    border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%;
+    transform: translate3d(0, -3px, 0) rotateZ(0.01deg);
+  }
+}
+
+#status {
+  width: 50px;
+  height: 50px;
+  justify-items: center;
+  justify-content: center;
+  justify-self: center;
+  border-radius: 15px;
+  font-size: 20px;
+  color: rgb(110, 29, 40);
+}
