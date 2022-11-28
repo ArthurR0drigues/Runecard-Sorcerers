@@ -1,55 +1,52 @@
-function cadastrar(){
+function cadastrar() {
     let nomeusuario = document.querySelector("#usernameinput").value
     let senha = document.querySelector("#passwordinput").value
 
-    let usuario = {
-        nomeusuario: nomeusuario,
-        senha: senha
-    };
+    if (senha.length > 5 && senha.length < 11 && senha != null && nomeusuario.length > 1) {
+        localStorage.setItem(senha, nomeusuario);
+        alert("Conta criada com sucesso!")
+        window.location.href = "telalogin.html"
+        localStorage.removeItem('colecao');
+        localStorage.removeItem('baralho');
+        localStorage.removeItem('cartas-jogo');
+        localStorage.removeItem('dinheiro');
+        localStorage.removeItem('loja');
+        localStorage.removeItem('lojaClass');
+    }
+    else {
+        alert('Senha ou usuário não se adequa aos requisitos');
+    }
+};
+function pular() {
+    window.location.href = "telalogin.html";
+};
 
-    let json = JSON.stringify(usuario)
-    localStorage.setItem(nomeusuario, json)
-    console.log(nomeusuario + " foi adicionado com sucesso")
-    alert ("Conta criada com sucesso!")
-    window.location.href = "telalogin.html"
-}
+function voltar() {
+    window.location.href = "index.html";
+};
 
-function login(){
+function login() {
     let status = document.querySelector("#status")
-    console.log(status)
-
-    let nomeusuario = document.querySelector("#usernameinput").value
     let senha = document.querySelector("#passwordinput").value
-    let usuario = localStorage.getItem(nomeusuario)
-    let dados = JSON.parse(usuario)
-    console.log(dados)
 
-    if (usuario == null){
-        console.log("dados digitados: " + dados)
-        console.log("usuario nao existe")
-        status.textContent = "usuario nao existe"
-        status.style.border = "1px solid red"
-        status.style.width = "50px"
-        status.style.textAllign = "center"
-        status.style.padding = "5px"
-        status.style.borderRadius = "15px"
-        return
+    if (localStorage.getItem(senha) != null) {
+        let acess = localStorage.getItem(senha);
+        localStorage.setItem('user', acess);
+        status.textContent = "login efetuado!"
+        setTimeout(() => {
+            window.location.href = "lobby.html"
+        }, 1000);
+        
+        let carregarDados = []; 
+        carregarDados = JSON.parse(localStorage.getItem(`"${acess}"`)); 
+        localStorage.setItem('colecao', carregarDados[0]);
+        localStorage.setItem('baralho', carregarDados[1]);
+        localStorage.setItem('cartas-jogo', carregarDados[2]);
+        localStorage.setItem('dinheiro', carregarDados[3]);
+        localStorage.setItem('loja', carregarDados[4]);
+        localStorage.setItem('lojaClass', carregarDados[5]);
     }
-
-    if (nomeusuario == dados.nomeusuario && senha == dados.senha){
-        status.textContent = "login efetuado"
-        console.log("login efetuado")
-        window.location.href = "Projeto/index.html"
-    }
-    
-    else{
-        console.log("erro")
-        console.log("dados digitados: " + dados.nomeusuario)
-        status.textContent = "erro"
-        status.style.border = "1px solid red"
-        status.style.width = "50px"
-        status.style.textAllign = "center"
-        status.style.padding = "5px"
-        status.style.borderRadius = "15px"
+    else {
+        status.textContent = "Senha não encontrada!"
     }
 }
