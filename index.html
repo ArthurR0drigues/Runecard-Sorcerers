@@ -4,18 +4,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styleslogin.css">
     <title>Cadastro</title>
 </head>
 <body>
     <div class="slider-thumb">
         <section class="login">
-            <h1>Area de cadastro</h1>
-            <input type="text" placeholder="Login" id="usernameinput">
+            <h1>Área de cadastro</h1>
+            <input type="text" placeholder="Nome de Usuário" id="usernameinput">
             <br><br>
-            <input type="password" placeholder="Senha" id="passwordinput">
+            <input type="password" placeholder="Senha (mín.6 caracteres)" id="passwordinput" maxlength='10' minlength="5">
             <br><br>
             <button onclick="cadastrar()">Cadastrar</button>
+            <button onclick="pular()">Já cadastrado</button>
         </section>
     </div>
     <script src="script.js"></script>
