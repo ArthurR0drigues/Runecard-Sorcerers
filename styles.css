@@ -944,6 +944,10 @@ a {
   font-family: "Dancing Script", cursive;
   color: rgb(13, 198, 223);
   text-shadow: 2px 2px rgb(3, 3, 3);
+  background-color: gray;
+  border: var(--borda-escura);
+  border-radius: var(--borda-redondinha); 
+  padding: 10px;
 }
 
 #carrinho {
