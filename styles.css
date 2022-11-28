@@ -34,7 +34,7 @@ body {
 
 .batalha {
   position: relative;
-  background-image: none;
+  background-color: rgb(52, 58, 68);
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -55,8 +55,8 @@ body {
   font-size: 2rem;
 }
 
-.referencias {
-  background-image: url("img/background-referencias");
+#background-referencias {
+  background-image: url("img/background-referencias.jpg");
 }
 
 /* estilos para o index */
@@ -79,6 +79,29 @@ body {
   color: rgba(240, 177, 18, 0.889);
   display: flex;
   justify-content: center;
+  text-shadow: white 1px 1px;
+}
+
+#easterEggBotao {
+  display: flex;
+  color: rgba(0, 0, 255, 0);
+  justify-content: center;
+  width: 10vh;
+  height: 10vh;
+}
+
+#referencias a {
+  display: flex;
+  color: whitesmoke;
+  font-size: 5vh;
+  font-family: "Dancing Script", cursive;
+  flex-direction: column;
+  text-align: center;
+}
+
+#especial {
+  display: inline-block;
+  color: rgba(18, 192, 240, 0.889);
   text-shadow: white 1px 1px;
 }
 
@@ -306,7 +329,7 @@ a {
 #anterior:active {
   border: rgb(146, 146, 146) ridge 5px;
   transition: 300ms;
-  transform: translateX(-10px);
+  transform: translateX(10px);
 }
 
 .controle {
@@ -915,12 +938,8 @@ a {
   font-size: 5vh;
   font-weight: 200;
   font-family: "Dancing Script", cursive;
-  color: rgb(255, 255, 255);
-  text-shadow: 2px 2px rgb(78, 216, 221);
-  background-color: gray;
-  padding: 10px; 
-  border: var(--borda-escura);
-  border-radius: var(--borda-redondinha);
+  color: rgb(13, 198, 223);
+  text-shadow: 2px 2px rgb(3, 3, 3);
 }
 
 #carrinho {
