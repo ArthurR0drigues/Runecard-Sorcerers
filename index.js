@@ -1,58 +1,34 @@
-let deleteDataEl = document.querySelector('#delete-data');
-deleteDataEl.addEventListener('click', function () {
-    if (confirm('Se confirmar, todo seu progresso será perdido') == true) {
-        localStorage.removeItem('cartas-jogo');
-        localStorage.removeItem('baralho');
-        localStorage.removeItem('colecao');
-        localStorage.removeItem('dinheiro');
-        localStorage.removeItem('loja');
-        localStorage.removeItem('lojaClass');
-        document.location.reload(true);
-    }
-})
+let Usuario = JSON.stringify(localStorage.getItem('user'));
+
 
 let saveDataEl = document.querySelector('#save-data');
 saveDataEl.addEventListener('click', function () {
-    let resposta = prompt('Digite uma senha em que seus dados ficarão salvo (mínimo de 6 e máximo de 10 caracteres)');
-    if (resposta.length > 5 && resposta.length < 11 && resposta != null) {
 
-        let BancoDeSenha = [];
-        let colecaoStr = localStorage.getItem('colecao');
-        let baralhoStr = localStorage.getItem('baralho');
-        let cartasJogoStr = localStorage.getItem('cartas-jogo');;
+    let BancoDeSenha = [];
+    let colecaoStr = localStorage.getItem('colecao');
+    let baralhoStr = localStorage.getItem('baralho');
+    let cartasJogoStr = localStorage.getItem('cartas-jogo');
+    let dinheiroStr = localStorage.getItem('dinheiro');
+    let lojaStr = localStorage.getItem('loja');
+    let lojaClassStr = localStorage.getItem('lojaClass');
 
-        BancoDeSenha[0] = cartasJogoStr;
-        BancoDeSenha[1] = colecaoStr;
-        BancoDeSenha[2] = baralhoStr;
+    BancoDeSenha[0] = colecaoStr;
+    BancoDeSenha[1] = baralhoStr;
+    BancoDeSenha[2] = cartasJogoStr;
+    BancoDeSenha[3] = dinheiroStr; 
+    BancoDeSenha[4] = lojaStr;
+    BancoDeSenha[5] = lojaClassStr; 
+    let BancoDeSenhaStr = JSON.stringify(BancoDeSenha);
+    localStorage.setItem(Usuario, BancoDeSenhaStr);
 
-        let BancoDeSenhaStr = JSON.stringify(BancoDeSenha);
-        localStorage.setItem(resposta, BancoDeSenhaStr);
-    }
-    else {
-        alert('Senha não adequada aos requisitos');
-    }
+    window.location.href = 'index.html';
 })
 
-let loadDataEl = document.querySelector('#load-data');
-loadDataEl.addEventListener('click', function () {
-    let resposta = prompt('Digite a senha em que seus dados foram salvos');
-    let encontrado = true;
-    let dadoSalvoStr = localStorage.getItem(resposta);
-    if (dadoSalvoStr == undefined){
-        encontrado = false; 
-    }
-    if (encontrado == false){
-        alert('Senha não encontrada');
-        return; 
-    }
-    let dadoSalvoJs = JSON.parse(dadoSalvoStr);
-    localStorage.setItem('cartas-jogo', dadoSalvoJs[0]);
-    localStorage.setItem('colecao', dadoSalvoJs[1]);
-    localStorage.setItem('baralho', dadoSalvoJs[2]);
 
-})
-let dinheiroDoJogador = parseInt(localStorage.getItem('dinheiro')); 
+
+let dinheiroDoJogador = parseInt(localStorage.getItem('dinheiro'));
 if (isNaN(dinheiroDoJogador))
     localStorage.setItem('dinheiro', 50);
-else 
+else
     localStorage.setItem('dinheiro', dinheiroDoJogador);
+
