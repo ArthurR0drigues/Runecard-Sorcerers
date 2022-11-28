@@ -2,7 +2,7 @@ let cartasDoJogoJs = localStorage.getItem('cartas-jogo');
 let cartasDoJogoObj = JSON.parse(cartasDoJogoJs);
 let colecaoJs = localStorage.getItem('colecao');
 let colecaoObj = JSON.parse(colecaoJs);
-
+ 
 
 let dinheiroDoJogador = localStorage.getItem('dinheiro');
 let dinheiroEl = document.querySelector('#gemas-player');
@@ -73,7 +73,7 @@ function resetarCartas() {
         botao.addEventListener('click', comprarCarta);
     }
     for (let carta of cartaVendaEl) {
-        carta.childNodes[3].innerHTML = 'Comprar💰'
+        carta.childNodes[3].innerHTML = 'Comprar💰-25💎'
         carta.childNodes[5].style.display = 'inline'
         
         if (carta.classList.contains('trancado') == false) {
