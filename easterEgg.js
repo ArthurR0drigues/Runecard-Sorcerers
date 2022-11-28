@@ -1,13 +1,12 @@
-let firstTime = true;
-let message = "Parabens";
-let later = "\n\nThis is the real easter egg.\n\nThe first message isn't a real easter egg because the web page says what to do.\n\nThis one, however, is a message revealed only if the number '3' is hovered over more than once.\n\n "
+let primeiraVez = true;
+let mensagemBotaoEl = document.querySelector('#easter-egg');
+let posMensagem = "\nVejo que é curioso, aqui está como recompensa:\nWMFBA, esse é o código secreto, recomendo estudar um pouco de cifra de césar 😈"
+let messagem = "\nNão se preocupe, isso é apenas um erro no codigo-fonte 😫";
 
-
-function MouseoverMessageInAlertBox1()
+mensagemBotaoEl.addEventListener('click', easterEggMensagem)
+function easterEggMensagem()
 {
-   if(firstTime) { alert(message); }
-   else { alert(later); }
-   firstTime = false;
+   if (primeiraVez) {alert(messagem)}
+   else {alert(posMensagem)}
+   primeiraVez = false;
 }
-
-addEventListener(click, MouseoverMessageInAlertBox1())
