@@ -808,6 +808,8 @@ a {
   text-shadow: 2px 2px rgb(0, 0, 0);
   color: rgb(80, 80, 80);
   font-weight: bold;
+  justify-content: center;
+  align-content: center;
 }
 
 .hp {
