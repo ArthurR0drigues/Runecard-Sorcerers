@@ -1,6 +1,6 @@
 .login {
   font-family: 'Arimo', sans-serif;
-  background-color: rgba(33, 148, 194, 0.733);
+  background-color: rgba(58, 63, 65, 0.733);
   position: absolute;
   top: 50%;
   left: 50%;
@@ -20,7 +20,7 @@ h1 {
   display: flex;
   justify-content: center;
   font-family: "Dancing Script", cursive;
-  color: black;
+  color: rgb(255, 255, 255);
   font-size: 40px;
   font-weight: 700;
   font-family: "Dancing Script", cursive;
