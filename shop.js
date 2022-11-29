@@ -2,7 +2,7 @@ let cartasDoJogoJs = localStorage.getItem('cartas-jogo');
 let cartasDoJogoObj = JSON.parse(cartasDoJogoJs);
 let colecaoJs = localStorage.getItem('colecao');
 let colecaoObj = JSON.parse(colecaoJs);
- 
+
 
 let dinheiroDoJogador = localStorage.getItem('dinheiro');
 let dinheiroEl = document.querySelector('#gemas-player');
@@ -38,19 +38,19 @@ let voltarEl = document.querySelector('.volta');
 voltarEl.addEventListener('click', salvarLoja);
 function salvarLoja() {
     let lojaObj = [];
-    let lojaClassObj = []; 
+    let lojaClassObj = [];
     cartaVendaEl.forEach(carta => lojaObj.push(carta.innerHTML));
     cartaVendaEl.forEach(carta => lojaClassObj.push(carta.classList));
-    let lojaStr = JSON.stringify(lojaObj); 
-    let lojaClassStr = JSON.stringify(lojaClassObj); 
+    let lojaStr = JSON.stringify(lojaObj);
+    let lojaClassStr = JSON.stringify(lojaClassObj);
     localStorage.setItem('loja', lojaStr);
     localStorage.setItem('lojaClass', lojaClassStr);
 }
 function carregarLoja() {
     let lojaStr = localStorage.getItem('loja');
     let lojaClassStr = localStorage.getItem('lojaClass');
-    let lojaObj = JSON.parse(lojaStr); 
-    let lojaClassObj = JSON.parse(lojaClassStr); 
+    let lojaObj = JSON.parse(lojaStr);
+    let lojaClassObj = JSON.parse(lojaClassStr);
     let i = 0;
     for (let carta of cartaVendaEl) {
         if (lojaObj == null)
@@ -65,8 +65,8 @@ function carregarLoja() {
 carregarLoja();
 function resetarCartas() {
     if (dinheiroDoJogador - 20 < 0)
-        return; 
-    dinheiroDoJogador -= 20; 
+        return;
+    dinheiroDoJogador -= 20;
     dinheiroEl.innerHTML = '💎' + dinheiroDoJogador;
     localStorage.setItem('dinheiro', dinheiroDoJogador)
     for (let botao of botaoComprarEl) {
@@ -96,6 +96,8 @@ function resetarCartas() {
                 carta.childNodes[3].innerHTML = 'COMPRADO'
                 carta.childNodes[5].style.display = 'none'
             }
+            let flipEl = document.querySelector('#flip');
+            flipEl.play();
             carta.classList.add('girar');
             setTimeout(() => {
                 carta.classList.remove('girar');
@@ -109,6 +111,8 @@ function resetarCartas() {
 
 botaoTrancarEl = document.querySelectorAll('.botao-trancar');
 function congelarCompra(e) {
+    let somCongelarEl = document.querySelector('#somCongelar');
+    somCongelarEl.play();
     e.currentTarget.parentElement.classList.toggle('trancado');
 }
 for (let botao of botaoTrancarEl) {
@@ -119,14 +123,14 @@ botaoComprarEl = document.querySelectorAll('.botao-comprar');
 reciclarEl.addEventListener('click', resetarCartas);
 if (localStorage.getItem('loja') == null)
     resetarCartas();
-    
+
 function comprarCarta(e) {
     if (e.currentTarget.parentElement.childNodes[3].innerHTML == 'COMPRADO') {
         return;
     }
     if (dinheiroDoJogador - 25 < 0)
-        return; 
-    dinheiroDoJogador -= 25; 
+        return;
+    dinheiroDoJogador -= 25;
     dinheiroEl.innerHTML = '💎' + dinheiroDoJogador;
     localStorage.setItem('dinheiro', dinheiroDoJogador)
     e.currentTarget.parentElement.classList.remove('trancado');
@@ -136,6 +140,8 @@ function comprarCarta(e) {
     colecaoObj.push(cartasDoJogoObj[e.currentTarget.parentElement.childNodes[1].classList[0]]);
     let colecaoStr = JSON.stringify(colecaoObj);
     localStorage.setItem('colecao', colecaoStr);
+    let somCompraEl = document.querySelector('#somCompra');
+    somCompraEl.play();
 }
 for (let botao of botaoComprarEl) {
     botao.addEventListener('click', comprarCarta);
