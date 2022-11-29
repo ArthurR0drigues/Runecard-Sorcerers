@@ -741,8 +741,8 @@ function passarTurno() {
                 bonus = 0;
             }
             if (turnoNumero >= 75) {
-                causarDanoOponente(2, vidaInimigoEl);
-                causarDanoOponente(2, vidaPlayerEl);
+                causarDanoOponente(2, vidaInimigoEl, null);
+                causarDanoOponente(2, vidaPlayerEl, null);
             }
             manaVar += 1 + ((turnoNumero / 10) | 0) * bonus;
             manaVarEnemy += 1 + ((turnoNumero / 10) | 0) * bonus;
@@ -937,18 +937,20 @@ function causarDanoOponente(dano, alvo, atacante) {
     let vida = alvo.innerHTML;
     vida = vida - dano;
     alvo.innerHTML = vida;
-    atacante.childNodes[0].style.transition = '200ms';
+    if (atacante =!= null){
+        atacante.childNodes[0].style.transition = '200ms';
 
-    if (atacante.classList.contains('enemyslot'))
-        atacante.childNodes[0].style.transform = 'translateY(300px)';
-    else
-        atacante.childNodes[0].style.transform = 'translateY(-300px)';
+        if (atacante.classList.contains('enemyslot'))
+            atacante.childNodes[0].style.transform = 'translateY(300px)';
+        else
+            atacante.childNodes[0].style.transform = 'translateY(-300px)';
 
-    setTimeout(() => {
-        atacante.childNodes[0].style.transform = 'translateY(0px)';
-        damageEl.play();
-        diedEl.play();
-    }, 500)
+        setTimeout(() => {
+            atacante.childNodes[0].style.transform = 'translateY(0px)';
+            damageEl.play();
+            diedEl.play();
+        }, 500)
+    }
 }
 function GanharVida(alvo) {
     let vida = alvo.childNodes[2].innerHTML;
