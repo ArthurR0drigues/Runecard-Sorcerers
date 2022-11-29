@@ -28,7 +28,7 @@ function login() {
     let status = document.querySelector("#status")
     let senha = document.querySelector("#passwordinput").value
 
-    if (localStorage.getItem(senha) != null) {
+    if (localStorage.getItem(senha) != null){
         let acess = localStorage.getItem(senha);
         localStorage.setItem('user', acess);
         status.textContent = "login efetuado!"
