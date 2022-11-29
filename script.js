@@ -4,7 +4,6 @@ function cadastrar() {
 
     if (senha.length > 5 && senha.length < 11 && senha != null && nomeusuario.length > 1) {
         localStorage.setItem(senha, nomeusuario);
-        alert("Conta criada com sucesso!")
         window.location.href = "telalogin.html"
         localStorage.removeItem('colecao');
         localStorage.removeItem('baralho');
