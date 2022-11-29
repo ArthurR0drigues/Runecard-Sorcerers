@@ -937,7 +937,7 @@ function causarDanoOponente(dano, alvo, atacante) {
     let vida = alvo.innerHTML;
     vida = vida - dano;
     alvo.innerHTML = vida;
-    if (atacante =!= null){
+    if (atacante != null){
         atacante.childNodes[0].style.transition = '200ms';
 
         if (atacante.classList.contains('enemyslot'))
