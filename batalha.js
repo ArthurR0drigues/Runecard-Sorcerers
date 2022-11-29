@@ -156,7 +156,7 @@ function dragAll() {
             carta.style.top = `calc(${e.pageY}px - 114px)`;
         }
         adicionarInfo(carta);
-        carta.onmousedown = function (e) {
+        carta.onmousedown = function (e){
             cardEl.play();
             infoCardEl.style.top = '-1000px';
             carta.removeEventListener('mousemove', mostrarInformacoes);
