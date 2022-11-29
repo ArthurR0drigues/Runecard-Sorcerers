@@ -41,7 +41,7 @@ let EsqueletoMinion = {
     funcoes: ['causarDano', 'FundoBaralhoMorrer', 'PerdendoDano', 'Invocado']
 };
 
-let GalinhaRaivosa = {
+let GalinhaRaivosa ={
     vida: 2,
     dano: 2,
     custo: 0,
