@@ -2,7 +2,7 @@ let Usuario = JSON.stringify(localStorage.getItem('user'));
 
 
 let saveDataEl = document.querySelector('#save-data');
-saveDataEl.addEventListener('click', function (){
+saveDataEl.addEventListener('click', function () {
 
     let BancoDeSenha = [];
     let colecaoStr = localStorage.getItem('colecao');
