@@ -12,7 +12,7 @@ let Tutorial = {
 
 let Gladiadores = {
     oponente: 'Julius, o Invencível',
-    img: 'img/gladiador.png',   
+    img: 'img/Gladiador.png',   
     deck: CardGameObj.slice(1, 11),
     fundo: 'img/arena.jpg',
     musica: 'audio/onehourcountdown.mp4',
