@@ -709,7 +709,8 @@ function criarAllcard(colecao, paiEl) {
                 avisoLenEl.style.display = 'inline';
                 avisoMaxEl.style.display = 'none';
             }
-
+            let dragEl = document.querySelector('#drag');
+            dragEl.play();  
         });
     }
 };
