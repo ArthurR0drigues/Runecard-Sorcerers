@@ -744,7 +744,6 @@ function voltar() {
     let baralhoStr = JSON.stringify(baralho);
     localStorage.setItem('baralho', baralhoStr);
 }
-voltar();
 //chama as funçoes ao iniciar a pagina
 let colecaoJs = localStorage.getItem('colecao');
 colecao = JSON.parse(colecaoJs);
