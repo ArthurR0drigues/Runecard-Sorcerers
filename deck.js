@@ -248,7 +248,7 @@ let GolemDeGelo = {
     id: 24,
     nome: 'Golem de Gelo',
     funcoes: ['causarDano', 'FundoBaralhoMorrer']
-}; 
+};
 
 let Aurora = {
     vida: 4,
@@ -568,7 +568,7 @@ let Afogado = {
     id: 56,
     nome: 'Afogado',
     funcoes: ['causarDano', 'FundoBaralhoMorrer', 'PerdendoVida', 'Imunidade']
-}; 
+};
 
 let Caranguejo = {
     vida: 3,
@@ -617,7 +617,7 @@ let Assassino = {
     imagem: 'cartas/assassino.png',
     id: 61,
     nome: 'Assassino',
-    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'DanoAumentado','Executar']
+    funcoes: ['causarDano', 'FundoBaralhoMorrer', 'DanoAumentado', 'Executar']
 };
 
 
@@ -628,7 +628,7 @@ let ALLCARDOFTHEGAMEStr = JSON.stringify(ALLCARDOFTHEGAME);
 localStorage.setItem('cartas-jogo', ALLCARDOFTHEGAMEStr);
 /* vetor com todas as cartas desbloqueadas pelo jogador */
 let colecao = ALLCARDOFTHEGAME.slice(1, 11);
-colecao.push(Assassino); 
+colecao.push(Assassino);
 /*vetor com as cartas do jogador*/
 let baralho = colecao.slice(0, 10);
 
@@ -667,8 +667,8 @@ function criarAllcard(colecao, paiEl) {
         if (paiEl == null) {
             return false;
         }
-        if (colecao[i].id == 61){
-            cartaEl.style.display = 'none'; 
+        if (colecao[i].id == 61) {
+            cartaEl.style.display = 'none';
             cartaEl.classList.add('hide');
         }
         paiEl.appendChild(cartaEl);
@@ -710,7 +710,7 @@ function criarAllcard(colecao, paiEl) {
                 avisoMaxEl.style.display = 'none';
             }
             let dragEl = document.querySelector('#drag');
-            dragEl.play();  
+            dragEl.play();
         });
     }
 };
@@ -729,20 +729,22 @@ function criarBaralho(baralho, paiEl) {
 //salva as informações
 let aux = localStorage.getItem('colecao');
 if (aux != undefined)
-    colecao = JSON.parse(aux); 
+    colecao = JSON.parse(aux);
 let colecaoStr = JSON.stringify(colecao);
 localStorage.setItem('colecao', colecaoStr);
 
 let voltarBotaoEl = document.querySelector('#voltar-deck');
-voltarBotaoEl.addEventListener('click', function () {
+if (voltarBotaoEl != null)
+    voltarBotaoEl.addEventListener('click', voltar);
+function voltar() {
     if (baralho.length < 10) {
         alert("Suas cartas não serão salvas devido ao número insufiente (< 10) no seu deck. No entanto seu último deck completo ficará salvo!");
         voltarBotaoEl.preventDefault();
     }
     let baralhoStr = JSON.stringify(baralho);
     localStorage.setItem('baralho', baralhoStr);
-})
-
+}
+voltar();
 //chama as funçoes ao iniciar a pagina
 let colecaoJs = localStorage.getItem('colecao');
 colecao = JSON.parse(colecaoJs);
@@ -778,10 +780,10 @@ if (baralho.length < 10) {
 }
 
 cheet('j a s o n', function () {
-    let hideEl = document.querySelector('.hide'); 
-    console.log(hideEl); 
-    hideEl.style.display = 'inline'; 
+    let hideEl = document.querySelector('.hide');
+    console.log(hideEl);
+    hideEl.style.display = 'inline';
     hideEl.classList.remove('hide');
 });
-let cartasDesbloqueadasEl = document.querySelector('#cartas-desbloqueadas'); 
+let cartasDesbloqueadasEl = document.querySelector('#cartas-desbloqueadas');
 cartasDesbloqueadasEl.innerHTML += ": " + colecao.length + '/61';
