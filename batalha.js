@@ -41,7 +41,7 @@ let EsqueletoMinion = {
     funcoes: ['causarDano', 'FundoBaralhoMorrer', 'PerdendoDano', 'Invocado']
 };
 
-let GalinhaRaivosa ={
+let GalinhaRaivosa = {
     vida: 2,
     dano: 2,
     custo: 0,
@@ -156,7 +156,7 @@ function dragAll() {
             carta.style.top = `calc(${e.pageY}px - 114px)`;
         }
         adicionarInfo(carta);
-        carta.onmousedown = function (e){
+        carta.onmousedown = function (e) {
             cardEl.play();
             infoCardEl.style.top = '-1000px';
             carta.removeEventListener('mousemove', mostrarInformacoes);
@@ -430,7 +430,6 @@ let slot5 = document.querySelector('#slot5');
 let slot6 = document.querySelector('#slot6');
 let slotBem = [slot1, slot2, slot3];
 let slotMal = [slot4, slot5, slot6];
-
 function batalhaEmSI() {
 
     batalhaEvent = true;
@@ -446,8 +445,8 @@ function batalhaEmSI() {
             if (slot.classList.contains('FundoBaralhoMorrer'))
                 mortesNoTurno += FundoBaralhoMorrer(slot, baralhoObj, 1);
         }
-    }
-
+    } 
+    FundoMorrer(); 
     for (let slot of slotBem) {
         if (slot.classList.contains('CausarDanoComVida'))
             CausarDanoComVida(slot);
@@ -495,8 +494,7 @@ function batalhaEmSI() {
         }
     }
 
-    FundoMorrer();
-
+    
     position = 0;
     for (let slot of slotBem) {
         if (slot.classList.contains('causarDano')) {
@@ -513,18 +511,18 @@ function batalhaEmSI() {
         }
         position++;
     }
-
-
+    
+    
     position = 0;
     for (let slot of slotBem) {
         if (slot.classList.contains('CausarDanoContinuo'))
-            CausarDanoContinuo(slotMal[position]);
+        CausarDanoContinuo(slotMal[position]);
         position++;
     }
     position = 0;
     for (let slot of slotMal) {
         if (slot.classList.contains('CausarDanoContinuo'))
-            CausarDanoContinuo(slotBem[position]);
+        CausarDanoContinuo(slotBem[position]);
         position++;
     }
 
@@ -543,14 +541,14 @@ function batalhaEmSI() {
 
     for (let slot of slotBem) {
         if (slot.classList.contains('PerdendoVida'))
-            PerdendoVida(slot);
+        PerdendoVida(slot);
     }
     for (let slot of slotMal) {
         if (slot.classList.contains('PerdendoVida'))
-            PerdendoVida(slot);
+        PerdendoVida(slot);
     }
-
     FundoMorrer();
+
 
     position = 0;
     for (let slot of slotBem) {
@@ -568,7 +566,6 @@ function batalhaEmSI() {
         }
         position++;
     }
-
     for (let slot of slotBem) {
         if (slot.classList.contains('Sanguessuga'))
             Sanguessuga(slot);
@@ -704,7 +701,6 @@ function batalhaEmSI() {
             InvocarMortos(mortesNoTurno, deck);
     }
 
-    FundoMorrer();
 
     batalhaEvent = false;
 }
@@ -747,9 +743,6 @@ function passarTurno() {
             manaVar += 1 + ((turnoNumero / 10) | 0) * bonus;
             manaVarEnemy += 1 + ((turnoNumero / 10) | 0) * bonus;
             manaMaxima += 1 + ((turnoNumero / 10) | 0) * bonus;
-            console.log(`manaEnemy${manaVarEnemy}`);
-            console.log(`manaPlayer${manaVar}`);
-            console.log(`manaMaxima${manaMaxima}`);
             turnoNumero++;
             turnoContadorEl.innerHTML = 'Turno:' + '<br>' + turnoNumero;
             definirMana();
@@ -839,9 +832,9 @@ function FundoBaralhoMorrer(passivo, baralho, origem) {
     if (vida < 1) {
         if (passivo.classList.contains('CausarDanoMorrer')) {
             if (origem === 1)
-                DanoEmTodos(passivo, slotBem, passivo);
+                DanoEmTodos(passivo, slotBem);
             else
-                DanoEmTodos(passivo, slotMal, passivo);
+                DanoEmTodos(passivo, slotMal);
         }
         if (passivo.classList.contains('InvocarMorrer')) {
             if (origem === 1)
@@ -937,7 +930,7 @@ function causarDanoOponente(dano, alvo, atacante) {
     let vida = alvo.innerHTML;
     vida = vida - dano;
     alvo.innerHTML = vida;
-    if (atacante != null){
+    if (atacante != null) {
         atacante.childNodes[0].style.transition = '200ms';
 
         if (atacante.classList.contains('enemyslot'))
@@ -989,7 +982,7 @@ function GanharMana(causador) {
 function GanharDanoTime(causadorArry) {
     for (let alvo of causadorArry) {
         let dano = alvo.childNodes[1].innerHTML;
-        if (dano != "" && dano != undefined) {
+        if (alvo.childNodes[0].src != "") {
             dano++;
             alvo.childNodes[1].innerHTML = dano;
         }
@@ -998,7 +991,7 @@ function GanharDanoTime(causadorArry) {
 function GanharVidaTime(causadorArry) {
     for (let alvo of causadorArry) {
         let vida = alvo.childNodes[2].innerHTML;
-        if (vida != "" && vida != undefined) {
+        if (alvo.childNodes[0].src != "") {
             vida++;
             alvo.childNodes[2].innerHTML = vida;
         }
@@ -1006,7 +999,7 @@ function GanharVidaTime(causadorArry) {
 }
 function GanharDefesaTime(causadorArry) {
     for (let alvo of causadorArry) {
-        if (alvo.childNodes[2].innerHTML)
+        if (alvo.childNodes[0].src != "")
             alvo.classList.add('Defesa');
     }
 }
@@ -1023,9 +1016,10 @@ function DanoEmTodos(atacante, inimigoArry) {
     dano = parseInt(dano);
     for (let alvo of inimigoArry) {
         let vida = alvo.childNodes[2].innerHTML;
-        if (alvo.childNodes[2].innerHTML)
+        if (alvo.childNodes[0].src == "")
             retorno += dano;
         else {
+            console.log('sim');
             if (alvo.classList.contains('Defesa') == true)
                 dano -= 1;
             if (alvo.classList.contains('Imunidade') == true) {
@@ -1095,18 +1089,16 @@ function InvocarMortos(numeroDeMortes, baralho) {
 }
 function ImunidadeTodos(causadorArry) {
     for (let alvo of causadorArry) {
-        let vida = alvo.childNodes[2].innerHTML;
-        if (vida != "" && vida != undefined) {
+        if (alvo.childNodes[0].src != "")
             alvo.classList.add('Imunidade');
-        }
     }
 }
 function CopiarAdversario(atacante, defensor) {
-    if (defensor.childNodes == undefined)
+    if (defensor.childNodes[0].src == "")
         return;
     let ataqueDefensor = defensor.childNodes[1].innerHTML;
     let vidaDefensor = defensor.childNodes[2].innerHTML;
-    if (vidaDefensor === "" || vidaDefensor === undefined)
+    if (vidaDefensor === " " || vidaDefensor === undefined)
         return;
     else {
         atacante.childNodes[1].innerHTML = ataqueDefensor;
