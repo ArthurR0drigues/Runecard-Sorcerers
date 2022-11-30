@@ -566,6 +566,7 @@ function batalhaEmSI() {
         }
         position++;
     }
+     FundoMorrer();
     for (let slot of slotBem) {
         if (slot.classList.contains('Sanguessuga'))
             Sanguessuga(slot);
