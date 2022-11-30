@@ -701,7 +701,7 @@ function batalhaEmSI() {
             InvocarMortos(mortesNoTurno, deck);
     }
 
-
+    FundoMorrer();
     batalhaEvent = false;
 }
 let turnoEl = document.querySelector('#passa-turno');
