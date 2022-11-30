@@ -734,16 +734,14 @@ let colecaoStr = JSON.stringify(colecao);
 localStorage.setItem('colecao', colecaoStr);
 
 let voltarBotaoEl = document.querySelector('#voltar-deck');
-if (voltarBotaoEl != null)
-    voltarBotaoEl.addEventListener('click', voltar);
-function voltar() {
+voltarBotaoEl.addEventListener('click', function () {
     if (baralho.length < 10) {
         alert("Suas cartas não serão salvas devido ao número insufiente (< 10) no seu deck. No entanto seu último deck completo ficará salvo!");
         voltarBotaoEl.preventDefault();
     }
     let baralhoStr = JSON.stringify(baralho);
     localStorage.setItem('baralho', baralhoStr);
-}
+});
 //chama as funçoes ao iniciar a pagina
 let colecaoJs = localStorage.getItem('colecao');
 colecao = JSON.parse(colecaoJs);
