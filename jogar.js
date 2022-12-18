@@ -62,8 +62,17 @@ let Oceano = {
     falas: [""]
 };
 
+let Random = {
+    oponente: 'Cartas aleatórias',
+    img: 'img/guia.png',   
+    deck: [],
+    fundo: 'img/Tutorial.jpg',
+    musica: 'audio/mantis.mp4',
+    falas: ["Desafio Surpresa!", ""]
+}
+
 //seletor de oponentes
-let batalhasDisponiveis = [Tutorial, Gladiadores, Floresta, Neve, Deserto, Fantasia, Oceano];
+let batalhasDisponiveis = [Tutorial, Gladiadores, Floresta, Neve, Deserto, Fantasia, Oceano, Random];
 let oponenteAtual = -1;
 let oponenteEl = document.querySelector('#img-oponente');
 let nomeOponenteEl = document.querySelector('#nome-oponente');
