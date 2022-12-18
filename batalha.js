@@ -61,7 +61,6 @@ let Gelo = {
     funcoes: ['FundoBaralhoMorrer', 'Naoéumeastergg', 'éumagambiarra', 'Invocado']
 };
 
-
 function AdicionarAoDeck(deck, baralhoJs, quantidade) {
     for (let i = 0; i < quantidade; i++) {
         deck.push(baralhoJs[i]);
@@ -104,7 +103,45 @@ function definirMana() {
 }
 
 baralhoObj = embaralhar(baralhoObj);
+if (falaOponente.length == 2) {
+    let vet = []; 
+    for (let i = 0; i < 10; i++) {
+        let Nrandom = getRandomInt(cartasDoJogoObj.length);
+        if (vet.indexOf(Nrandom) == -1) {
+            baralhoOponente.push(cartasDoJogoObj[Nrandom]);
+            vet.push(Nrandom); 
+        }
+        else
+            i--;
+    }
+};
 baralhoOponente = embaralhar(baralhoOponente);
+let perigo = 0; 
+for (let cartas of baralhoOponente){
+    perigo += cartas.custo + 1;
+}
+perigo-=5;
+perigo*=0.85; 
+perigo = parseInt(perigo); 
+let perigoN = perigo; 
+if (perigo <= 20){
+    perigo = '★ ☆ ☆ ☆ ☆'; 
+}
+else if (perigo <= 35){
+    perigo = '★ ★ ☆ ☆ ☆'; 
+}
+else if (perigo <= 40){
+    perigo = '★ ★ ★ ☆ ☆'; 
+}
+else if (perigo < 45){
+    perigo = '★ ★ ★ ★ ☆'; 
+}
+else if (perigo >= 45){
+    perigo = '★ ★ ★ ★ ★'; 
+}
+cheet('p', function () {
+    alert("Nível de Ameaça = " + perigo); 
+});
 let deckInimigo = [];
 function criarDeckInimigo(quantidade) {
     while (quantidade != 0) {
@@ -445,8 +482,8 @@ function batalhaEmSI() {
             if (slot.classList.contains('FundoBaralhoMorrer'))
                 mortesNoTurno += FundoBaralhoMorrer(slot, baralhoObj, 1);
         }
-    } 
-    FundoMorrer(); 
+    }
+    FundoMorrer();
     for (let slot of slotBem) {
         if (slot.classList.contains('CausarDanoComVida'))
             CausarDanoComVida(slot);
@@ -494,7 +531,7 @@ function batalhaEmSI() {
         }
     }
 
-    
+
     position = 0;
     for (let slot of slotBem) {
         if (slot.classList.contains('causarDano')) {
@@ -511,18 +548,18 @@ function batalhaEmSI() {
         }
         position++;
     }
-    
-    
+
+
     position = 0;
     for (let slot of slotBem) {
         if (slot.classList.contains('CausarDanoContinuo'))
-        CausarDanoContinuo(slotMal[position]);
+            CausarDanoContinuo(slotMal[position]);
         position++;
     }
     position = 0;
     for (let slot of slotMal) {
         if (slot.classList.contains('CausarDanoContinuo'))
-        CausarDanoContinuo(slotBem[position]);
+            CausarDanoContinuo(slotBem[position]);
         position++;
     }
 
@@ -541,11 +578,11 @@ function batalhaEmSI() {
 
     for (let slot of slotBem) {
         if (slot.classList.contains('PerdendoVida'))
-        PerdendoVida(slot);
+            PerdendoVida(slot);
     }
     for (let slot of slotMal) {
         if (slot.classList.contains('PerdendoVida'))
-        PerdendoVida(slot);
+            PerdendoVida(slot);
     }
     FundoMorrer();
 
@@ -566,7 +603,7 @@ function batalhaEmSI() {
         }
         position++;
     }
-     FundoMorrer();
+    FundoMorrer();
     for (let slot of slotBem) {
         if (slot.classList.contains('Sanguessuga'))
             Sanguessuga(slot);
@@ -755,10 +792,10 @@ function passarTurno() {
             }
             else if (vidaInimigoEl.innerHTML <= 0) {
                 alert('VITORIA');
-                if (falaOponente.length < 10) {
+                if (falaOponente.length < 3) {
                     let dinheiroDoJogador = parseInt(localStorage.getItem('dinheiro'));
                     dinheiroDoJogador += ((101 - turnoNumero * (vidaPlayerEl.innerHTML / 50) + manaMaxima / turnoNumero) | 0);
-                    dinheiroDoJogador += 100;
+                    dinheiroDoJogador += 100 + perigoN;
                     localStorage.setItem('dinheiro', dinheiroDoJogador);
                 }
                 window.location.href = "jogar.html";
